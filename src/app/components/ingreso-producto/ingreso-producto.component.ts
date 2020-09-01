@@ -12,4 +12,5 @@ export class IngresoProductoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  a:string;
 }
