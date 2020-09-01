@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MenuProductosComponent } from './components/menu-productos/menu-productos.component';
 import { ProductoComponent } from './components/producto/producto.component';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
-import { CalcularPromedioComponent } from './components/calcular-promedio/calcular-promedio.component';
+import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { CalcularPromedioComponent } from './components/calcular-promedio/calcul
     MenuProductosComponent,
     ProductoComponent,
     RegistroUsuarioComponent,
-    CalcularPromedioComponent
+    IngresoProductoComponent
   ],
   imports: [
     BrowserModule,
