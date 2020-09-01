@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MenuProductosComponent } from './components/menu-productos/menu-productos.component';
 import { ProductoComponent } from './components/producto/producto.component';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
+import { CalcularPromedioComponent } from './components/calcular-promedio/calcular-promedio.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
     HomeComponent,
     MenuProductosComponent,
     ProductoComponent,
-    RegistroUsuarioComponent
+    RegistroUsuarioComponent,
+    CalcularPromedioComponent
   ],
   imports: [
     BrowserModule,
