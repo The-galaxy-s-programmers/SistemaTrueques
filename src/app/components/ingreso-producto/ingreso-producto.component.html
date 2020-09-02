@@ -1,103 +1,120 @@
+<br />
 <div class="container">
     <div class="row">
-      <div class="col-6">
-        <div class="card" >
-            <div class="card-body">
-                <h3 class="card-title">Ingrese producto a trocar</h3>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Ingrese producto a trocar</h3>
 
-                <div class="container">
-                    <span><i class="fa fa-user bigicon"></i> Nombre del producto</span>
-                    <div class="col-12">
-                        <input id="fname" name="name" type="text" placeholder="Nombre" class="form-control" >
+                    <div class="container">
+                        <span> Nombre del producto</span>
+                        <div class="col-12">
+                            <input name="name" type="text" placeholder="Nombre" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <br />
-                <div class="container">
-                    <span><i class="fa fa-user bigicon"></i> Descripcion</span>
-                    <div class="col-12">
-                        <input id="fname" name="name" type="text" placeholder="Nombre" class="form-control" >
+                    <br />
+                    <div class="container">
+                        <span> Descripcion</span>
+                        <div class="col-12">
+                            <textarea class="form-control" aria-label="Descripcion"></textarea>
+                        </div>
                     </div>
-                </div>
-                <br />
-                <div class="container">
-                    <label for="exampleFormControlSelect1">Categoria</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                </div>
-                <br />
-                <div class="container">
-                    <span><i class="fa fa-phone-square bigicon"> Uso</i></span>
-                    <div class="col-auto my-1">
-                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                          <option selected>Seleccione uso...</option>
-                          <option value="1">Ningun Uso</option>
-                          <option value="1">Poco Uso</option>
-                          <option value="2">Medio Uso</option>
-                          <option value="3">Mucho Uso</option>
-                          <option value="3">Inusable</option>
+                    <br />
+                    <div class="container">
+                        <div class="col-12">
+                        <span>Categoria</span>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Seleccione una Categoria</option>
+                            <option>Tecnologia</option>
+                            <option>Electrodomesticos</option>
+                            <option>Hogar</option>
+                            <option>Deportes</option>
+                            <option>Musica</option>
+                            <option>Vehiculos</option>
+                            <option>Accesorios</option>
                         </select>
-                      </div>
-                      <div class="col-auto my-1">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
-                </div>
-                <br />
-                <div class="container">
-                    <span><i class="fa fa-envelope-o bigicon"> Ubicacion Aproximada</i></span>
-                    <div class="col-12">
-                        <input name="email" type="text" placeholder="Email" class="form-control" >
                     </div>
                 </div>
-                <br />
-                <div class="container">
-                    <span><i class="fa fa-pencil-square-o bigicon"></i> Valor Refencial</span>
-                    <div class="col-12">
-                        <input name="password" class="password" placeholder="Contraseña" class="form-control" >
+                    <br />
+                    <div class="container">
+                        <span> Uso</span>
+                        <div class="col-auto my-1">
+                            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                <option selected>Seleccione uso...</option>
+                                <option value="1">Ningun Uso</option>
+                                <option value="1">Poco Uso</option>
+                                <option value="2">Medio Uso</option>
+                                <option value="3">Mucho Uso</option>
+                                <option value="3">Inusable</option>
+                            </select>
+                        </div>
                     </div>
-                </div> 
-                <br />
-                <div class="container">
-                    <span><i class="fa fa-pencil-square-o bigicon"></i> Valor Refencial</span>
-                    <div class="col-12">
-                        <input name="password" class="password" placeholder="Contraseña" class="form-control" >
+                    <br />
+                    <div class="container">
+                        <span> Ubicacion Aproximada</span>
+                        <div class="col-12">
+                            <div class="form-group input-group">
+                                <div class="col-6">
+                                    <input type="text" id="Ubicacion" class="form-control" placeholder="Comuna">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" id="Ubicacion" class="form-control" placeholder="Region">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <br />
-                <div class="container">
-                    <span><i class="fa fa-pencil-square-o bigicon"></i>Subir Imagen</span>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-                <br />
-                
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" >
-                    <label class="form-check-label" for="exampleCheck1">Acepta los <a href="#">Terminos y
-                            Condiciones</a></label>
-                </div>
-                <div class="container">
+                    <br />
+                    <div class="container">
+                        <span> Valor Refencial</span>
+                        <div class="col-12">
+                            <input name="precio" class="number" placeholder="Valor" class="form-control">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="container">
+                        <span> Fecha de publicacion</span>
+                        <div class="col-12">
+                            <input name="Fecha" class="date" placeholder="" class="form-control" readonly="readonly"
+                                value={{Fecha}}>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="container">
+                        <span>Subir Imagen</span>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <br />
                     <div class="col-12 text-center">
-                        <button type="button" class="btn btn-outline-danger" >Registrarse</button>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Acepta los <a href="#">Terminos y
+                                Condiciones</a></label>
                     </div>
                 </div>
+                    <div class="container">
+                        <div class="col-12 text-right">
+                            <button type="button" class="btn btn-outline-danger">TROCAR</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="container" id="imagender">
+                        <img src="../../../assets/logo.jpeg" />
+                    </div>
+
+                </div>
 
             </div>
-      </div>
-      <div class="col-6">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <div class="container">
-                   
-                </div>
-               
-                </div>
-
-            </div>
-      </div>
+        </div>
     </div>
-  </div>
+
+
+</div>
+<br/>

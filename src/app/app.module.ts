@@ -10,6 +10,8 @@ import { MenuProductosComponent } from './components/menu-productos/menu-product
 import { ProductoComponent } from './components/producto/producto.component';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-
     MenuProductosComponent,
     ProductoComponent,
     RegistroUsuarioComponent,
-    IngresoProductoComponent
+    IngresoProductoComponent,
+    PerfilComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
