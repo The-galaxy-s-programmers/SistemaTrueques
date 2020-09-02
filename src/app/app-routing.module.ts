@@ -5,6 +5,8 @@ import { MenuProductosComponent } from './components/menu-productos/menu-product
 import { ProductoComponent } from './components/producto/producto.component';
 import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -12,6 +14,8 @@ const routes: Routes = [
   {path:"Producto", component:ProductoComponent},
   {path:"RegistroUsuario", component:RegistroUsuarioComponent},
   {path:"IngresoProducto", component:IngresoProductoComponent},
+  {path:"Perfil", component:PerfilComponent},
+  {path:"Error", component:ErrorComponent},
 
 ];
 

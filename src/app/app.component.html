@@ -13,9 +13,9 @@
                 <li><a href="#"><i class="fa fa-map-marker"></i> 420 Galaxy</a></li>
             </ul>
             <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-dollar"></i>  Pesos $</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> Mi Perfil</a></li>
-                <li><a routerLink="RegistroUsuario">Registrate oe</a></li>
+                <li><a routerLink="Error"> Error</a></li>
+                <li><a routerLink="Perfil"> Mi Perfil</a></li>
+                <li><a routerLink="RegistroUsuario">Registrate</a></li>
                 <li><a routerLink="MenuProductos">Menu Productos</a></li>
                 <li><a routerLink="Producto">Producto</a></li>
                 <li><a routerLink="IngresoProducto">Ingrese Producto</a></li>
@@ -47,10 +47,14 @@
                     <div class="header-search">
                         <form>
                             <select class="input-select">
-                                <option value="0">Categorias</option>
-                                <option value="1">Category 02</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                <option>Categorias</option>
+                                <option>Tecnologia</option>
+                                <option>Electrodomesticos</option>
+                                <option>Hogar</option>
+                                <option>Deportes</option>
+                                <option>Musica</option>
+                                <option>Vehiculos</option>
+                                <option>Accesorios</option>
                             </select>
                             <input class="input" placeholder="Search here">
                             <button class="search-btn">Search</button>
@@ -72,9 +76,9 @@
                         </div>
                         <!-- /Wishlist -->
                         <div>
-                            <a href="#">
+                            <a routerLink="Perfil">
                                 <i class="fa fa-user-o"></i>
-                                <span>Mi Cuenta</span>
+                                <span >Mi Cuenta</span>
                             </a>
                         </div>
 
