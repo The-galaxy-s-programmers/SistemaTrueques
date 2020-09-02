@@ -11,5 +11,6 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+descripcion="Juego de Comedor para 4 personas, poco uso, material reciclado manufactura chilena.";
+valor="Valor Aprox: $75.000";
 }
