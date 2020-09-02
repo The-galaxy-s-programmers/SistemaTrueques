@@ -1,16 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
+import { DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-ingreso-producto',
   templateUrl: './ingreso-producto.component.html',
-  styleUrls: ['./ingreso-producto.component.css']
+  styleUrls: ['./ingreso-producto.component.css'],
+  providers: [DatePipe]
 })
 export class IngresoProductoComponent implements OnInit {
 
-  constructor() { }
+  myFecha= new Date();
+  Fecha:string;
+  constructor(private datePipe: DatePipe) {
+    this.Fecha = this.datePipe.transform(this.myFecha, 'dd-MM-yyyy');
+
+   }
 
   ngOnInit(): void {
-  }
 
-  a:string;
+  }
+  
+  
+
+
+
 }
