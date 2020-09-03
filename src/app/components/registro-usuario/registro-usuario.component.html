@@ -49,15 +49,11 @@
                     <div class="form-group">
                         <input class="input" type="date" name="fechanac" placeholder="Fecha Nacimiento">
                     </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="direccion" placeholder="Direccion">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="comuna" placeholder="Comuna">
-                    </div>
+                    
                     <div class="form-group col-12">
-                        <select class="form-control" id="regiones_1899" data-id="1899" name="comuna[region]"
+                        <select class="form-control" id="regiones_1899" data-id="1899" name="comuna[region]" placeholder="Region">
                             style="width: 100%; display: none;">
+                            <option value="" data-id="">Seleccione Region...</option>
                             <option value="Tarapacá" data-id="01">Tarapacá</option>
                             <option value="Antofagasta" data-id="02">Antofagasta</option>
                             <option value="Atacama" data-id="03">Atacama</option>
@@ -75,6 +71,14 @@
                             <option value="Arica y Parinacota" data-id="15">Arica y Parinacota</option>
                             <option value="Ñuble" data-id="16">Ñuble</option>
                         </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input class="input" type="text" name="comuna" placeholder="Comuna">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="direccion" placeholder="Direccion">
                     </div>
                     <div class="form-group">
                         <input class="input" type="text" name="genero" placeholder="Genero">
