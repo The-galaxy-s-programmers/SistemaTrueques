@@ -425,7 +425,9 @@ body {
   
   .header-search form .search-btn {
     height: 40px;
-    width: 93px;
+    width: 89px;
+    margin-right: -1px;
+    margin-top: -2px;
     background: #3f78c3;
     color: #FFF;
     font-weight: 700;
