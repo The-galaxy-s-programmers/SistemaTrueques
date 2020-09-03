@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row profile">
+	<div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
@@ -19,44 +19,186 @@
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Follow</button>
-					<button type="button" class="btn btn-danger btn-sm">Message</button>
+					<button type="button" class="btn btn-warning btn-sm">Ayuda</button>
+					<button type="button" class="btn btn-danger btn-sm">Borrar Cuenta</button>
 				</div>
-				<!-- END SIDEBAR BUTTONS -->
-				<!-- SIDEBAR MENU -->
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li class="active">
-							<a href="#">
-							<i class="glyphicon glyphicon-home"></i>
-							Overview </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="glyphicon glyphicon-user"></i>
-							Account Settings </a>
-						</li>
-						<li>
-							<a href="#" target="_blank">
-							<i class="glyphicon glyphicon-ok"></i>
-							Tasks </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="glyphicon glyphicon-flag"></i>
-							Help </a>
-						</li>
-					</ul>
-				</div>
-				<!-- END MENU -->
+
 			</div>
 		</div>
-		<div class="col-md-9">
-            <div class="profile-content">
-			   Some user related content goes here...
-            </div>
+		<div class="col-9">
+
+			<ul class="nav nav-tabs " id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#info" role="tab"
+						aria-controls="home" aria-selected="true">Tu info.</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#objetosPermutados" role="tab"
+						aria-controls="profile" aria-selected="false">Objetos Permutados</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#tusObjetos" role="tab"
+						aria-controls="contact" aria-selected="false">Tus Objetos</a>
+				</li>
+			</ul>
+
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="home-tab">
+					<div class="row">
+						<div class="col-12">
+							<br/>
+							<div class="row">
+								<div class="col-3"></div>
+								<div class="col-6">
+									<div class="form-group">
+										<input class="input" type="text" name="nombre" placeholder="Nombre">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="apellido" placeholder="Apellido">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="nombre-usuario"
+											placeholder="Nombre de Usuario">
+									</div>
+									<div class="form-group">
+										<input class="input" type="password" name="contrasenia"
+											placeholder="Contraseña">
+									</div>
+									<div class="form-group">
+										<input class="input" type="email" name="email" placeholder="Correo">
+									</div>
+									<div class="form-group">
+										<input class="input" type="date" name="fechanac" placeholder="Fecha Nacimiento">
+									</div>
+
+									<div class="form-group col-12">
+										<select class="form-control" id="regiones_1899" data-id="1899"
+											name="comuna[region]" placeholder="Region">
+											style="width: 100%; display: none;">
+											<option value="" data-id="">Seleccione Region...</option>
+											<option value="Tarapacá" data-id="01">Tarapacá</option>
+											<option value="Antofagasta" data-id="02">Antofagasta</option>
+											<option value="Atacama" data-id="03">Atacama</option>
+											<option value="Coquimbo" data-id="04">Coquimbo</option>
+											<option value="Valparaíso" data-id="05">Valparaíso</option>
+											<option value="Del Libertador Gral. Bernardo O’Higgins" data-id="06">Del
+												Libertador Gral. Bernardo O’Higgins</option>
+											<option value="Del Maule" data-id="07">Del Maule</option>
+											<option value="Del Biobío" data-id="08">Del Biobío</option>
+											<option value="De la Araucanía" data-id="09">De la Araucanía</option>
+											<option value="De los Lagos" data-id="10">De los Lagos</option>
+											<option value="Aysén del Gral. Carlos Ibáñez del Campo" data-id="11">Aysén
+												del
+												Gral. Carlos Ibáñez del Campo</option>
+											<option value="Magallanes y de la Antártica Chilena" data-id="12">Magallanes
+												y
+												de la Antártica Chilena</option>
+											<option value="Metropolitana de Santiago" data-id="13">Metropolitana de
+												Santiago
+											</option>
+											<option value="De los Ríos" data-id="14">De los Ríos</option>
+											<option value="Arica y Parinacota" data-id="15">Arica y Parinacota</option>
+											<option value="Ñuble" data-id="16">Ñuble</option>
+										</select>
+									</div>
+
+
+									<div class="form-group">
+										<input class="input" type="text" name="comuna" placeholder="Comuna">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="direccion" placeholder="Direccion">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" name="genero" placeholder="Genero">
+									</div>
+									<div class="form-group">
+										<input class="input" type="tel" name="telefono" placeholder="Telefono">
+									</div>
+									<div class="form-group">
+										<div class="input-checkbox text-center">
+											<input type="checkbox" id="create-account">
+											<button class="primary-btn" type="submit">Cambiar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> 
+					</div>
+				</div>
+				<div class="tab-pane fade" id="objetosPermutados" role="tabpanel" aria-labelledby="profile-tab">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-4 col-xs-6">
+									<div class="product">
+										<div class="product-img">
+											<img src="https://http2.mlstatic.com/D_NQ_NP_727032-MLC43344620840_092020-V.webp"
+												alt="">
+
+										</div>
+										<div class="product-body">
+											<p class="product-category">Notebook</p>
+											<h3 class="product-name"><a href="#">Notebook Gamer Acer Nitro 5
+													<small>(Usado)</small></a></h3>
+											<h4 class="product-price"> <del class="product-old-price"></del></h4>
+										</div>
+
+									</div>
+								</div>
+								<!-- /product -->
+
+								<div class="clearfix visible-sm visible-xs"></div>
+
+								<!-- product -->
+								<div class="col-md-4 col-xs-6">
+									<div class="product">
+										<div class="product-img">
+											<img src="https://http2.mlstatic.com/camara-canon-80-d-D_NQ_NP_618920-MLC42259430802_062020-V.webp"
+												alt="">
+
+										</div>
+										<div class="product-body">
+											<p class="product-category">Camara</p>
+											<h3 class="product-name"><a href="#">CAMARA CANON 80D
+													<small>(Usado)</small></a>
+											</h3>
+											<h4 class="product-price"> <del class="product-old-price"></del></h4>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="tusObjetos" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-md-4 col-xs-6">
+							<div class="product">
+								<div class="product-img">
+									<img src="https://http2.mlstatic.com/iphone-11-pro-max64gb-space-gray-bloqueado-x-mora-D_NQ_NP_660346-MLC43288747057_082020-V.webp"
+										alt="">
+
+								</div>
+								<div class="product-body">
+									<p class="product-category">Celular</p>
+									<h3 class="product-name"><a href="#">IiPhone 11 Pro Max,64gb Space Gray
+											Bloqueado X
+											Mora <small>(Usado)</small></a></h3>
+									<h4 class="product-price"> <del class="product-old-price"></del></h4>
+
+
+								</div>
+							</div>
+							<!-- /Review Form -->
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
-</div>
-<br>
-<br>
+	<br>
+	<br>
