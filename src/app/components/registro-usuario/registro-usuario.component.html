@@ -37,7 +37,8 @@
                         <input class="input" type="text" name="apellido" placeholder="Apellido">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="nombre-usuario" placeholder="Nombre de Usuario, con el iniciarás sesión">
+                        <input class="input" type="text" name="nombre-usuario"
+                            placeholder="Nombre de Usuario, con el iniciarás sesión">
                     </div>
                     <div class="form-group">
                         <input class="input" type="password" name="contrasenia" placeholder="Contraseña">
@@ -55,15 +56,24 @@
                         <input class="input" type="text" name="comuna" placeholder="Comuna">
                     </div>
                     <div class="form-group col-12">
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Seleccione Region</option>
-                            <option>Tecnologia</option>
-                            <option>Electrodomesticos</option>
-                            <option>Hogar</option>
-                            <option>Deportes</option>
-                            <option>Musica</option>
-                            <option>Vehiculos</option>
-                            <option>Accesorios</option>
+                        <select class="form-control" id="regiones_1899" data-id="1899" name="comuna[region]"
+                            style="width: 100%; display: none;">
+                            <option value="Tarapacá" data-id="01">Tarapacá</option>
+                            <option value="Antofagasta" data-id="02">Antofagasta</option>
+                            <option value="Atacama" data-id="03">Atacama</option>
+                            <option value="Coquimbo" data-id="04">Coquimbo</option>
+                            <option value="Valparaíso" data-id="05">Valparaíso</option>
+                            <option value="Del Libertador Gral. Bernardo O’Higgins" data-id="06">Del Libertador Gral. Bernardo O’Higgins</option>
+                            <option value="Del Maule" data-id="07">Del Maule</option>
+                            <option value="Del Biobío" data-id="08">Del Biobío</option>
+                            <option value="De la Araucanía" data-id="09">De la Araucanía</option>
+                            <option value="De los Lagos" data-id="10">De los Lagos</option>
+                            <option value="Aysén del Gral. Carlos Ibáñez del Campo" data-id="11">Aysén del Gral. Carlos Ibáñez del Campo</option>
+                            <option value="Magallanes y de la Antártica Chilena" data-id="12">Magallanes y de la Antártica Chilena</option>
+                            <option value="Metropolitana de Santiago" data-id="13">Metropolitana de Santiago</option>
+                            <option value="De los Ríos" data-id="14">De los Ríos</option>
+                            <option value="Arica y Parinacota" data-id="15">Arica y Parinacota</option>
+                            <option value="Ñuble" data-id="16">Ñuble</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -100,9 +110,9 @@
                 <br>
                 <br>
                 <div class="text-center">
-                        <img src="../assets/logo.jpeg" alt="imagen" class="img-thumbnail">
+                    <img src="../assets/logo.jpeg" alt="imagen" class="img-thumbnail">
                 </div>
-                
+
             </div>
         </div>
     </div>
