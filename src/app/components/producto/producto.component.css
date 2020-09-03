@@ -1,0 +1,10 @@
+.product-links li{
+    display:inline;
+    padding-left:3px;
+    padding-right:3px;
+}
+.col-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 60%;
+}
