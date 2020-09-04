@@ -13,7 +13,7 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-descripcion="Juego de Comedor para 4 personas, poco uso, material reciclado manufactura chilena.";
+descripcion=" Mueble de cocina en excelente estado. ";
 valor="Valor Aprox: $75.000";
 nombre:string;
 correo:string;
