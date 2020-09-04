@@ -14,6 +14,7 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
   }
 descripcion=" Mueble de cocina en excelente estado. ";
+fecha="04-09-2020"
 valor="Valor Aprox: $75.000";
 nombre:string;
 correo:string;
