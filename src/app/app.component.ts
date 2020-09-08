@@ -8,16 +8,21 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class AppComponent {
+
+
   title = 'Sistema-Trueques';
   myFecha= new Date();
   Fecha:string;
+ 
+
+
   constructor(private datePipe: DatePipe) {
     this.Fecha = this.datePipe.transform(this.myFecha, 'yyyy');
 
    }
 
   ngOnInit(): void {
-
+   
   }
   
 }

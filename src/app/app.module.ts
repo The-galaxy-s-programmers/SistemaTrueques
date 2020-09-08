@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,21 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
 import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ErrorComponent } from './components/error/error.component';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+// Paste in your credentials that you saved earlier
+var firebaseConfig = {
+  apiKey: "AIzaSyDZgjRnAcR2kXCNMjvYEpgx8t0k1dHn94Y",
+  authDomain: "sistematrueques.firebaseapp.com",
+  databaseURL: "https://sistematrueques.firebaseio.com",
+  projectId: "sistematrueques",
+  storageBucket: "sistematrueques.appspot.com",
+  messagingSenderId: "1088908507063",
+  appId: "1:1088908507063:web:0beaeb1693f7d6b8e09a32",
+  measurementId: "G-QT1CH51CDH"
+};
 
 @NgModule({
   declarations: [
@@ -30,7 +46,10 @@ import { ErrorComponent } from './components/error/error.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
