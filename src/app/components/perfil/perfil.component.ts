@@ -23,7 +23,7 @@ export class PerfilComponent implements OnInit {
   fechanac:String;
   foto:string;
 buscar(){
-  this.usuarioService.getNomUser("admin").subscribe(
+  this.usuarioService.getNomUser("jr2k1").subscribe(
     res =>{
       this.myUser=res;
       this.usuarioLog=JSON.parse(JSON.stringify(res))
