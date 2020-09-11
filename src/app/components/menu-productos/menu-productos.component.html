@@ -244,18 +244,18 @@
                     <!-- menu productos -->
                     <div class="row">
                         <!-- product -->
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-4 col-xs-6" *ngFor='let producto of listaProductos'> 
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="https://http2.mlstatic.com/ps4-slim-1tb-D_NQ_NP_855402-MLC43291297612_082020-V.webp"
+                                    <img src={{producto.imagen}}
                                         alt="">
 
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Consola</p>
-                                    <h3 class="product-name"><a href="#">Consola PlayStation PS4 Slim 1tb
-                                            <small>(Usado)</small></a></h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
+                                    <p class="product-category">{{producto.subcategoria}}</p>
+                                    <h3 class="product-name"><a href="#">{{producto.nombre}}
+                                            <small>{{producto.uso}}</small></a></h3>
+                                    <h4 class="product-price"> {{producto.valorReferencia}}<del class="product-old-price"></del></h4>
 
                                     <div class="product-btns">
                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
@@ -267,340 +267,17 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
+                                    <button class="add-to-cart-btn"><i class="fa fa-exchange" click=({{producto.idP}})></i> Permutar</button>
                                 </div>
                             </div>
                         </div>
                         <!-- /product -->
 
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://http2.mlstatic.com/D_NQ_NP_727032-MLC43344620840_092020-V.webp"
-                                        alt="">
 
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Notebook</p>
-                                    <h3 class="product-name"><a href="#">Notebook Gamer Acer Nitro 5
-                                            <small>(Usado)</small></a></h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
 
                         <div class="clearfix visible-sm visible-xs"></div>
 
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://http2.mlstatic.com/camara-canon-80-d-D_NQ_NP_618920-MLC42259430802_062020-V.webp"
-                                        alt="">
 
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Camara</p>
-                                    <h3 class="product-name"><a href="#">CAMARA CANON 80D <small>(Usado)</small></a>
-                                    </h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <div class="clearfix visible-lg visible-md"></div>
-
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://http2.mlstatic.com/iphone-11-pro-max64gb-space-gray-bloqueado-x-mora-D_NQ_NP_660346-MLC43288747057_082020-V.webp"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Celular</p>
-                                    <h3 class="product-name"><a href="#">IiPhone 11 Pro Max,64gb Space Gray Bloqueado X
-                                            Mora <small>(Usado)</small></a></h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <div class="clearfix visible-sm visible-xs"></div>
-
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQQpH86oElvkVO_poSXvSiQw3Ml7-TiDOGpHbqHuxNZKPdcwEZjpVIlKC8jsK4DmAeYV1PUeUj1-1M&usqp=CAc"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Hogar</p>
-                                    <h3 class="product-name"><a href="#"> Mueble Rack TV Biancovelo "51"
-                                            <small>(Usado)</small></a></h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://http2.mlstatic.com/audifonos-sony-wf-1000x-audifono-izquierdo-case-D_NQ_NP_831226-MLC43257554804_082020-V.webp"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Audifonos</p>
-                                    <h3 class="product-name"><a href="#">Audífonos Sony Wf-1000x (audifono Izquierdo +
-                                            Case) <small>(Usado)</small></a></h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>
-
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://scontent.fscl25-1.fna.fbcdn.net/v/t1.0-9/p720x720/118286636_3239270742774976_3228396150958060412_o.jpg?_nc_cat=111&_nc_sid=843cd7&_nc_ohc=lRZjf3MQj3EAX9042o9&_nc_ht=scontent.fscl25-1.fna&tp=6&oh=2a94ddb38a903d0698970a184ec0071a&oe=5F77BA71"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Accesorio</p>
-                                    <h3 class="product-name"><a href="#"> Silla Gamer Donna RGCO30 <small>(Semi
-                                                Nuevo)</small> </a></h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://http2.mlstatic.com/D_NQ_NP_920656-MLC43240164020_082020-V.webp">
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Consola</p>
-                                    <h3 class="product-name"><a href="#">Nintendo Switch Lite + Case + Protector De
-                                            Pantalla + Extras <small>(Usado)</small></a></h3>
-                                    <h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <div class="clearfix visible-sm visible-xs"></div>
-
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://http2.mlstatic.com/teclado-razer-chroma-tartarus-D_NQ_NP_759637-MLC41040795911_032020-V.webp"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Accesorio</p>
-                                    <h3 class="product-name"><a href="#">Teclado Razer Chroma Tartarus <small>(Semi
-                                                Nuevo)</small></a></h3>
-                                    <h4 class="product-price"><del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://scontent.fscl25-1.fna.fbcdn.net/v/t1.0-9/118597674_10222465351964226_8048550303951628806_n.jpg?_nc_cat=103&_nc_sid=843cd7&_nc_ohc=m6QOWhWD4E0AX8b_Lbx&_nc_ht=scontent.fscl25-1.fna&oh=b8cbd6e4ba99d486aa316e466810e502&oe=5F785030"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Hogar</p>
-                                    <h3 class="product-name"><a href="#">Mesa Multifuncional Plegable <small>(Semi
-                                                Nuevo)</small></a></h3>
-                                    <h4 class="product-price"><del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://scontent.fscl25-1.fna.fbcdn.net/v/t1.0-9/p720x720/118786399_3153181358069503_3852169308393642144_o.jpg?_nc_cat=104&_nc_sid=843cd7&_nc_ohc=XdNDr7lnk2gAX-FyEJr&_nc_ht=scontent.fscl25-1.fna&tp=6&oh=7709d25997e2142bdbfaa60ffba560cf&oe=5F76F472"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Construccion</p>
-                                    <h3 class="product-name"><a href="#">Taladro Inalambrico MAKITA <small>(Semi
-                                                Nuevo)</small></a></h3>
-                                    <h4 class="product-price"><del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="https://scontent.fscl25-1.fna.fbcdn.net/v/t1.0-9/s960x960/118778358_3123148037813933_3880149546156753341_o.jpg?_nc_cat=104&_nc_sid=843cd7&_nc_ohc=QodKSxpwNwQAX8V5OMw&_nc_ht=scontent.fscl25-1.fna&tp=7&oh=218293bf03704aae0269238547f61286&oe=5F7796E1"
-                                        alt="">
-
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">Hogar</p>
-                                    <h3 class="product-name"><a href="#"> Luz LED Solar <small>(Semi
-                                                Nuevo)</small></a></h3>
-                                    <h4 class="product-price"><del class="product-old-price"></del></h4>
-
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
-                                                class="tooltipp">Compartir</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
                     </div>
                     <!-- /store products -->
 

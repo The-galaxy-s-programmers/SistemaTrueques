@@ -19,7 +19,12 @@ export class IngresoProductoComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  imagen;
   
+  trocar(){
+    console.log("funciona")
+    console.log(this.imagen)
+  }
   
 
 

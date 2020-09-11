@@ -8,7 +8,7 @@ export interface Usuario {
     region:string;
     comuna:string;
     genero:string;
-    foto:Blob;
+    foto:string;
     password:string;
     direccion:string;
     fono:number;

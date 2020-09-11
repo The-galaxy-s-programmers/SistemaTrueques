@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Producto } from "src/app/interfaces/producto";
+import { ProductoService } from "src/app/services/producto.service"
 
 @Component({
   selector: 'app-menu-productos',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuProductosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productosServices: ProductoService) { }
 
   ngOnInit(): void {
+    this.buscar();
+  }
+
+  listaProductos: Producto[] = [];
+
+  buscar() {
+    this.productosServices.getListaProductoCategoria("Tecnologia").subscribe(
+      res => { this.listaProductos = res 
+        console.log(JSON.parse(JSON.stringify(this.listaProductos))[5])
+        console.log(JSON.parse(JSON.stringify(this.listaProductos))[5][0])
+      console.log(this.listaProductos)},
+      err => { console.log(err) }
+    )
   }
 
 }

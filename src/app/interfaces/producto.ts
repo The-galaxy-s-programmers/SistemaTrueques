@@ -1,3 +1,5 @@
+import { storage } from 'firebase';
+
 export interface Producto {
     idP:number;
     nombre:string;
@@ -5,7 +7,7 @@ export interface Producto {
     categoria:string;
     fechaPublicacion:Date;
     uso:string;
-    imagen:Blob;
+    imagen:string;
     valorReferencia:number;
     ubicacion:string;
     id_usuario:number;
