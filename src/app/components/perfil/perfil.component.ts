@@ -21,14 +21,15 @@ export class PerfilComponent implements OnInit {
 
   nombre:string;
   fechanac:String;
-
+  foto:string;
 buscar(){
-  this.usuarioService.getNomUser("Bvsty").subscribe(
+  this.usuarioService.getNomUser("admin").subscribe(
     res =>{
       this.myUser=res;
       this.usuarioLog=JSON.parse(JSON.stringify(res))
       this.nombre=this.usuarioLog.nombre+" "+this.usuarioLog.apellido
       this.fechanac=this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
+      this.foto=this.usuarioLog.foto;
     
     }, 
     err=>{console.log(err)}
