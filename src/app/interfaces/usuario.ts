@@ -1,9 +1,9 @@
 export interface Usuario {
-    idU:number;
+    idU ?:number;
     nomusuario:string;
     nombre:string;
     apellido:string;
-    fechaNacimiento:Date;
+    fechaNacimiento:string;
     correo:string;
     region:string;
     comuna:string;
