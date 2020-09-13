@@ -1,7 +1,7 @@
 import { storage } from 'firebase';
 
 export interface Producto {
-    idP:number;
+    idP ?:number;
     nombre:string;
     descripcion:string;
     categoria:string;

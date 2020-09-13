@@ -11,11 +11,11 @@
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
 						{{nombre}}
-						<br/>
+						<br />
 						{{fechanac}}
 					</div>
 					<div class="profile-usertitle-job">
-						Developer Java
+						{{comuna}}
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
@@ -48,84 +48,65 @@
 				<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="home-tab">
 					<div class="row">
 						<div class="col-12">
-							<br/>
+							<br />
 							<div class="row">
 								<div class="col-3"></div>
 								<div class="col-6">
 									<div class="form-group">
-										<input class="input" type="text" name="nombre" placeholder="Nombre">
+										<input class="input" value={{nombrebd}} type="text" 
+											placeholder="Nombre"  [(ngModel)]="usuarioLog.nombre">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="apellido" placeholder="Apellido">
+										<input class="input" value={{apellidobd}} type="text" 
+											placeholder="Apellido"  [(ngModel)]="usuarioLog.apellido">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="nombre-usuario"
-											placeholder="Nombre de Usuario">
+										<input class="input" value={{nomusuario}} type="text" 
+											placeholder="Nombre de Usuario"  [(ngModel)]="usuarioLog.nomusuario">
 									</div>
 									<div class="form-group">
-										<input class="input" type="password" name="contrasenia"
-											placeholder="Contraseña">
+										<input class="input" value={{password}} type="password"
+											placeholder="Contraseña"  [(ngModel)]="usuarioLog.password" >
 									</div>
 									<div class="form-group">
-										<input class="input" type="email" name="email" placeholder="Correo">
+										<input class="input" value={{correo}} type="email" 
+											placeholder="Correo"  [(ngModel)]="usuarioLog.correo">
 									</div>
 									<div class="form-group">
-										<input class="input" type="date" name="fechanac" placeholder="Fecha Nacimiento">
+										<input class="input" value ={{fechaNacimiento}} 
+											placeholder="Fecha Nacimiento"  [(ngModel)]="fechaNacimiento">
 									</div>
 
-									<div class="form-group col-12">
-										<select class="form-control" id="regiones_1899" data-id="1899"
-											name="comuna[region]" placeholder="Region">
-											style="width: 100%; display: none;">
-											<option value="" data-id="">Seleccione Region...</option>
-											<option value="Tarapacá" data-id="01">Tarapacá</option>
-											<option value="Antofagasta" data-id="02">Antofagasta</option>
-											<option value="Atacama" data-id="03">Atacama</option>
-											<option value="Coquimbo" data-id="04">Coquimbo</option>
-											<option value="Valparaíso" data-id="05">Valparaíso</option>
-											<option value="Del Libertador Gral. Bernardo O’Higgins" data-id="06">Del
-												Libertador Gral. Bernardo O’Higgins</option>
-											<option value="Del Maule" data-id="07">Del Maule</option>
-											<option value="Del Biobío" data-id="08">Del Biobío</option>
-											<option value="De la Araucanía" data-id="09">De la Araucanía</option>
-											<option value="De los Lagos" data-id="10">De los Lagos</option>
-											<option value="Aysén del Gral. Carlos Ibáñez del Campo" data-id="11">Aysén
-												del
-												Gral. Carlos Ibáñez del Campo</option>
-											<option value="Magallanes y de la Antártica Chilena" data-id="12">Magallanes
-												y
-												de la Antártica Chilena</option>
-											<option value="Metropolitana de Santiago" data-id="13">Metropolitana de
-												Santiago
-											</option>
-											<option value="De los Ríos" data-id="14">De los Ríos</option>
-											<option value="Arica y Parinacota" data-id="15">Arica y Parinacota</option>
-											<option value="Ñuble" data-id="16">Ñuble</option>
-										</select>
+									<div class="form-group">
+										<input class="input" value={{region}}  placeholder="Region"  [(ngModel)]="usuarioLog.region">
 									</div>
 
-
 									<div class="form-group">
-										<input class="input" type="text" name="comuna" placeholder="Comuna">
+										<input class="input" value={{comuna}} type="text" 
+											placeholder="Comuna"  [(ngModel)]="usuarioLog.comuna">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="direccion" placeholder="Direccion">
+										<input class="input" value={{direccion}} type="text" 
+											placeholder="Direccion"  [(ngModel)]="usuarioLog.direccion">
 									</div>
 									<div class="form-group">
-										<input class="input" type="text" name="genero" placeholder="Genero">
+										<input class="input" value={{genero}} type="text" 
+											placeholder="Genero"  [(ngModel)]="usuarioLog.genero">
 									</div>
 									<div class="form-group">
-										<input class="input" type="tel" name="telefono" placeholder="Telefono">
+										<input class="input" value={{fono}} type="tel" 
+											placeholder="Telefono" [(ngModel)]="usuarioLog.fono">
 									</div>
 									<div class="form-group">
 										<div class="input-checkbox text-center">
 											<input type="checkbox" id="create-account">
-											<button class="primary-btn" type="submit">Cambiar</button>
+											<button class="primary-btn" type="submit"
+												(click)="update()">Cambiar</button>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div> 
+						</div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="objetosPermutados" role="tabpanel" aria-labelledby="profile-tab">
