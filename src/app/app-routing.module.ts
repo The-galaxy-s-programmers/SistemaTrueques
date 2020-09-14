@@ -7,6 +7,7 @@ import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ErrorComponent } from './components/error/error.component';
+import {ReportComponent} from './components/report/report.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:"IngresoProducto", component:IngresoProductoComponent},
   {path:"Perfil", component:PerfilComponent},
   {path:"Error", component:ErrorComponent},
+  {path:"Report", component:ReportComponent},
 
 ];
 

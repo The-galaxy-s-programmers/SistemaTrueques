@@ -42,5 +42,14 @@ export class ProductoService {
   getListaProductoCategoria(categoria): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.url+this.nomusuario+this.categoria+categoria)
   }
+  getTopProducto(categoria): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.url + this.nomusuario +'top/'+ categoria)
+  }
+  getTop4Producto():Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.url+'/top4')
+  } 
+  getTop8Producto():Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.url+'/top8')
+  }
 
 }

@@ -18,6 +18,7 @@ import { ErrorComponent } from './components/error/error.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ReportComponent } from './components/report/report.component';
 
 // Paste in your credentials that you saved earlier
 var firebaseConfig = {
@@ -40,7 +41,8 @@ var firebaseConfig = {
     RegistroUsuarioComponent,
     IngresoProductoComponent,
     PerfilComponent,
-    ErrorComponent
+    ErrorComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { storage } from 'firebase';
+
 
 export interface Producto {
     idP ?:number;

@@ -161,52 +161,21 @@
                     <!-- /aside Widget -->
 
                     <!-- mas vendidos -->
-                    <div class="aside">
+                    <div class="aside" *ngFor='let topProductos of topListaProductos'>
                         <h3 class="aside-title">Mas Recientes</h3>
-                        <div>
+                        <div > 
                             <div class="product-img">
-                                <img src="http://localhost:4200/assets/Lineablanca.jpg" alt=""
+                                <img src={{topProductos.imagen}} alt=""
                                     style="max-width:100%;width:auto;height:auto;">
                             </div>
                             <div class="product-body">
 
-                                <p class="product-category"><small>Electrodomesticos</small></p>
-                                <h3 class="product-name"><a href="#"> <strong> Secadora en buen estado</strong> Permuto
-                                        por Tecnologia <small>(Usado)</small></a></h3>
+                                <p class="product-category"><small>{{topProductos.categoria}}</small></p>
+                                <h3 class="product-name"><a href="#"> <strong>{{topProductos.nombre}}</strong> {{topProductos.descripcion}}<small>{{topProductos.valorReferencia}}</small></a></h3>
                                 <h4 class="product-price"> <del class="product-old-price"></del></h4>
                             </div>
                             <br>
                             <br>
-                        </div>
-
-                        <div>
-                            <div class="product-img">
-                                <img src="http://localhost:4200/assets/notebook.jpg" alt=""
-                                    style="max-width:100%;width:auto;height:auto;">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category"><small>Notebook</small></p>
-                                <h3 class="product-name"><a href="#">Procesador Intel-Inside 4Gb RAM Detalles Esteticos
-                                        <small>(Usado)</small></a></h3>
-                                <h4 class="product-price"><del class="product-old-price"></del></h4>
-                            </div>
-                            <br>
-                            <br>
-                        </div>
-
-                        <div>
-                            <div class="product-img">
-                                <img src="http://localhost:4200/assets/hogar.jpg" alt=""
-                                    style="max-width:100%;width:auto;height:auto;">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category"><small>Hogar</small></p>
-                                <h3 class="product-name"><a href="http://localhost:4200/Producto">Mueble de cocina - Se
-                                        cambia por Rack para TV
-                                        <small>(Usado)</small></a></h3>
-                                <h4 class="product-price"> <del class="product-old-price"></del></h4>
-                            </div>
-
                         </div>
                     </div>
                     <!-- /mas vendidos -->
@@ -255,8 +224,8 @@
                                     <p class="product-category">{{producto.subcategoria}}</p>
                                     <h3 class="product-name"><a href="#">{{producto.nombre}}
                                             <small>{{producto.uso}}</small></a></h3>
-                                    <h6 class="product-description">{{producto.descripcion}}</h6>
-                                    <h4 class="product-price"> {{producto.valorReferencia}} <small> Precio Ref:</small></h4>
+                                    <h3 class="product-description">{{producto.descripcion}}</h3>
+                                    <h6 class="product-price"> {{producto.valorReferencia}} <small> Precio Ref:</small></h6>
 
                                     <div class="product-btns">
                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
@@ -294,7 +263,7 @@
     <!-- store bottom filter -->
     <div class="barritaNumeracion">
         <div class="store-filter clearfix">
-            <span class="store-qty">Productos con derechos reservados</span>
+
             <ul class="store-pagination">
                 <li class="active">1</li>
                 <li><a href="#">2</a></li>
@@ -307,44 +276,4 @@
     <!-- /store bottom filter -->
 
     <!-- NEWSLETTER -->
-    <div id="newsletter" class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="newsletter">
-                        <p>Regístrese para <strong>recibir</strong> el <strong>BOLETÍN</strong></p>
-                        <form>
-                            <input class="input" type="email" placeholder="Ingresa tu Email">
-                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-                        </form>
-                        <ul class="newsletter-follow">
-                            <li>
-                                <a href="https://www.facebook.com/" type="button"
-                                    class="btn btn-social-icon  btn-facebook ">
-                                    <span class="fa fa-facebook"> </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.twitter.com/" class="btn btn-social-icon  btn-twitter ">
-                                    <span class="fa fa-twitter"> </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/" class="btn btn-social-icon  btn-instagram ">
-                                    <span class="fa fa-instagram"> </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.pinterest.com/" class="btn btn-social-icon  btn-pinterest ">
-                                    <span class="fa fa-pinterest"> </span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- /row -->
-        </div>
+    
