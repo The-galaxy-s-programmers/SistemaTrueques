@@ -72,88 +72,104 @@
                     <h1>Recientemente agregado</h1>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="Carousel" class="carousel slide">
+        </div>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <!-- product -->
+                        <div class="col-md-3" *ngFor='let top1 of top4'>
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src={{top1.imagen}} alt="">
 
-                            <ol class="carousel-indicators">
-                                <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#Carousel" data-slide-to="1"></li>
-                                <li data-target="#Carousel" data-slide-to="2"></li>
-                            </ol>
-
-                            <!-- Carousel items -->
-                            <div class="carousel-inner">
-
-                                <div class="item active">
-                                    <div class="row">
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                    </div>
-                                    <!--.row-->
                                 </div>
-                                <!--.item-->
+                                <div class="product-body">
+                                    <p class="product-category">{{top1.subcategoria}}</p>
+                                    <h3 class="product-name"><a href="#">{{top1.nombre}}
+                                            <small>{{top1.uso}}</small></a></h3>
+                                    <h3 class="product-description">{{top1.descripcion}}</h3>
+                                    <h6 class="product-price"> {{top1.valorReferencia}} <small> Precio Ref:</small></h6>
 
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                class="tooltipp">Agregar
+                                                a la lista</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
+                                                class="tooltipp">Compartir</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span
+                                                class="tooltipp">Ver</span></button>
                                     </div>
-                                    <!--.row-->
                                 </div>
-                                <!--.item-->
-
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                        <div class="col-md-3"><a href="#" class="thumbnail"><img
-                                                    src="http://placehold.it/250x250" alt="Image"
-                                                    style="max-width:100%;"></a></div>
-                                    </div>
-                                    <!--.row-->
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn"><i class="fa fa-exchange" click=({{top1.idP}})></i>
+                                        Permutar</button>
                                 </div>
-                                <!--.item-->
-
                             </div>
-                            <!--.carousel-inner-->
-                            <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
-                            <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
                         </div>
-                        <!--.Carousel-->
+                        <!-- /product -->
+
+
+
+                        <div class="clearfix visible-sm visible-xs"></div>
+
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <!-- product -->
+                        <div class="col-md-3" *ngFor='let top2 of top8'>
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src={{top2.imagen}} alt="">
+
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">{{top2.subcategoria}}</p>
+                                    <h3 class="product-name"><a href="#">{{top2.nombre}}
+                                            <small>{{top2.uso}}</small></a></h3>
+                                    <h3 class="product-description">{{top2.descripcion}}</h3>
+                                    <h6 class="product-price"> {{top2.valorReferencia}} <small> Precio Ref:</small></h6>
+
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                class="tooltipp">Agregar
+                                                a la lista</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
+                                                class="tooltipp">Compartir</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span
+                                                class="tooltipp">Ver</span></button>
+                                    </div>
+                                </div>
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn"><i class="fa fa-exchange" click=({{top2.idP}})></i>
+                                        Permutar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /product -->
+
+
+
+                        <div class="clearfix visible-sm visible-xs"></div>
+
 
                     </div>
                 </div>
             </div>
-            <!--.container-->
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" ></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
 </div>
@@ -173,15 +189,19 @@
                                 anunciar
                                 aquellas cosas que ya no les son útiles cambiar por otras. Es una
                                 página de anuncios entre personas de todo el pais.
-                                Nosotros ofrecemos nuestra plataforma para que usted suba anuncios de aquello que quiere
+                                Nosotros ofrecemos nuestra plataforma para que usted suba anuncios de aquello
+                                que quiere
                                 cambiar
-                                otros usuarios pueden ver su anuncio y ponerse en contacto con usted a través del los
+                                otros usuarios pueden ver su anuncio y ponerse en contacto con usted a través
+                                del los
                                 medios
                                 de contactos que deje disponible.
                                 De esta forma ustedes acuerdan la forma de intercambiar el producto
-                                nosotros no intervenimos en el proceso ni cobramos nada por el servicio a no ser que
+                                nosotros no intervenimos en el proceso ni cobramos nada por el servicio a no ser
+                                que
                                 usted
-                                utilice la opción de juntarse con la persona en un lugar a convenir o algun medio de
+                                utilice la opción de juntarse con la persona en un lugar a convenir o algun
+                                medio de
                                 despacho para evitar contagios con la pandemia.
                             </p>
                         </div>
@@ -230,10 +250,3 @@
     });
 
 </script> -->
-<script>
-    $(document).ready(function () {
-        $('#Carousel').carousel({
-            interval: 5000
-        })
-    });
-</script>
