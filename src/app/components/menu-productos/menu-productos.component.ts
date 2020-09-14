@@ -16,15 +16,19 @@ export class MenuProductosComponent implements OnInit {
   }
 
   listaProductos: Producto[] = [];
+  topListaProductos:Producto[]=[];
 
   buscar() {
     this.productosServices.getListaProductoCategoria("Tecnologia").subscribe(
-      res => { this.listaProductos = res 
-        console.log(JSON.parse(JSON.stringify(this.listaProductos))[5])
-        console.log(JSON.parse(JSON.stringify(this.listaProductos))[5][0])
-      console.log(this.listaProductos)},
+      res => { this.listaProductos = res},
       err => { console.log(err) }
     )
-  }
+        this.productosServices.getTopProducto("Tecnologia").subscribe(
+          res => { this.topListaProductos =res},
+          err =>{ console.log(err)}
+        )
 
+        
+  }
+  
 }
