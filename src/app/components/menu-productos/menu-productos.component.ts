@@ -30,5 +30,8 @@ export class MenuProductosComponent implements OnInit {
 
         
   }
-  
+  select(id){
+    console.log(id);
+    
+  }
 }
