@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Producto } from "src/app/interfaces/producto";
 import { ProductoService } from "src/app/services/producto.service"
+
 
 @Component({
   selector: 'app-menu-productos',
@@ -11,19 +12,22 @@ export class MenuProductosComponent implements OnInit {
 
   constructor(private productosServices: ProductoService) { }
 
+  
   ngOnInit(): void {
     this.buscar();
   }
 
   listaProductos: Producto[] = [];
   topListaProductos:Producto[]=[];
+  categoria:string;
 
   buscar() {
-    this.productosServices.getListaProductoCategoria("Tecnologia").subscribe(
+    const a = localStorage.getItem("categoria")
+    this.productosServices.getListaProductoCategoria(a).subscribe(
       res => { this.listaProductos = res},
       err => { console.log(err) }
     )
-        this.productosServices.getTopProducto("Tecnologia").subscribe(
+        this.productosServices.getTopProducto(a).subscribe(
           res => { this.topListaProductos =res},
           err =>{ console.log(err)}
         )
@@ -31,7 +35,8 @@ export class MenuProductosComponent implements OnInit {
         
   }
   select(id){
-    console.log(id);
     
+    localStorage.setItem("idP",id)
   }
+ 
 }

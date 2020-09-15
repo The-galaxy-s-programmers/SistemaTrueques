@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Producto } from '../../interfaces/producto';
 import { ProductoService } from '../../services/producto.service';
 
@@ -9,13 +10,41 @@ import { ProductoService } from '../../services/producto.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService, private router: Router) { }
 
   ngOnInit(): void {
     this.buscar()
   }
+
+  
+  
+
+
   top4: Producto[] = [];
   top8: Producto[] = [];
+
+ categoria;
+
+  envioCat(){
+    console.log(this.categoria);
+   localStorage.setItem("categoria",this.categoria)
+    
+  }
+  
+  tecnologia(){
+    this.categoria="Tecnologia";
+    this.envioCat()
+
+  }
+  hogar(){
+   this.categoria="Hogar"
+   this.envioCat()
+ }
+  electr(){
+    this.categoria="Electrodomesticos"
+    this.envioCat()
+ }
+
 
   buscar() {
 
@@ -28,10 +57,11 @@ export class HomeComponent implements OnInit {
       res => {
         this.top8 = res
       }, err => console.log(err))
+      
   }
 
   select(id){
     console.log(id);
-
+    localStorage.setItem("idP",id)
   }
 }

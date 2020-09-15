@@ -165,7 +165,7 @@
                         <h3 class="aside-title">Mas Recientes</h3>
                         <div > 
                             <div class="product-img">
-                                <img src={{topProductos.imagen}} alt="" (click)="select(topProductos.idP)"
+                                <img src={{topProductos.imagen}} alt="" [routerLink]="'/Producto'" (click)="select(topProductos.idP)"
                                     style="max-width:100%;width:auto;height:auto;">
                             </div>
                             <div class="product-body">
@@ -237,7 +237,7 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"  (click)="select(producto.idP)"><i class="fa fa-exchange"></i> Permutar</button>
+                                    <button class="add-to-cart-btn"  [routerLink]="'/Producto'" (click)="select(producto.idP)"><i class="fa fa-exchange"></i> Permutar</button>
                                 </div>
                             </div>
                         </div>

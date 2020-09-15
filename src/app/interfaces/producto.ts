@@ -5,11 +5,12 @@ export interface Producto {
     nombre:string;
     descripcion:string;
     categoria:string;
-    fechaPublicacion:Date;
+    fechaPublicacion:String;
     uso:string;
     imagen:string;
     valorReferencia:number;
     ubicacion:string;
+    subcategoria:string;
     id_usuario:number;
 
 }

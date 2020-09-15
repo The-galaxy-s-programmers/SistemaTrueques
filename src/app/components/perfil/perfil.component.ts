@@ -42,7 +42,7 @@ export class PerfilComponent implements OnInit {
 
   obs:number;
   buscar() {
-    this.usuarioService.getNomUser("jr2k1").subscribe(
+    this.usuarioService.getNomUser("DiegoA").subscribe(
       res => {
         this.myUser = res;
         this.usuarioLog = JSON.parse(JSON.stringify(res))

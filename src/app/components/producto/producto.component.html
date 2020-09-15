@@ -7,10 +7,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="breadcrumb-tree">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Hogar y Accesorios </a></li>
-						<li><a href="#">Muebleria</a></li>
-						<li class="active">Muebles de Cocina</li>
+						<li><a href="#">{{categoria}}</a></li>
+							<li><a href="#">{{subcategoria}}</a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -30,7 +29,7 @@
 				<div class="col">
 					<div id="product-main-img">
 						<div class="product-preview">
-							<img src="../../../assets/hogar.jpg" alt="">
+							<img src={{imagen}} alt="">
 						</div>
 					</div>
 				</div>
@@ -39,9 +38,9 @@
 
 				<div class="col-md-5">
 					<div class="detalles-del-producto">
-						<h1 class="nombredel-producto">Mueble de Cocina</h1>
+						<h1 class="nombredel-producto">{{nombre}}</h1>
 						<hr>
-						<p class="font-italic">Publicado: {{fecha}} </p>
+						<p class="font-italic">{{fechaPublicacion}}</p>
 						<div>
 							<div class="product-rating">
 								<i class="fa fa-star"></i>
@@ -56,12 +55,12 @@
 						</div>
 						<h3>Descripcion</h3>
 						<p>{{descripcion}}</p>
-						<p>{{valor}}</p>
+						<p>{{valorReferencia}}</p>
 						<fieldset class="vip-shipping-method " data-component="shippingRow">
 							<article class="shipment-methods ">
 								<div data-block="shipping-detail" class="">
 									<span class=" black">Entrega a acordar con el vendedor</span>
-									<p class=" gray">Maipú, RM (Metropolitana)</p>
+									<p class=" gray">{{ubicacion}}</p>
 								</div>
 							</article>
 						</fieldset>
@@ -79,9 +78,9 @@
 						<br />
 						<ul class="product-links">
 							<li>Categorias:</li>
-							<li><a href="#">Hogar y Accesorios</a></li>
-							<li><a href="#">Cocina</a></li>
-							<li><a href="#">Muebleria</a></li>
+							<li><a href="#">{{categoria}} /</a></li>
+							<li><a href="#">{{subcategoria}}</a></li>
+							
 						</ul>
 
 						<ul class="product-links">
@@ -99,14 +98,7 @@
 			<div class="col-md-12">
 
 				<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-							aria-controls="home" aria-selected="true">Descripcion</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-							aria-controls="profile" aria-selected="false">Especificaciones</a>
-					</li>
+					
 					<li class="nav-item">
 						<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
 							aria-controls="contact" aria-selected="false">Contacto</a>
@@ -114,31 +106,9 @@
 				</ul>
 
 				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-						<div class="row">
-							<div class="col-md-12">
-								<br />
-								<p>Realizo trueque de Mueble Cocina en excelente estado, su precio aprox. 75.000
-									Se cambia por Rack para Tv, entrego en cualquier comuna de Santiago, con un pequeño
-									recargo por la bencina, gracias.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-						<div class="row">
-							<div class="col-md-12">
-								<br />
-								<p>Mueble Cocina, Manufactura Chilena, Madera de cedro, color oscuro 8 puertas y tres
-									cajones,Dimensiones:Alto: 1.90 cm
-									Fondo: 50 cm
-									Largo: 3.20 metros.
-								</p>
-							</div>
-						</div>
-					</div>
+					
 
-					<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="tab-pane fade active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 						<div class="row">
 							<div class="col-3">
 								<br />

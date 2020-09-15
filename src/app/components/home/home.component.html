@@ -34,7 +34,7 @@
                 </div>
                 <div class="shop-body">
                     <h3>Tecnologia</h3>
-                    <a href="#" class="cta-btn">Ingresa Aqui <i class="fa fa-arrow-circle-right"></i></a>
+                    <a (click)="tecnologia()"  [routerLink]="'/MenuProductos'" class="cta-btn" >Ingresa Aqui <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -44,8 +44,8 @@
                     <img src="./assets/hogar.jpg" alt="imagen" class="img-thumbnail">
                 </div>
                 <div class="shop-body">
-                    <h3>Hogar y <br>Accesorios</h3>
-                    <a href="#" class="cta-btn">Ingresa Aqui <i class="fa fa-arrow-circle-right"></i></a>
+                    <h3>Hogar</h3>
+                    <a (click)="hogar()"  [routerLink]="'/MenuProductos'" class="cta-btn" >Ingresa Aqui <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="shop-body">
                     <h3>Electrodomesticos</h3>
-                    <a href="#" class="cta-btn">Ingresa Aqui<i class="fa fa-arrow-circle-right"></i></a>
+                    <a (click)="electr()"  [routerLink]="'/MenuProductos'"  class="cta-btn">Ingresa Aqui<i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <button class="btn btn-outline-danger" (click)="select(top1.idP)"><i class="fa fa-exchange"></i>
+                                    <button class="btn btn-outline-danger" [routerLink]="'/Producto'" (click)="select(top1.idP)"><i class="fa fa-exchange"></i>
                                         Permutar</button>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <button class="btn btn-outline-danger" (click)="select(top2.idP)"><i class="fa fa-exchange"></i>
+                                    <button class="btn btn-outline-danger"  [routerLink]="'/Producto'" (click)="select(top2.idP)"><i class="fa fa-exchange"></i>
                                         Permutar</button>
                                 </div>
                             </div>
