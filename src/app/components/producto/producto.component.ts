@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 import { defaultThrottleConfig } from 'rxjs/internal-compatibility';
-
+import { DatePipe } from '@angular/common';
 
 interface Post {
   title: string;
@@ -30,8 +30,9 @@ export class ProductoComponent implements OnInit {
 
   postDoc: AngularFirestoreDocument<Post>;
   post: Observable<Post>;
+  datepipe: any;
 
-  constructor(private afs: AngularFirestore, private productoService: ProductoService) { }
+  constructor(private afs: AngularFirestore, private productoService: ProductoService,public datePipe:DatePipe) { }
 
   ngOnInit(): void {
     this.postsCol = this.afs.collection('posts'/*, ref => ref.where('title', '==', 'coursetro')*/);
@@ -79,11 +80,13 @@ export class ProductoComponent implements OnInit {
       this.ubicacion=obj.ubicacion;
       this.subcategoria=obj.subcategoria;
       this.uso=obj.uso;
+      this.fechastring=this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
     },2000)
    
+
   }
 
-
+  fechastring:string;
   idP ?:number;
   nombre:string;
   descripcion:string;
@@ -96,7 +99,7 @@ export class ProductoComponent implements OnInit {
   subcategoria:string;
   id_usuario:number;
   
-
+  
 
 
   correo: string;

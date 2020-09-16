@@ -31,27 +31,26 @@
                         <h3 class="title">Registrate</h3>
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="nombre" placeholder="Nombre">
+                        <input class="input" type="text" name="nombre" placeholder="Nombre" required [(ngModel)]="nombre">  
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="apellido" placeholder="Apellido">
+                        <input class="input" type="text" name="apellido" placeholder="Apellido"required [(ngModel)]="apellido">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="nombre-usuario"
-                            placeholder="Nombre de Usuario, con el iniciarás sesión">
+                        <input class="input" type="text" name="nomusuario" placeholder="Nombre de Usuario, con el iniciarás sesión" required [(ngModel)]="nomusuario">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="password" name="contrasenia" placeholder="Contraseña">
+                        <input class="input" type="password" name="contrasenia" placeholder="Contraseña"required [(ngModel)]="password">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="email" name="email" placeholder="Correo">
+                        <input class="input" type="email" name="email" placeholder="Correo"required [(ngModel)]="correo">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="date" name="fechanac" placeholder="Fecha Nacimiento">
+                        <input class="input" type="date" name="fechanac" placeholder="Fecha Nacimiento"required [(ngModel)]="fechaNacimiento">
                     </div>
                     
                     <div class="form-group col-12">
-                        <select class="form-control" id="exampleFormControlSelect1" required>
+                        <select class="form-control" id="exampleFormControlSelect1" required [(ngModel)]="region">
                             <optgroup label="Seleccione una Region">
                             <option value="Tarapacá" data-id="01">Tarapacá</option>
                             <option value="Antofagasta" data-id="02">Antofagasta</option>
@@ -71,24 +70,24 @@
                             <option value="Ñuble" data-id="16">Ñuble</option>
                         </select>
                     </div>
+                    
 
 
                     <div class="form-group">
-                        <input class="input" type="text" name="comuna" placeholder="Comuna">
+                        <input class="input" type="text" name="comuna" placeholder="Comuna"required [(ngModel)]="comuna">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="direccion" placeholder="Direccion">
+                        <input class="input" type="text" name="direccion" placeholder="Direccion"required [(ngModel)]="direccion">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="text" name="genero" placeholder="Genero">
+                        <input class="input" type="text" name="genero" placeholder="Genero"required [(ngModel)]="genero">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="tel" name="telefono" placeholder="Telefono">
+                        <input class="input" type="tel" name="telefono" placeholder="Telefono"required [(ngModel)]="fono">
                     </div>
                     <div class="form-group">
                         <div class="input-checkbox text-center">
-                            <input type="checkbox" id="create-account">
-                            <button class="primary-btn" type="submit">Registrate</button>
+                            <button class="primary-btn" type="submit" (click)="create()" >Registrate</button>
                         </div>
                     </div>
                 </div>

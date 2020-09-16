@@ -16,6 +16,7 @@ export class UsuarioService {
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   private nomusuario = '/find/';
   private exist='/mail/';
+  private existe='/user/';
 
   
   getListaUser(): Observable<Usuario[]> {
@@ -40,6 +41,10 @@ export class UsuarioService {
 
   putUser(id,usuario:Usuario): Observable<number>{
     return this.http.put<number>(this.url+"/"+id,usuario,this.httpOptions)
+  }
+
+  getIfExisteUser(nomusuario:String): Observable<boolean> {
+    return this.http.get<boolean>(this.url + this.existe + nomusuario)
   }
 
 }
