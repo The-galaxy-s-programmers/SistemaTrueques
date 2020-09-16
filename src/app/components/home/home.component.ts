@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscar()
+
+  }
+  pagina(){
+    window.location.href="https://www.gob.cl/coronavirus/?gclid=CjwKCAjw74b7BRA_EiwAF8yHFK2ZuAVSpUgS-gPM9HQoXcpt4eIRSoU7E0iyVakmBYJ8RsNT3vs00RoCpI4QAvD_BwE"
   }
 
   
