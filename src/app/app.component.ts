@@ -21,8 +21,30 @@ export class AppComponent {
 
    }
 
-  ngOnInit(): void {
+   cuenta:string;
    
+   nomUser:String;
+
+  ngOnInit(): void {
+   this.setea()
+  }
+  
+  setea(){
+    this.nomUser = localStorage.getItem("nomUser");
+  }
+  ir(){
+    let a = localStorage.getItem("nomUser");
+    let b = localStorage.getItem("password");
+    if(a.length == 0 || b.length == 0 ){
+      window.location.href="/RegistroUsuario";
+
+    }else{
+      window.location.href="/Perfil";
+    }
+  }
+  cerrar(){
+    localStorage.setItem("nomUser","")
+    localStorage.setItem("password","")
   }
   
 }

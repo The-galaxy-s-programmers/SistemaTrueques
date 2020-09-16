@@ -1,5 +1,5 @@
 <head>
-    
+
 </head>
 
 <!-- HEADER -->
@@ -25,7 +25,7 @@
     </div>
     <!-- /TOP HEADER -->
 
-    
+
 
     <!-- MAIN HEADER -->
     <div id="header">
@@ -77,9 +77,16 @@
                         </div>
                         <!-- /Wishlist -->
                         <div>
-                            <a routerLink="Perfil">
+                            <!-- routerLink="Perfil" -->
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user-o"></i>
-                                <span >Mi Cuenta</span>
+                                <span>Mi Cuenta</span>
+                                <div class="dropdown-menu">
+                                    <a> - Bienvenid@ {{nomUser}} - </a>
+                                    <a (click)="ir()" class="dropdown-item"> - Ir a tu Cuenta -</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a (click)="cerrar()" class="dropdown-item"> - Cerrar sesion - </a>
+                                </div>
                             </a>
                         </div>
 
@@ -100,6 +107,8 @@
         <!-- container -->
     </div>
     <!-- /MAIN HEADER -->
+
+
 </header>
 <!-- /HEADER -->
 
@@ -132,7 +141,7 @@
             <div class="row">
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 id="tab1" class="footer-title">Sobre nosotros</h3>
+                        <h3 class="footer-title">Sobre nosotros</h3>
                         <p>No lo usas cambialo</p>
                         <ul class="footer-links">
                             <li><a href="#"><i class="fa fa-map-marker"></i>420 Galaxy</a></li>
@@ -164,11 +173,11 @@
                     <div class="footer">
                         <h3 class="footer-title">Informacion</h3>
                         <ul class="footer-links">
-                            <li><a href="#tab2">Sobre Nosotros</a></li>
-                            <li><a href="#tab1">Contacto</a></li>
-                            <li><a href="../assets/terminos-y-condiciones-queplan.pdf">Politicas Privacidad</a></li>
-                            <li><a href="../assets/terminos-y-condiciones-queplan.pdf">Acuerdo del Permutador</a></li>
-                            <li><a href="../assets/terms_conditions.pdf">Terminos y Condiciones</a></li>
+                            <li><a href="/#tab2">Sobre Nosotros</a></li>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="">Politicas Privacidad</a></li>
+                            <li><a href="/src/assets/terms_conditions.pdf">Acuerdo del Permutador</a></li>
+                            <li><a href="/src/assets/terminos-y-condiciones-queplan.pdf">Terminos y Condiciones</a></li>
                         </ul>
                     </div>
                 </div>
@@ -200,17 +209,18 @@
                 <div class="col-md-12 text-center">
                     <span class="copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <i class="fa fa-heart-o" aria-hidden="true"></i> Copyright &copy; {{Fecha}} All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <i class="fa fa-heart-o" aria-hidden="true"></i> Copyright &copy; {{Fecha}} All rights reserved
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </span>
 
                     <img src="../assets/logoo.png" alt="imagen" class="png" width="100px">
-                    
+
 
 
                 </div>
             </div>
-                <!-- /row -->
+            <!-- /row -->
         </div>
         <!-- /container -->
     </div>
