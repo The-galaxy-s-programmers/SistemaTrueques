@@ -48,6 +48,9 @@ export class ProductoService {
   getTop4Producto():Observable<Producto[]> {
     return this.http.get<Producto[]>(this.url+'/top4')
   } 
+  getTop4CategoriaProducto(categoria):Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.url+'/top4/'+categoria)
+  } 
   getTop8Producto():Observable<Producto[]> {
     return this.http.get<Producto[]>(this.url+'/top8')
   }

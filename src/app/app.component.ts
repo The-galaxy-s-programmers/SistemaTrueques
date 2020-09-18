@@ -16,18 +16,19 @@ export class AppComponent {
  
 
 
-  constructor(private datePipe: DatePipe) {
+  constructor(private datePipe: DatePipe,) {
     this.Fecha = this.datePipe.transform(this.myFecha, 'yyyy');
 
    }
 
-   cuenta:string;
-   
-   nomUser:String;
-
+ 
   ngOnInit(): void {
    this.setea()
   }
+  cuenta:string;
+  buscador:string;
+  nomUser:String;
+  Categoria:string;
   
   setea(){
     this.nomUser = localStorage.getItem("nomUser");
@@ -45,6 +46,11 @@ export class AppComponent {
   cerrar(){
     localStorage.setItem("nomUser","")
     localStorage.setItem("password","")
+  }
+  busqueda(){
+    localStorage.setItem("bsc",this.buscador)
+    localStorage.setItem("categoria","")
+    window.location.href="/MenuProductos"
   }
   
 }

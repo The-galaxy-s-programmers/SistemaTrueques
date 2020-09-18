@@ -33,7 +33,7 @@ export class RegistroUsuarioComponent implements OnInit {
   passworddusuario: string;
   validaCorreo: boolean;
   validaNomUser: boolean;
-
+  showSpin: boolean = true;
   create() {
 
     this.usuarioService.getIfExistUser(this.correo).subscribe(
@@ -81,34 +81,45 @@ export class RegistroUsuarioComponent implements OnInit {
 
   }
 
-  usuarioLog:Usuario[];
+  usuarioLog: Usuario[];
 
   iniciar() {
+    this.showSpin = false;
+    console.log(this.nombredusuario)
+    if(this.nombredusuario == undefined || this.passworddusuario == undefined ) {
+      alert("Verifique los datos ingresados")
+        this.showSpin=true;
+    }else if(this.nombredusuario.length <= 3 || this.passworddusuario.length <= 3 ){
+      alert("Verifique los datos ingresados")
+      this.showSpin=true;
+    }
+     else {
 
-    this.usuarioService.getIfExisteUser(this.nombredusuario).subscribe(
-      res => this.validaNomUser = res
-    )
-    this.usuarioService.getNomUser(this.nombredusuario).subscribe(
-      res => this.usuarioLog = res
-    )
-    
-    
-    setTimeout(() => {
-      const a = JSON.parse(JSON.stringify(this.usuarioLog))
-      
-      if (this.validaNomUser = true) {
-        if(a.password == this.passworddusuario && a.nomusuario == this.nombredusuario ){
-          localStorage.setItem("nomUser",a.nomusuario)
-          localStorage.setItem("password",a.password)
-          alert("Inicio de sesion exitoso")
-          window.location.href="/Perfil"
-        }else{
-          alert("Nombre de usuario o Contraseña invalidas")
+      this.usuarioService.getIfExisteUser(this.nombredusuario).subscribe(
+        res =>{ this.validaNomUser = res},err =>{ alert("Verifique los datos ingresados"); this.showSpin=true}
+      )
+      this.usuarioService.getNomUser(this.nombredusuario).subscribe(
+        res =>{ this.usuarioLog = res},err => {alert("Verifique los datos ingresados"); this.showSpin=true;}
+      )
+
+
+      setTimeout(() => {
+        const a = JSON.parse(JSON.stringify(this.usuarioLog))
+
+        if (this.validaNomUser = true) {
+          if (a.password == this.passworddusuario && a.nomusuario == this.nombredusuario) {
+            localStorage.setItem("nomUser", a.nomusuario)
+            localStorage.setItem("password", a.password)
+            alert("Inicio de sesion exitoso")
+            window.location.href = "/Perfil"
+          } else {
+            alert("Nombre de usuario o Contraseña invalidas")
+          }
+        } else {
+          alert("Usuario Inexistente");
         }
-      } else {
-        alert("Usuario Inexistente");
-      }
-    }, 3000)
+      }, 3000)
+    }
   }
 
 }

@@ -14,12 +14,22 @@ export class MenuProductosComponent implements OnInit {
 
   
   ngOnInit(): void {
+    if(localStorage.getItem("bsc").length <= 3){
     this.buscar();
+  }else if(localStorage.getItem("bsc") == undefined){
+    this.buscar();
+  }else if(localStorage.getItem("bsc") == null){
+    this.buscar();
+  }else{
+    this.bsc();
+  }
+
   }
 
   listaProductos: Producto[] = [];
   topListaProductos:Producto[]=[];
   categoria:string;
+
 
   buscar() {
     const a = localStorage.getItem("categoria")
@@ -34,8 +44,19 @@ export class MenuProductosComponent implements OnInit {
 
         
   }
+  bsc(){
+    this.productosServices.getNomProducto(localStorage.getItem("bsc")).subscribe(
+      res => this.listaProductos = res 
+    )
+    const a = JSON.parse(JSON.stringify(this.listaProductos)).categoria
+    this.productosServices.getTopProducto(a).subscribe(
+      res => { this.topListaProductos =res},
+      err =>{ console.log(err)}
+    )
+  }
+
   select(id){
-    
+    localStorage.setItem("bsc","")
     localStorage.setItem("idP",id)
   }
  

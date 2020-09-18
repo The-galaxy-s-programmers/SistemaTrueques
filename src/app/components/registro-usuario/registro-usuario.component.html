@@ -4,10 +4,10 @@
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
-                <h3 class="breadcrumb-header">Checkout</h3>
+                <h3 class="breadcrumb-header">Registro - Inicio Sesion</h3>
                 <ul class="breadcrumb-tree">
                     <li><a href="#">Home</a></li>
-                    <li class="active">Checkout</li>
+                    <li class="active">Registro - Inicio Sesion</li>
                 </ul>
             </div>
         </div>
@@ -105,7 +105,9 @@
                 <div class="form-group">
                     <div class="input-checkbox text-center">
                         <input type="checkbox" id="create-account">
-                        <button class="primary-btn" type="submit" (click)="iniciar()">Iniciar Sesion</button>
+                        <button *ngIf="showSpin" class="primary-btn" type="submit" (click)="iniciar()">Iniciar Sesion</button>
+                        <i *ngIf="!showSpin" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
                     </div>
                 </div>
                 <hr>

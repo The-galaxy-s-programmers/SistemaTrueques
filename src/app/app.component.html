@@ -34,7 +34,7 @@
             <!-- row -->
             <div class="row">
                 <!-- LOGO -->
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="header-logo">
                         <a href="#" class="logo">
                             <img src="../assets/logoo.png" alt="imagen" class="png" width="70px">
@@ -44,22 +44,24 @@
                 <!-- /LOGO -->
 
                 <!-- SEARCH BAR -->
-                <div class="col-md-6">
-                    <div class="header-search">
-                        <form>
-                            <select class="input-select">
-                                <option>Categorias</option>
-                                <option>Tecnologia</option>
-                                <option>Electrodomesticos</option>
-                                <option>Hogar</option>
-                                <option>Deportes</option>
-                                <option>Musica</option>
-                                <option>Vehiculos</option>
-                                <option>Accesorios</option>
+                <div class="col-md-7">
+                    
+                    <div class="header-search" style="margin-right: -100px;">
+                        <button class="boton" >Categorias </button>
+                            <select class="input-select" style="margin-left: 77px; border-radius: 0px 0px 0px 0px;" [(ngModel)]="Categoria" >
+                                <option value="Tecnologia">Tecnologia</option>
+                                <option value="Electrodomesticos">Electrodomesticos</option>
+                                <option value="Hogar">Hogar</option>
+                                <option value="Deportes">Deportes</option>
+                                <option value="Musica">Musica</option>
+                                <option value="Vehiculos">Vehiculos</option>
+                                <option value="Accesorios">Accesorios</option>
+                                <option value="Vestuario y Calzado">Vestuario y Calzado</option>
+                                <option value="Belleza y Cuidado Personal">Belleza y Cuidado Personal</option>
+                                <option value="Construccion">Construccion</option>
                             </select>
-                            <input class="input" placeholder="Buscar aqui">
-                            <button class="search-btn">Buscar</button>
-                        </form>
+                            <input class="input" placeholder="Buscar aqui"  [(ngModel)]="buscador" >
+                            <button class="search-btn" style="border-radius: 0px 40px 40px 0px;" (click)="busqueda()" >Buscar</button>
                     </div>
                 </div>
                 <!-- /SEARCH BAR -->
@@ -81,11 +83,13 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user-o"></i>
                                 <span>Mi Cuenta</span>
-                                <div class="dropdown-menu">
-                                    <a> - Bienvenid@ {{nomUser}} - </a>
-                                    <a (click)="ir()" class="dropdown-item"> - Ir a tu Cuenta -</a>
+                                <div class="dropdown-menu" style="text-align: center;">
+                                    <a> <span> - Bienvenid@ {{nomUser}} - </span> </a>
+                                    <a (click)="ir()" class="dropdown-item "><span class="btn btn-outline-danger"> - Ir a tu Cuenta -</span></a>
+                                    <a (click)="cerrar()" class="dropdown-item"><span class="btn btn-outline-warning"> - Cerrar sesion - </span></a>
                                     <div class="dropdown-divider"></div>
-                                    <a (click)="cerrar()" class="dropdown-item"> - Cerrar sesion - </a>
+                                    <a routerLink="RegistroUsuario"> <span class="btn btn-outline-dark"> - Registrarse - </span> </a>
+                                    
                                 </div>
                             </a>
                         </div>

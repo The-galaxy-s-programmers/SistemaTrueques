@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 import { defaultThrottleConfig } from 'rxjs/internal-compatibility';
 import { DatePipe } from '@angular/common';
+import { Chat } from 'src/app/interfaces/chat';
+import { ChatService} from 'src/app/services/chat.service';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { UsuarioService} from 'src/app/services/usuario.service';
 
 interface Post {
   title: string;
@@ -32,7 +36,7 @@ export class ProductoComponent implements OnInit {
   post: Observable<Post>;
   datepipe: any;
 
-  constructor(private afs: AngularFirestore, private productoService: ProductoService,public datePipe:DatePipe) { }
+  constructor(private afs: AngularFirestore,private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatService:ChatService) { }
 
   ngOnInit(): void {
     this.postsCol = this.afs.collection('posts'/*, ref => ref.where('title', '==', 'coursetro')*/);
@@ -44,12 +48,44 @@ export class ProductoComponent implements OnInit {
           return { id, data };
         });
       });
-    this.buscar()
+    this.buscar();
+    this.inicio();
   }
 
   title: string;
   content: string;
   producto: Producto[];
+
+
+  fechastring:string;
+  idP ?:number;
+  nombre:string;
+  descripcion:string;
+  categoria:string;
+  fechaPublicacion:String;
+  uso:string;
+  imagen:string;
+  valorReferencia:number;
+  ubicacion:string;
+  subcategoria:string;
+  id_usuario:number;
+  
+  escrituraDM:boolean;
+  correo: string;
+  coment: string;
+  id: number;
+  show: boolean = true;
+  showComent: boolean = true;
+  click = 0;
+  respuesta: string;
+  resp = "";
+  respuestaDM:boolean;
+  
+  mensaje=false;
+  bnregistro=true;
+
+  top4:Producto[]=[];
+  chat:Chat[]=[];
 
   addPost() {
     this.afs.collection('posts').add({ 'title': this.title, 'content': this.content });
@@ -63,6 +99,33 @@ export class ProductoComponent implements OnInit {
     this.afs.doc('posts/' + postId).delete();
   }
 
+  refrescar(){
+     
+    this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
+      res => this.chat = res
+    )
+
+  }
+
+  inicio(){
+    console.log(localStorage.getItem("nomUser"))
+    
+    if( localStorage.getItem("nomUser") == null || localStorage.getItem("password") == null || localStorage.getItem("nomUser").length <= 2 ){
+      console.log("hola")
+      this.bnregistro=true;
+      this.mensaje=false;
+    }else{
+      console.log("adios")
+      this.bnregistro=false;
+      this.mensaje=true;
+    }
+    console.log(this.idP)
+
+    this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
+      res => this.chat = res
+    )
+
+  }
   buscar() {
     let a = localStorage.getItem("idP")
     this.productoService.getIdProducto(a).subscribe(
@@ -81,35 +144,21 @@ export class ProductoComponent implements OnInit {
       this.subcategoria=obj.subcategoria;
       this.uso=obj.uso;
       this.fechastring=this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
-    },2000)
+      this.productoService.getTop4CategoriaProducto(this.categoria).subscribe(
+        res => this.top4 = res
+      )
+    },3000)
+   
    
 
   }
+  select(id){
+    console.log(id);
+    localStorage.setItem("idP",id)
+    window.location.href="/Producto";
+  }
 
-  fechastring:string;
-  idP ?:number;
-  nombre:string;
-  descripcion:string;
-  categoria:string;
-  fechaPublicacion:String;
-  uso:string;
-  imagen:string;
-  valorReferencia:number;
-  ubicacion:string;
-  subcategoria:string;
-  id_usuario:number;
   
-  
-
-
-  correo: string;
-  coment: string;
-  id: number;
-  show: boolean = true;
-  showComent: boolean = true;
-  click = 0;
-  respuesta: string;
-  resp = "";
   Responder() {
 
     if (this.click == 0) { this.show = false; this.click = 1; }
@@ -119,4 +168,8 @@ export class ProductoComponent implements OnInit {
   Enviar() {
     this.correo; //Hay que enviar correo
   }
+  responderM(id){
+
+  }
+
 }

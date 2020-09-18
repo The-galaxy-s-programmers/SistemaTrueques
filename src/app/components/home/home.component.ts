@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   envioCat(){
     console.log(this.categoria);
    localStorage.setItem("categoria",this.categoria)
+   localStorage.setItem("bsc","")
     
   }
   

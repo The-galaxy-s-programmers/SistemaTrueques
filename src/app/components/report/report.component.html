@@ -7,7 +7,7 @@
             <div class="well well-sm">
                 <form class="form-horizontal" method="post">
                     <fieldset>
-                       
+
                         <div class="form-group">
                             <span class="col-md-2 col-md-offset-2 text-center" style="
                             margin-top: 35px;
@@ -37,7 +37,7 @@
                         "><i class="fa fa-id-badge bigicon"></i></span>
                             <div class="col-8">
                                 <input id="lname" name="ID Producto" type="text" placeholder="ID Producto"
-                                    class="form-control">
+                                readonly="readonly" class="form-control" [(ngModel)]="idProducto">
                             </div>
                         </div>
 
@@ -63,6 +63,22 @@
                                 <input id="phone" name="phone" type="text" placeholder="Telefono" class="form-control">
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center" style="
+                            margin-top: 35px;
+                            top: 37px;
+                            right: 50px;
+                        "><i class="fa fa-exclamation-triangle bigicon"></i></span>
+                            <div class="col-8">
+                                <select class="form-control" id="exampleFormControlSelect1" required>
+                                    <option label="Seleccione Tipo de Reporte">Seleccione Tipo de Reporte</option>
+                                    <option value="Comentario" data-id="01">Comentario</option>
+                                    <option value="Producto" data-id="02">Producto</option>
+                                    
+                                </select>
+                            </div>
+                        </div> 
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center" style="

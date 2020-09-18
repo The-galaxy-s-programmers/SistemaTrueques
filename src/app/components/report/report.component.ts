@@ -9,7 +9,14 @@ export class ReportComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit(): void {
+    this.inicio()
   }
+  idProducto;
+
+  inicio(){
+      this.idProducto=(localStorage.getItem("idP"))
+    }
 
 }

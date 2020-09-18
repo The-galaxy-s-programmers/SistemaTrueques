@@ -8,8 +8,8 @@
 				<div class="col-md-12">
 					<ul class="breadcrumb-tree">
 						<li><a href="#">{{categoria}}</a></li>
-							<li><a href="#">{{subcategoria}}</a></li>
-						
+						<li><a href="#">{{subcategoria}}</a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -42,13 +42,7 @@
 						<hr>
 						<p class="font-italic">{{fechastring}}</p>
 						<div>
-							<div class="product-rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star-o"></i>
-							</div>
+
 						</div>
 						<div>
 							<span class="product-available">Disponible</span>
@@ -73,14 +67,20 @@
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 								<a class="dropdown-item" href="#">correo@gmail.com</a>
 							</div>
-							<button type="button" class="btn btn-outline-danger">Permutar</button>
+							<button routerLink="/Report"class="btn btn-outline-dark"><i
+									class="fa fa-exclamation-triangle bigicon"></i></button>
+									<button type="button" class="btn btn-outline-danger"><i class="fa fa-handshake-o"></i>Permutar</button>
 						</div>
 						<br />
+						
+							
+					
+					
 						<ul class="product-links">
 							<li>Categorias:</li>
 							<li><a href="#">{{categoria}} /</a></li>
 							<li><a href="#">{{subcategoria}}</a></li>
-							
+
 						</ul>
 
 						<ul class="product-links">
@@ -98,47 +98,57 @@
 			<div class="col-md-12">
 
 				<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-					
-					<li class="nav-item">
-						<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-							aria-controls="contact" aria-selected="false">Contacto</a>
+
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+							aria-controls="home" aria-selected="true">Chat</a>
 					</li>
 				</ul>
 
 				<div class="tab-content" id="myTabContent">
-					
 
-					<div class="tab-pane fade active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 						<div class="row">
 							<div class="col-3">
 								<br />
 							</div>
 							<div class="col-6">
 								<br />
-								<ul *ngFor="let post of posts | async">
+								<ul *ngFor="let chatM of chat">
+									<li>
+										<h3>{{chatM.mensaje}} <a [routerLink]="Report">(Reportar)</a></h3>
+										<p *ngIf="respuestaDM"><a (click)="responderM(chatM.id)">(Responder)</a></p>
 
-									<h3>{{ (singlePost | async)?.title }}</h3>
-									<p>{{ (singlePost | async)?.content }}</p>
-									<li (click)="getPost(post.id)">
-										<strong>{{ post.data.title}}</strong> (<a
-											(click)="deletePost(post.id)">delete</a>)
-										<br>
-										{{post.data.content}}
+										<div *ngIf="escrituraDM">
+											<textarea class="input" [(ngModel)]="content" name="content"
+												placeholder="Comentario"></textarea>
+											<button class="primary-btn" type="submit" value="Add a Post"
+												(click)="addPost()">Enviar</button>
+										</div>
 									</li>
 								</ul>
+
+								<div *ngIf="mensaje">
+									<textarea class="input" [(ngModel)]="content" name="content"
+										placeholder="Comentario"></textarea>
+									<button class="primary-btn" type="submit" value="Add a Post"
+										(click)="addPost()">Enviar</button>
+									<button class="primary-btn" type="submit" (click)="refrescar()">
+										Refrescar Chat </button>
+								</div>
+								<div *ngIf="bnregistro" style="text-align: center;">
+									<p>Registrate para comentar</p>
+									<button class="primary-btn" type="submit" [routerLink]="RegistroUsuario">
+										Registrarse </button>
+									<button class="primary-btn" type="submit" (click)="refrescar()">
+										Refrescar Chat </button>
+								</div>
+
 							</div>
 							<div class="col-3">
 								<br />
-								<div id="review-form">
-									<input class="input" type="text" [(ngModel)]="title" name="title"
-										placeholder="Nombre">
-									<input class="input" type="email" placeholder="Email" [(ngModel)]="correo">
-									<textarea class="input" [(ngModel)]="content" name="content"
-										placeholder="Comentario"></textarea>
-									<div class="input-rating"></div>
-									<button class="primary-btn" type="submit" value="Add a Post"
-										(click)="addPost()">Enviar</button>
-								</div>
+
 							</div>
 							<!-- /Review Form -->
 						</div>
@@ -169,138 +179,33 @@
 				</div>
 
 				<!-- product -->
-				<div class="col-md-3 col-xs-6">
+				<div class="col-3" *ngFor='let top1 of top4'>
 					<div class="product">
 						<div class="product-img">
-							<img src="http://localhost:4200/assets/Lineablanca.jpg" alt="">
+							<img src={{top1.imagen}} alt="300px" (click)="select(top1.idP)">
 
 						</div>
 						<div class="product-body">
-							<p class="product-category">Electrodomesticos</p>
-							<h3 class="product-name"><a href="#">Secadora en buen estado</a></h3>
-							<h4 class="product-price"> <del class="product-old-price"> </del></h4>
-							<div class="product-rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
+							<p class="product-category">{{top1.subcategoria}}</p>
+							<h3 class="product-name"><a href="#">{{top1.nombre}}
+									<small>{{top1.uso}}</small></a></h3>
+							<h3 class="product-description">{{top1.descripcion}}</h3>
+							<h6 class="product-price"> {{top1.valorReferencia}} <small> Precio Ref:</small></h6>
+
 							<div class="product-btns">
 								<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-										class="tooltipp">Agregar a la lista</span></button>
+										class="tooltipp">Agregar
+										a la lista</span></button>
 								<button class="add-to-compare"><i class="fa fa-share"></i><span
 										class="tooltipp">Compartir</span></button>
 								<button class="quick-view"><i class="fa fa-eye"></i><span
 										class="tooltipp">Ver</span></button>
 							</div>
 						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-						</div>
-					</div>
-				</div>
-				<!-- /product -->
-
-				<!-- product -->
-				<div class="col-md-3 col-xs-6">
-					<div class="product">
-						<div class="product-img">
-							<img src="http://localhost:4200/assets/notebook.jpg" alt="">
-
-						</div>
-						<div class="product-body">
-							<p class="product-category">Notebook</p>
-							<h3 class="product-name"><a href="#">Procesador Intel-Inside 4Gb RAM Detalles Esteticos</a>
-							</h3>
-							<h4 class="product-price"> <del class="product-old-price"> </del></h4>
-							<div class="product-rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div>
-							<div class="product-btns">
-								<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-										class="tooltipp">Agregar a la lista</span></button>
-								<button class="add-to-compare"><i class="fa fa-share"></i><span
-										class="tooltipp">Compartir</span></button>
-								<button class="quick-view"><i class="fa fa-eye"></i><span
-										class="tooltipp">Ver</span></button>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-						</div>
-					</div>
-				</div>
-				<!-- /product -->
-
-				<div class="clearfix visible-sm visible-xs"></div>
-
-				<!-- product -->
-				<div class="col-md-3 col-xs-6">
-					<div class="product">
-						<div class="product-img">
-							<img src="http://localhost:4200/assets/hogar.jpg" alt="">
-						</div>
-						<div class="product-body">
-							<p class="product-category">Hogar</p>
-							<h3 class="product-name"><a href="#">Mueble de cocina - Se cambia por Rack para TV</a></h3>
-							<h4 class="product-price"> <del class="product-old-price"> </del></h4>
-							<div class="product-rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star-o"></i>
-							</div>
-							<div class="product-btns">
-								<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-										class="tooltipp">Agregar a la lista</span></button>
-								<button class="add-to-compare"><i class="fa fa-share"></i><span
-										class="tooltipp">Compartir</span></button>
-								<button class="quick-view"><i class="fa fa-eye"></i><span
-										class="tooltipp">Ver</span></button>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
-						</div>
-					</div>
-				</div>
-				<!-- /product -->
-
-				<!-- product -->
-				<div class="col-md-3 col-xs-6">
-					<div class="product">
-						<div class="product-img">
-							<img src="https://http2.mlstatic.com/ps4-slim-1tb-D_NQ_NP_855402-MLC43291297612_082020-V.webp"
-								alt="">
-						</div>
-						<div class="product-body">
-							<p class="product-category">Consola</p>
-							<h3 class="product-name"><a href="#">Consola PlayStation PS4 Slim 1tb</a></h3>
-							<h4 class="product-price"> <del class="product-old-price"></del></h4>
-							<div class="product-rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star-o"></i>
-							</div>
-							<div class="product-btns">
-								<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-										class="tooltipp">Agregar a la lista</span></button>
-								<button class="add-to-compare"><i class="fa fa-share"></i><span
-										class="tooltipp">Compartir</span></button>
-								<button class="quick-view"><i class="fa fa-eye"></i><span
-										class="tooltipp">Ver</span></button>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn"><i class="fa fa-exchange"></i> Permutar</button>
+						<div style="text-align: center;">
+							<button class="btn btn-outline-danger" (click)="select(top1.idP)"><i
+									class="fa fa-exchange"></i>
+								Permutar</button>
 						</div>
 					</div>
 				</div>
