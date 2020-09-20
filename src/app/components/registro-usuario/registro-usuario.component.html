@@ -85,6 +85,11 @@
                     <div class="form-group">
                         <input class="input" type="tel" name="telefono" placeholder="Telefono"required [(ngModel)]="fono">
                     </div>
+                    <div class="form-group form-check" style="text-align: center;">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="check">
+                        <label class="form-check-label" for="exampleCheck1">Acepta los <a href="#">Terminos y
+                                Condiciones</a></label>
+                    </div>
                     <div class="form-group">
                         <div class="input-checkbox text-center">
                             <button class="primary-btn" type="submit" (click)="create()" >Registrate</button>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -11,46 +12,58 @@ export class AppComponent {
 
 
   title = 'Sistema-Trueques';
-  myFecha= new Date();
-  Fecha:string;
- 
+  myFecha = new Date();
+  Fecha: string;
+
 
 
   constructor(private datePipe: DatePipe,) {
     this.Fecha = this.datePipe.transform(this.myFecha, 'yyyy');
 
-   }
+  }
 
- 
+
   ngOnInit(): void {
-   this.setea()
+    this.setea()
   }
-  cuenta:string;
-  buscador:string;
-  nomUser:String;
-  Categoria:string;
-  
-  setea(){
+
+  cuenta: string;
+  buscador: string;
+  nomUser: String;
+  Categoria: string;
+
+  selectCat() {
+    if (this.Categoria == undefined){
+      console.log("wait")
+    }else {
+      localStorage.setItem("categoria",this.Categoria);
+      localStorage.setItem("bsc","");
+      window.location.href="/MenuProductos";
+    }
+   
+  }
+  setea() {
     this.nomUser = localStorage.getItem("nomUser");
+
   }
-  ir(){
+  ir() {
     let a = localStorage.getItem("nomUser");
     let b = localStorage.getItem("password");
-    if(a.length == 0 || b.length == 0 ){
-      window.location.href="/RegistroUsuario";
+    if (a.length == 0 || b.length == 0) {
+      window.location.href = "/RegistroUsuario";
 
-    }else{
-      window.location.href="/Perfil";
+    } else {
+      window.location.href = "/Perfil";
     }
   }
-  cerrar(){
-    localStorage.setItem("nomUser","")
-    localStorage.setItem("password","")
+  cerrar() {
+    localStorage.setItem("nomUser", "")
+    localStorage.setItem("password", "")
   }
-  busqueda(){
-    localStorage.setItem("bsc",this.buscador)
-    localStorage.setItem("categoria","")
-    window.location.href="/MenuProductos"
+  busqueda() {
+    localStorage.setItem("bsc", this.buscador)
+    localStorage.setItem("categoria", "")
+    window.location.href = "/MenuProductos"
   }
-  
+
 }

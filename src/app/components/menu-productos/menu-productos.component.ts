@@ -26,12 +26,14 @@ export class MenuProductosComponent implements OnInit {
 
   }
 
+  showA:boolean=true;
   listaProductos: Producto[] = [];
   topListaProductos:Producto[]=[];
   categoria:string;
 
 
   buscar() {
+    
     const a = localStorage.getItem("categoria")
     this.productosServices.getListaProductoCategoria(a).subscribe(
       res => { this.listaProductos = res},
@@ -42,7 +44,7 @@ export class MenuProductosComponent implements OnInit {
           err =>{ console.log(err)}
         )
 
-        
+        setTimeout(()=>{this.showA=false},2000)
   }
   bsc(){
     this.productosServices.getNomProducto(localStorage.getItem("bsc")).subscribe(

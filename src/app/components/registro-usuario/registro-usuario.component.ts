@@ -34,6 +34,7 @@ export class RegistroUsuarioComponent implements OnInit {
   validaCorreo: boolean;
   validaNomUser: boolean;
   showSpin: boolean = true;
+  check:boolean = false;
   create() {
 
     this.usuarioService.getIfExistUser(this.correo).subscribe(
@@ -52,6 +53,9 @@ export class RegistroUsuarioComponent implements OnInit {
         if (this.validaNomUser == true) {
           alert("Nombre de usuario ya registrado")
         } else {
+          if(this.check==false){
+            alert("Acepte los terminos y condiciones")
+          }else{
           let nuevo: Usuario = {
             nomusuario: this.nomusuario,
             nombre: this.nombre,
@@ -76,7 +80,7 @@ export class RegistroUsuarioComponent implements OnInit {
           window.location.href = "Perfil";
         }
       }
-
+    }
     }, 3000)
 
   }
