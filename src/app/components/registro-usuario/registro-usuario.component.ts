@@ -36,7 +36,44 @@ export class RegistroUsuarioComponent implements OnInit {
   showSpin: boolean = true;
   check:boolean = false;
   create() {
-    this.register=true;
+
+    this.showSpin = false;
+    console.log(this.nombredusuario)
+    if(this.nombre == undefined || this.nombre.length > 3 ) {
+      alert("Verifique los datos ingresados")
+        this.showSpin=true;
+    }else if(this.apellido == undefined || this.apellido.length > 3 ){
+      alert("Verifique los datos ingresados")
+      this.showSpin=true;
+    }else if(this.nomusuario == undefined || this.nomusuario.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.password == undefined || this.password.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.correo == undefined || this.correo.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.fechaNacimiento == undefined || this.fechaNacimiento.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.region == undefined || this.region.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.comuna == undefined || this.comuna.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.direccion == undefined || this.direccion.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.genero == undefined || this.genero.length > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else if(this.fono == undefined || this.fono > 3 ){
+        alert("Verifique los datos ingresados")
+        this.showSpin=true;
+      }else{
+
     this.usuarioService.getIfExistUser(this.correo).subscribe(
       res => this.validaCorreo = res
     )
@@ -91,7 +128,7 @@ export class RegistroUsuarioComponent implements OnInit {
     }
     }, 3000)
 
-  }
+  }}
 
   usuarioLog: Usuario[];
 
