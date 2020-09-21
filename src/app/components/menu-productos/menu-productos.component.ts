@@ -44,7 +44,9 @@ export class MenuProductosComponent implements OnInit {
           err =>{ console.log(err)}
         )
 
-        setTimeout(()=>{this.showA=false},2000)
+        setTimeout(()=>{
+          this.showA=false
+        },2000)
   }
   bsc(){
     this.productosServices.getNomProducto(localStorage.getItem("bsc")).subscribe(
@@ -55,6 +57,9 @@ export class MenuProductosComponent implements OnInit {
       res => { this.topListaProductos =res},
       err =>{ console.log(err)}
     )
+    setTimeout(()=>{
+      this.showA=false
+    },2000)
   }
 
   select(id){

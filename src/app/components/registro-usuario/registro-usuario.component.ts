@@ -28,7 +28,7 @@ export class RegistroUsuarioComponent implements OnInit {
   password: string;
   direccion: string;
   fono: number;
-
+  register:boolean=false;
   nombredusuario: string;
   passworddusuario: string;
   validaCorreo: boolean;
@@ -36,7 +36,7 @@ export class RegistroUsuarioComponent implements OnInit {
   showSpin: boolean = true;
   check:boolean = false;
   create() {
-
+    this.register=true;
     this.usuarioService.getIfExistUser(this.correo).subscribe(
       res => this.validaCorreo = res
     )
@@ -49,12 +49,17 @@ export class RegistroUsuarioComponent implements OnInit {
 
       if (this.validaCorreo == true) {
         alert("Correo ya registrado")
+        this.register=false;
       } else {
         if (this.validaNomUser == true) {
           alert("Nombre de usuario ya registrado")
+          this.register=false;
+
         } else {
           if(this.check==false){
             alert("Acepte los terminos y condiciones")
+            this.register=false;
+
           }else{
           let nuevo: Usuario = {
             nomusuario: this.nomusuario,
@@ -75,9 +80,12 @@ export class RegistroUsuarioComponent implements OnInit {
             res => { console.log(nuevo) },
             err => { console.log(err) }
           )
+          setTimeout(() => {
           alert("Usuario creado con exito")
           localStorage.setItem("nomUser", this.nomusuario);
+          this.register=false;
           window.location.href = "Perfil";
+          },2000)
         }
       }
     }

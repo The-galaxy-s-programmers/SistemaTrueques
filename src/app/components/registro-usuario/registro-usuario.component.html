@@ -92,6 +92,8 @@
                     </div>
                     <div class="form-group">
                         <div class="input-checkbox text-center">
+                            <i *ngIf="register" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
                             <button class="primary-btn" type="submit" (click)="create()" >Registrate</button>
                         </div>
                     </div>

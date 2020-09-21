@@ -27,7 +27,7 @@ export class UsuarioService {
     return this.http.get<boolean>(this.url + this.exist + correo)
   }
 
-  getNomUser(nomUsuario): Observable<Usuario[]> {
+  getNomUser(nomUsuario:String): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.url + this.nomusuario + nomUsuario)
   }
 
