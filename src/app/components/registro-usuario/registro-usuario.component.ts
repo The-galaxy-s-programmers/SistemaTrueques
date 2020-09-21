@@ -28,7 +28,9 @@ export class RegistroUsuarioComponent implements OnInit {
   password: string;
   direccion: string;
   fono: number;
+
   register:boolean=false;
+
   nombredusuario: string;
   passworddusuario: string;
   validaCorreo: boolean;
@@ -37,41 +39,41 @@ export class RegistroUsuarioComponent implements OnInit {
   check:boolean = false;
   create() {
 
-    this.showSpin = false;
+    this.register = true;
     console.log(this.nombredusuario)
-    if(this.nombre == undefined || this.nombre.length > 3 ) {
+    if(this.nombre == undefined || this.nombre.length < 3 ) {
       alert("Verifique los datos ingresados")
-        this.showSpin=true;
-    }else if(this.apellido == undefined || this.apellido.length > 3 ){
+        
+    }else if(this.apellido == undefined || this.apellido.length < 3 ){
       alert("Verifique los datos ingresados")
-      this.showSpin=true;
-    }else if(this.nomusuario == undefined || this.nomusuario.length > 3 ){
+      
+    }else if(this.nomusuario == undefined || this.nomusuario.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.password == undefined || this.password.length > 3 ){
+        
+      }else if(this.password == undefined || this.password.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.correo == undefined || this.correo.length > 3 ){
+        
+      }else if(this.correo == undefined || this.correo.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.fechaNacimiento == undefined || this.fechaNacimiento.length > 3 ){
+        
+      }else if(this.fechaNacimiento == undefined || this.fechaNacimiento.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.region == undefined || this.region.length > 3 ){
+        
+      }else if(this.region == undefined || this.region.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.comuna == undefined || this.comuna.length > 3 ){
+        
+      }else if(this.comuna == undefined || this.comuna.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.direccion == undefined || this.direccion.length > 3 ){
+        
+      }else if(this.direccion == undefined || this.direccion.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.genero == undefined || this.genero.length > 3 ){
+        
+      }else if(this.genero == undefined || this.genero.length < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
-      }else if(this.fono == undefined || this.fono > 3 ){
+        
+      }else if(this.fono == undefined || this.fono < 3 ){
         alert("Verifique los datos ingresados")
-        this.showSpin=true;
+        
       }else{
 
     this.usuarioService.getIfExistUser(this.correo).subscribe(
