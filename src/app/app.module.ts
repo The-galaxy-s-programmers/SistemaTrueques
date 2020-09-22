@@ -19,6 +19,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ReportComponent } from './components/report/report.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Paste in your credentials that you saved earlier
 var firebaseConfig = {
@@ -52,7 +53,8 @@ var firebaseConfig = {
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
