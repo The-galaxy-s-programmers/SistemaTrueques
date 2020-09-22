@@ -165,9 +165,11 @@ export class RegistroUsuarioComponent implements OnInit {
             window.location.href = "/Perfil"
           } else {
             alert("Nombre de usuario o Contraseña invalidas")
+            this.showSpin=true
           }
         } else {
           alert("Usuario Inexistente");
+          this.showSpin=true
         }
       }, 3000)
     }

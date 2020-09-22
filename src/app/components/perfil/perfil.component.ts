@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { DatePipe } from '@angular/common'
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-perfil',
@@ -41,6 +42,22 @@ export class PerfilComponent implements OnInit {
   foto: string;
 
   obs:number;
+  borrar(){
+			var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
+			if (r == true) {
+        alert("\'Borrado exitoso\'");
+        
+				this.usuarioService.deleteUsuario(this.idU).subscribe(
+          res => this.myUser = res
+        )
+        localStorage.setItem("nomUser","")
+        localStorage.setItem("password","")
+        window.location.href="/#"
+			}else{
+
+			}
+		
+  }
   buscar() {
     let u = localStorage.getItem("nomUser");
 
