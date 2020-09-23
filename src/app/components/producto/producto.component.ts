@@ -86,6 +86,9 @@ export class ProductoComponent implements OnInit {
 
   top4:Producto[]=[];
   chat:Chat[]=[];
+  irRegistro(){
+    window.location.href="/RegistroUsuario"
+  }
 
   addPost() {
     this.afs.collection('posts').add({ 'title': this.title, 'content': this.content });

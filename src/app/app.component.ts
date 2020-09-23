@@ -78,6 +78,7 @@ export class AppComponent {
   cerrar() {
     localStorage.setItem("nomUser", "")
     localStorage.setItem("password", "")
+    window.location.href="/#";
   }
   busqueda() {
     localStorage.setItem("bsc", this.buscador)
