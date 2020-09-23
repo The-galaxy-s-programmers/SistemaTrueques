@@ -3,6 +3,11 @@ import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { DatePipe } from '@angular/common'
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { FavoritoService } from 'src/app/services/favorito.service';
+import { ProductoService } from 'src/app/services/producto.service';
+import { Producto } from 'src/app/interfaces/producto';
+import { Favorito } from 'src/app/interfaces/favorito';
+import {FavoritoIdProducto} from 'src/app/interfaces/favorito-id-producto';
 
 @Component({
   selector: 'app-perfil',
@@ -11,7 +16,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe) { }
+  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe,public favoritoService:FavoritoService,public productoServices:ProductoService) { }
 
   ngOnInit(): void {
     this.buscar();
@@ -20,6 +25,12 @@ export class PerfilComponent implements OnInit {
   }
 
   myUser: Usuario[] = [];
+  productosTuyos:Producto[]=[];
+  productosFavList:Producto[]=[];
+  productosFav:Producto;
+  favoritos:FavoritoIdProducto[]=[];
+  favoritosCount:number;
+
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
 
@@ -42,11 +53,13 @@ export class PerfilComponent implements OnInit {
   foto: string;
 
   obs:number;
+
   ayuda(){
       localStorage.setItem("idP",null);
       window.location.href="/Report";
 
   }
+
   borrar(){
 			var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
 			if (r == true) {
@@ -103,8 +116,16 @@ export class PerfilComponent implements OnInit {
         direccion: this.direccion,
         fono: this.fono
       }
-      console.log(this.usuarioEditado)
+      console.log(this.idU)
+      this.favoritoService.getListaFavUser(this.idU).subscribe(
+        res => this.favoritos = res
+      )
+      setTimeout(()=>{
+        console.log(JSON.parse(JSON.stringify(this.favoritos)))
+      },3000)
+      
     }, 3000)
+
 
   }
 

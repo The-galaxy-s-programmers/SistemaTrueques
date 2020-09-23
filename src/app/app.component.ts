@@ -53,7 +53,7 @@ export class AppComponent {
     this.nomUser = localStorage.getItem("nomUser");
     if(this.nomUser == undefined || this.nomUser == null || this.nomUser.length <= 3 ){
       this.countFav = 0;
-    }
+    }else{
     this.usuarioServices.getNomUser(this.nomUser).subscribe(
       res => this.user = res 
     )
@@ -62,7 +62,7 @@ export class AppComponent {
       this.favoritoServices.getCount(this.userOnly.idU).subscribe(
         res => this.countFav = res
       )
-    },2000)
+    },2000)}
   }
 
   ir() {
