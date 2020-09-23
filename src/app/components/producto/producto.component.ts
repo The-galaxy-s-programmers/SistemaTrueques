@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 import { defaultThrottleConfig } from 'rxjs/internal-compatibility';
-import { DatePipe } from '@angular/common';
+import { DatePipe, getLocaleDateFormat } from '@angular/common';
 import { Chat } from 'src/app/interfaces/chat';
 import { ChatService} from 'src/app/services/chat.service';
 import { Usuario } from 'src/app/interfaces/usuario';
@@ -55,8 +55,13 @@ export class ProductoComponent implements OnInit {
   title: string;
   content: string;
   producto: Producto[];
+  user:Usuario[]=[];
+  userL:Usuario;
+  duenio:Usuario[]=[];
+  duenioL:Usuario;
 
 
+  idU:number;
   fechastring:string;
   idP ?:number;
   nombre:string;
@@ -81,26 +86,36 @@ export class ProductoComponent implements OnInit {
   resp = "";
   respuestaDM:boolean;
   
+  show3:boolean;
   mensaje=false;
   bnregistro=true;
-
+  idPu:number;
   top4:Producto[]=[];
+  Comentario:Chat;
   chat:Chat[]=[];
   irRegistro(){
     window.location.href="/RegistroUsuario"
   }
 
   addPost() {
-    this.afs.collection('posts').add({ 'title': this.title, 'content': this.content });
-    // this.afs.collection('posts').doc('my-custom-id').set({'title': this.title, 'content': this.content});
+
+  this.Comentario={
+    id_producto:parseInt(localStorage.getItem("idP")),
+     id_user:this.idU,
+     mensaje:this.coment,
+     id_duenio:this.idPu,
+     respuesta:"",
+     fecha:this.datePipe.transform(Date.now()),
+     nomUser:this.userL.nomusuario,
+     nomDuenio:this.duenioL.nomusuario,
+     nomProducto:this.nombre,
   }
-  getPost(postId) {
-    this.postDoc = this.afs.doc('posts/' + postId);
-    this.post = this.postDoc.valueChanges();
+
+   this.chatService.postMensaje(this.Comentario).subscribe(
+     res=> console.log(res)
+   )
   }
-  deletePost(postId) {
-    this.afs.doc('posts/' + postId).delete();
-  }
+  
 
   refrescar(){
      
@@ -130,12 +145,17 @@ export class ProductoComponent implements OnInit {
 
   }
   buscar() {
+    this.show3=false;
     let a = localStorage.getItem("idP")
     this.productoService.getIdProducto(a).subscribe(
       res => {
         this.producto = res
       }, err => console.log(err)
     )
+    this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
+      res=> this.user = res
+    )
+    
     setTimeout(()=>{
    const obj = JSON.parse(JSON.stringify(this.producto))
       this.nombre=obj.nombre;
@@ -143,16 +163,27 @@ export class ProductoComponent implements OnInit {
       this.categoria=obj.categoria;
       this.fechaPublicacion=obj.fechaPublicacion;
       this.imagen=obj.imagen;
+      this.idPu=obj.id_usuario;
       this.ubicacion=obj.ubicacion;
       this.subcategoria=obj.subcategoria;
       this.uso=obj.uso;
       this.fechastring=this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
+      this.userL = JSON.parse(JSON.stringify(this.user))
+      this.idU=this.userL.idU;
+      this.usuarioService.getIdUser(this.idU).subscribe(
+        res=> this.duenio = res
+      )
+      
       this.productoService.getTop4CategoriaProducto(this.categoria).subscribe(
         res => this.top4 = res
       )
     },3000)
    
-   
+    setTimeout(()=>{
+      this.duenioL = JSON.parse(JSON.stringify(this.duenio))
+      this.show3=true;
+      console.log(this.duenioL)
+    },5000)
 
   }
   select(id){
