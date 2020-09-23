@@ -85,7 +85,7 @@ export class ProductoComponent implements OnInit {
   respuesta: string;
   resp = "";
   respuestaDM:boolean;
-  
+  contenta:string;
   show3:boolean;
   mensaje=false;
   bnregistro=true;
@@ -101,21 +101,29 @@ export class ProductoComponent implements OnInit {
 
   this.Comentario={
     id_producto:parseInt(localStorage.getItem("idP")),
-     id_user:this.idU,
-     mensaje:this.coment,
+     id_user:this.userL.idU,
+     mensaje:this.content,
      id_duenio:this.idPu,
      respuesta:"",
-     fecha:this.datePipe.transform(Date.now()),
      nomUser:this.userL.nomusuario,
      nomDuenio:this.duenioL.nomusuario,
      nomProducto:this.nombre,
   }
 
    this.chatService.postMensaje(this.Comentario).subscribe(
-     res=> console.log(res)
+     res=> {console.log(res)},err => console.log(err)
    )
+   
+  setTimeout(()=>{
+    this.content="";
+    this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
+      res => this.chat = res
+    )
+   },2000)
+
   }
-  
+
+ 
 
   refrescar(){
      
@@ -170,7 +178,7 @@ export class ProductoComponent implements OnInit {
       this.fechastring=this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
       this.userL = JSON.parse(JSON.stringify(this.user))
       this.idU=this.userL.idU;
-      this.usuarioService.getIdUser(this.idU).subscribe(
+      this.usuarioService.getIdUser(this.idPu).subscribe(
         res=> this.duenio = res
       )
       
@@ -182,7 +190,7 @@ export class ProductoComponent implements OnInit {
     setTimeout(()=>{
       this.duenioL = JSON.parse(JSON.stringify(this.duenio))
       this.show3=true;
-      console.log(this.duenioL)
+     
     },5000)
 
   }

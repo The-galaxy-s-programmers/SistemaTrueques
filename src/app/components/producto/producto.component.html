@@ -115,11 +115,11 @@
 								<br />
 								<ul *ngFor="let chatM of chat">
 									<li>
-										<h3>{{chatM.nomUser}}{{chatM.mensaje}} <a [routerLink]="Report">(Reportar)</a></h3>
+										<h3>[{{chatM.nomUser}}] - {{chatM.mensaje}} <a [routerLink]="Report">(Reportar)</a></h3>
 										<p *ngIf="respuestaDM"><a (click)="responderM(chatM.id)">(Responder)</a></p>
 
 										<div *ngIf="escrituraDM">
-											<textarea class="input" [(ngModel)]="content" name="content"
+											<textarea class="input" id="output" [(ngModel)]="contenta" name="content"
 												placeholder="Comentario"></textarea>
 											<button class="primary-btn" type="submit" value="Add a Post"
 												(click)="addPost()">Enviar</button>
