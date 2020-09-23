@@ -123,7 +123,7 @@ export class RegistroUsuarioComponent implements OnInit {
           alert("Usuario creado con exito")
           localStorage.setItem("nomUser", this.nomusuario);
           this.register=false;
-          window.location.href = "Perfil";
+          window.location.href = "/Perfil";
           },2000)
         }
       }

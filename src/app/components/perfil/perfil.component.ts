@@ -42,6 +42,11 @@ export class PerfilComponent implements OnInit {
   foto: string;
 
   obs:number;
+  ayuda(){
+      localStorage.setItem("idP",null);
+      window.location.href="/Report";
+
+  }
   borrar(){
 			var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
 			if (r == true) {

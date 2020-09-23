@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ThrowStmt } from '@angular/compiler';
+import { Usuario } from './interfaces/usuario';
+import { UsuarioService } from './services/usuario.service';
+import { Favorito } from './interfaces/favorito';
+import { FavoritoService } from './services/favorito.service';
 
 @Component({
   selector: 'app-root',
@@ -17,20 +21,23 @@ export class AppComponent {
 
 
 
-  constructor(private datePipe: DatePipe,) {
-    this.Fecha = this.datePipe.transform(this.myFecha, 'yyyy');
-
+  constructor(private datePipe: DatePipe, public usuarioServices:UsuarioService, public favoritoServices:FavoritoService) {
   }
 
 
   ngOnInit(): void {
     this.setea()
+    this.Fecha = this.datePipe.transform(this.myFecha, 'yyyy');
   }
 
   cuenta: string;
   buscador: string;
   nomUser: String;
   Categoria: string;
+  countFav:number;
+  user:Usuario[]=[];
+  userOnly:Usuario;
+  favorito:Favorito[]=[];
 
   selectCat() {
     if (this.Categoria == undefined){
@@ -44,8 +51,20 @@ export class AppComponent {
   }
   setea() {
     this.nomUser = localStorage.getItem("nomUser");
-
+    if(this.nomUser == undefined || this.nomUser == null || this.nomUser.length <= 3 ){
+      this.countFav = 0;
+    }
+    this.usuarioServices.getNomUser(this.nomUser).subscribe(
+      res => this.user = res 
+    )
+    setTimeout(()=>{
+      this.userOnly=JSON.parse(JSON.stringify(this.user))
+      this.favoritoServices.getCount(this.userOnly.idU).subscribe(
+        res => this.countFav = res
+      )
+    },2000)
   }
+
   ir() {
     let a = localStorage.getItem("nomUser");
     let b = localStorage.getItem("password");

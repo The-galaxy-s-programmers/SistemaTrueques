@@ -1,5 +1,5 @@
 export interface Chat {
-     id:number;
+     id ?:number;
      id_producto:number;
      id_user:number;
      mensaje:string;
