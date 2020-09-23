@@ -86,4 +86,57 @@ export class AppComponent {
     window.location.href = "/MenuProductos"
   }
 
+  tecnologia() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "tecnologia")
+    window.location.href = "/MenuProductos"
+  }
+  electro() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "electrodomesticos")
+    window.location.href = "/MenuProductos"
+  }
+  hogar() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "hogar")
+    window.location.href = "/MenuProductos"
+  }
+  deportes() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "deportes")
+    window.location.href = "/MenuProductos"
+  }
+  musica() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "musica")
+    window.location.href = "/MenuProductos"
+  }
+  vehiculos() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "vehiculos")
+    window.location.href = "/MenuProductos"
+  }
+  accesorios() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "accesorios")
+    window.location.href = "/MenuProductos"
+  }
+  vestuario() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "vestuario y calzado")
+    window.location.href = "/MenuProductos"
+  }
+  belleza() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "belleza y cuidado personal")
+    window.location.href = "/MenuProductos"
+  }
+  const() {
+    localStorage.setItem("bsc","")
+    localStorage.setItem("categoria", "construccion")
+    window.location.href = "/MenuProductos"
+  }
+
+
+
 }
