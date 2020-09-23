@@ -54,6 +54,8 @@ export class PerfilComponent implements OnInit {
 
   obs: number;
 
+  register:boolean=false;
+
   ayuda() {
     localStorage.setItem("idP", null);
     window.location.href = "/Report";
@@ -147,6 +149,10 @@ export class PerfilComponent implements OnInit {
 
 
   update() {
+
+    this.register = true;
+    console.log(this.nomusuario)
+    
     let nuevo: Usuario = {
 
       nomusuario: "",
@@ -229,6 +235,51 @@ export class PerfilComponent implements OnInit {
     } else {
       nuevo.fechaNacimiento = obj.fechaNacimiento;
     }
+    if(this.nombre.length <= 3 ) {
+      alert("Verifique los datos ingresados")
+      this.register= false
+        
+    }else if(this.apellidobd.length <= 3 ){
+      alert("Verifique los datos ingresados")
+      this.register= false
+      
+    }else if(this.nomusuario.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.password.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.correo.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.fechaNacimiento.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.region.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.comuna.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.direccion.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.genero.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if( this.fono <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else{
 
     this.usuarioService.putUser(this.idU, user).subscribe(
       res => this.obs = res
@@ -238,4 +289,4 @@ export class PerfilComponent implements OnInit {
 
   }
 }
-
+}
