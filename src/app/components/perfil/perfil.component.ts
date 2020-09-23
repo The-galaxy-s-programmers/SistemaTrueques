@@ -7,7 +7,7 @@ import { FavoritoService } from 'src/app/services/favorito.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/interfaces/producto';
 import { Favorito } from 'src/app/interfaces/favorito';
-import {FavoritoIdProducto} from 'src/app/interfaces/favorito-id-producto';
+import { FavoritoIdProducto } from 'src/app/interfaces/favorito-id-producto';
 
 @Component({
   selector: 'app-perfil',
@@ -16,7 +16,7 @@ import {FavoritoIdProducto} from 'src/app/interfaces/favorito-id-producto';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe,public favoritoService:FavoritoService,public productoServices:ProductoService) { }
+  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { }
 
   ngOnInit(): void {
     this.buscar();
@@ -25,12 +25,12 @@ export class PerfilComponent implements OnInit {
   }
 
   myUser: Usuario[] = [];
-  productosTuyos:Producto[]=[];
-  productosFavList:Producto[]=[];
-  productosFav:Producto;
-  favoritos:FavoritoIdProducto[]=[];
-  favoritosCount:number;
-
+  productosTuyos: Producto[] = [];
+  productosFavList: Producto[] = [];
+  productosFav: Producto;
+  favoritos: FavoritoIdProducto[] = [];
+  favoritosCount: number;
+  ListFAV: Producto[] = [];
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
 
@@ -52,56 +52,57 @@ export class PerfilComponent implements OnInit {
   fechaNacDate: string;
   foto: string;
 
-  obs:number;
+  obs: number;
 
-  ayuda(){
-      localStorage.setItem("idP",null);
-      window.location.href="/Report";
+  ayuda() {
+    localStorage.setItem("idP", null);
+    window.location.href = "/Report";
 
   }
 
-  borrar(){
-			var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
-			if (r == true) {
-        alert("\'Borrado exitoso\'");
-        
-				this.usuarioService.deleteUsuario(this.idU).subscribe(
-          res => this.myUser = res
-        )
-        localStorage.setItem("nomUser","")
-        localStorage.setItem("password","")
-        window.location.href="/#"
-			}else{
+  borrar() {
+    var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
+    if (r == true) {
+      alert("\'Borrado exitoso\'");
 
-			}
-		
+      this.usuarioService.deleteUsuario(this.idU).subscribe(
+        res => this.myUser = res
+      )
+      localStorage.setItem("nomUser", "")
+      localStorage.setItem("password", "")
+      window.location.href = "/#"
+    } else {
+
+    }
+
   }
   buscar() {
-    let u = localStorage.getItem("nomUser");
 
-    this.usuarioService.getNomUser(u).subscribe(
+
+    this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
       res => {
         this.myUser = res;
-        this.usuarioLog = JSON.parse(JSON.stringify(res))
-        this.nombre = this.usuarioLog.nombre + " " + this.usuarioLog.apellido
-        this.fechanac = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
-        this.foto = this.usuarioLog.foto;
-        this.idU = this.usuarioLog.idU;
-        this.nombrebd = this.usuarioLog.nombre;
-        this.apellidobd = this.usuarioLog.apellido;
-        this.nomusuario = this.usuarioLog.nomusuario;
-        this.correo = this.usuarioLog.correo;
-        this.genero = this.usuarioLog.genero;
-        this.password = this.usuarioLog.password;
-        this.direccion = this.usuarioLog.direccion;
-        this.fechaNacimiento = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
-        this.comuna = this.usuarioLog.comuna;
-        this.region = this.usuarioLog.region;
-        this.fechaNacDate = this.usuarioLog.fechaNacimiento;
       },
       err => { console.log(err) }
     )
+
     setTimeout(() => {
+      this.usuarioLog = JSON.parse(JSON.stringify(this.myUser))
+      this.nombre = this.usuarioLog.nombre + " " + this.usuarioLog.apellido
+      this.fechanac = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
+      this.foto = this.usuarioLog.foto;
+      this.idU = this.usuarioLog.idU;
+      this.nombrebd = this.usuarioLog.nombre;
+      this.apellidobd = this.usuarioLog.apellido;
+      this.nomusuario = this.usuarioLog.nomusuario;
+      this.correo = this.usuarioLog.correo;
+      this.genero = this.usuarioLog.genero;
+      this.password = this.usuarioLog.password;
+      this.direccion = this.usuarioLog.direccion;
+      this.fechaNacimiento = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
+      this.comuna = this.usuarioLog.comuna;
+      this.region = this.usuarioLog.region;
+      this.fechaNacDate = this.usuarioLog.fechaNacimiento;
       this.usuarioEditado = {
         nomusuario: this.nomusuario,
         nombre: this.nombrebd,
@@ -117,14 +118,29 @@ export class PerfilComponent implements OnInit {
         fono: this.fono
       }
       console.log(this.idU)
+
       this.favoritoService.getListaFavUser(this.idU).subscribe(
-        res => this.favoritos = res
+        res => { this.favoritos = res; }
       )
-      setTimeout(()=>{
-        console.log(JSON.parse(JSON.stringify(this.favoritos)))
-      },3000)
-      
-    }, 3000)
+      setTimeout(() => {
+        if (this.nombre == undefined) {
+          window.location.reload;
+        }
+        console.log(this.favoritos)
+        for (let i = 0; i < this.favoritos.length; i++) {
+          setTimeout(() => {
+            this.productoServices.getIdProducto(this.favoritos[i].id_producto).subscribe(
+
+              res => {
+                this.productosFavList = res;
+                this.ListFAV.push(this.productosFavList[i])
+              })
+          })
+        }
+        console.log(this.ListFAV)
+      }, 3000)
+
+    }, 5000)
 
 
   }
@@ -213,12 +229,12 @@ export class PerfilComponent implements OnInit {
     } else {
       nuevo.fechaNacimiento = obj.fechaNacimiento;
     }
-   
-    this.usuarioService.putUser(this.idU,user).subscribe(
+
+    this.usuarioService.putUser(this.idU, user).subscribe(
       res => this.obs = res
     )
     alert("Se han actualizado los datos")
-      window.location.reload();
+    window.location.reload();
 
   }
 }
