@@ -1,8 +1,7 @@
+<br/>
+<h2 class="text-center header">Formulario de Reporte</h2>
 <div class="container">
     <div class="row">
-        <hr>
-        <legend class="text-center header">Formulario de Reporte</legend>
-        <hr />
         <div class="col-8">
             <div class="well well-sm">
                 <form class="form-horizontal" method="post">
@@ -15,8 +14,8 @@
                             right: 50px;
                         "><i class="fa fa-user bigicon"></i></span>
                             <div class="col-8">
-                                <input id="fname" name="Nombre Usuario" type="text" placeholder="Nombre Usuario"
-                                    class="form-control">
+                                <input readonly="readonly" id="fname" name="Nombre Usuario" type="text"
+                                    placeholder="Nombre Usuario" class="form-control" [(ngModel)]="nomUsuario">
                             </div>
                         </div>
                         <div class="form-group">
@@ -26,10 +25,11 @@
                             right: 50px;
                         "><i class="fa fa-user bigicon"></i></span>
                             <div class="col-8">
-                                <input id="lname" name="name" type="text" placeholder="Nombre" class="form-control">
+                                <input readonly="readonly" id="lname" name="name" type="text" placeholder="Nombre"
+                                    class="form-control" [(ngModel)]="nombre">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" *ngIf="show1">
                             <span class="col-md-1 col-md-offset-2 text-center" style="
                             margin-top: 35px;
                             top: 37px;
@@ -37,7 +37,18 @@
                         "><i class="fa fa-id-badge bigicon"></i></span>
                             <div class="col-8">
                                 <input id="lname" name="ID Producto" type="text" placeholder="ID Producto"
-                                readonly="readonly" class="form-control" [(ngModel)]="idProducto">
+                                    readonly="readonly" class="form-control" [(ngModel)]="idProducto">
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="show2">
+                            <span class="col-md-1 col-md-offset-2 text-center" style="
+                            margin-top: 35px;
+                            top: 37px;
+                            right: 50px;
+                        "><i class="fa fa-id-badge bigicon"></i></span>
+                            <div class="col-8">
+                                <input id="lname" name="id Comentario" type="text" placeholder="ID Comentario"
+                                    readonly="readonly" class="form-control" [(ngModel)]="idComentario">
                             </div>
                         </div>
 
@@ -48,8 +59,8 @@
                             right: 55px;
                         "><i class="fa fa-envelope-o bigicon"></i></span>
                             <div class="col-8">
-                                <input id="email" name="email" type="text" placeholder="Ingresa tu Correo"
-                                    class="form-control">
+                                <input readonly="readonly" id="email" name="email" type="text"
+                                    placeholder="Ingresa tu Correo" class="form-control" [(ngModel)]="correo">
                             </div>
                         </div>
 
@@ -60,7 +71,8 @@
                             right: 50px;
                         "><i class="fa fa-phone-square bigicon"></i></span>
                             <div class="col-8">
-                                <input id="phone" name="phone" type="text" placeholder="Telefono" class="form-control">
+                                <input readonly="readonly" id="phone" name="phone" type="text" placeholder="Telefono"
+                                    class="form-control" [(ngModel)]="telefono">
                             </div>
                         </div>
 
@@ -71,14 +83,14 @@
                             right: 50px;
                         "><i class="fa fa-exclamation-triangle bigicon"></i></span>
                             <div class="col-8">
-                                <select class="form-control" id="exampleFormControlSelect1" required>
+                                <select class="form-control" id="exampleFormControlSelect1" required [(ngModel)]="tipo">
                                     <option label="Seleccione Tipo de Reporte">Seleccione Tipo de Reporte</option>
                                     <option value="Comentario" data-id="01">Comentario</option>
                                     <option value="Producto" data-id="02">Producto</option>
-                                    
+
                                 </select>
                             </div>
-                        </div> 
+                        </div>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center" style="
@@ -88,13 +100,15 @@
                         "><i class="fa fa-pencil-square-o bigicon"></i></span>
                             <div class="col-8">
                                 <textarea class="form-control" id="message" name="message"
-                                    placeholder="Ingresa aqui tu comentario sobre el reporte" rows="7"></textarea>
+                                    placeholder="Ingresa aqui tu comentario sobre el reporte"
+                                    onkeyup="countChars(this);" [(ngModel)]="comentario"></textarea>
+                                <p id="charNum">0 characters</p>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-danger btn-lg" style="
+                                <button type="submit" class="btn btn-danger btn-lg" (click)="enviar();" style="
                                 width: 84px;
                                 height: 38px;
                                 padding-top: 4px;

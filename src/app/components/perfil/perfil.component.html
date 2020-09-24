@@ -21,7 +21,7 @@
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-warning btn-sm">Ayuda</button>
+					<button type="button" class="btn btn-warning btn-sm" (click)="ayuda()">Ayuda</button>
 					<button type="button" class="btn btn-danger btn-sm" (click)="borrar();">Borrar Cuenta</button>
 				</div>
 
@@ -43,7 +43,7 @@
 						aria-controls="contact" aria-selected="false">Favoritos</a>
 				</li>
 				<li class="nav-report">
-					<a class="nav-link" id="report-tab" data-toggle="tab" href="#Report" role="tab"
+					<a class="nav-link" id="report-tab" data-toggle="tab" href="#tusReportes" role="tab"
 						aria-controls="Report" aria-selected="false">Reportes</a>
 				</li>
 			</ul>
@@ -104,6 +104,7 @@
 									<div class="form-group">
 										<div class="input-checkbox text-center">
 											<input type="checkbox" id="create-account">
+											<i *ngIf="register" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
 											<button class="primary-btn" type="submit"
 												(click)="update()">Cambiar</button>
 										</div>
@@ -188,10 +189,7 @@
 						<div class="col-md-4 col-xs-6">
 							<div class="product">
 								<div class="product-img">
-									<img src="https://localhost:4200/Report">
-										alt="">
-
-								
+									<img src="" alt="">
 							</div>
 							<!-- /Review Form -->
 						</div>

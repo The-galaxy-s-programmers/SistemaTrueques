@@ -1,9 +1,12 @@
 export interface Chat {
-     id:number;
+     id ?:number;
      id_producto:number;
      id_user:number;
      mensaje:string;
      id_duenio:number;
      respuesta:string;
-     fecha:string;
+     fecha?:string;
+     nomUser:string;
+     nomDuenio:string;
+     nomProducto:string;
 }

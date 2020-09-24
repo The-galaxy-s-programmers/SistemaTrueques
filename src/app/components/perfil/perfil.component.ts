@@ -2,7 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { DatePipe } from '@angular/common'
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { FavoritoService } from 'src/app/services/favorito.service';
+import { ProductoService } from 'src/app/services/producto.service';
+import { Producto } from 'src/app/interfaces/producto';
+import { Favorito } from 'src/app/interfaces/favorito';
+import { FavoritoIdProducto } from 'src/app/interfaces/favorito-id-producto';
+
+
+function sleep(ms) {
+  return new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+}
 
 @Component({
   selector: 'app-perfil',
@@ -11,15 +22,23 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe) { }
+  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
+    
+  }
 
   ngOnInit(): void {
     this.buscar();
-
+    
 
   }
 
   myUser: Usuario[] = [];
+  productosTuyos: Producto[] = [];
+  productosFavList: Producto[] = [];
+  productosFav: Producto;
+  favoritos: FavoritoIdProducto[] = [];
+  favoritosCount: number;
+  ListFAV: Array<Producto>[] = [];
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
 
@@ -41,49 +60,60 @@ export class PerfilComponent implements OnInit {
   fechaNacDate: string;
   foto: string;
 
-  obs:number;
-  borrar(){
-			var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
-			if (r == true) {
-        alert("\'Borrado exitoso\'");
-        
-				this.usuarioService.deleteUsuario(this.idU).subscribe(
-          res => this.myUser = res
-        )
-        localStorage.setItem("nomUser","")
-        localStorage.setItem("password","")
-        window.location.href="/#"
-			}else{
+  obs: number;
 
-			}
-		
+  register:boolean=false;
+
+  ayuda() {
+    localStorage.setItem("idP", null);
+    window.location.href = "/Report";
+
   }
-  buscar() {
-    let u = localStorage.getItem("nomUser");
 
-    this.usuarioService.getNomUser(u).subscribe(
+  borrar() {
+    var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
+    if (r == true) {
+      alert("\'Borrado exitoso\'");
+
+      this.usuarioService.deleteUsuario(this.idU).subscribe(
+        res => this.myUser = res
+      )
+      localStorage.setItem("nomUser", "")
+      localStorage.setItem("password", "")
+      window.location.href = "/#"
+    } else {
+
+    }
+
+  }
+  
+  buscar() {
+
+
+    this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
       res => {
         this.myUser = res;
-        this.usuarioLog = JSON.parse(JSON.stringify(res))
-        this.nombre = this.usuarioLog.nombre + " " + this.usuarioLog.apellido
-        this.fechanac = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
-        this.foto = this.usuarioLog.foto;
-        this.idU = this.usuarioLog.idU;
-        this.nombrebd = this.usuarioLog.nombre;
-        this.apellidobd = this.usuarioLog.apellido;
-        this.nomusuario = this.usuarioLog.nomusuario;
-        this.correo = this.usuarioLog.correo;
-        this.genero = this.usuarioLog.genero;
-        this.password = this.usuarioLog.password;
-        this.direccion = this.usuarioLog.direccion;
-        this.fechaNacimiento = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
-        this.comuna = this.usuarioLog.comuna;
-        this.region = this.usuarioLog.region;
-        this.fechaNacDate = this.usuarioLog.fechaNacimiento;
       },
       err => { console.log(err) }
     )
+
     setTimeout(() => {
+      this.usuarioLog = JSON.parse(JSON.stringify(this.myUser))
+      this.nombre = this.usuarioLog.nombre + " " + this.usuarioLog.apellido
+      this.fechanac = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
+      this.foto = this.usuarioLog.foto;
+      this.idU = this.usuarioLog.idU;
+      this.nombrebd = this.usuarioLog.nombre;
+      this.apellidobd = this.usuarioLog.apellido;
+      this.nomusuario = this.usuarioLog.nomusuario;
+      this.correo = this.usuarioLog.correo;
+      this.genero = this.usuarioLog.genero;
+      this.password = this.usuarioLog.password;
+      this.direccion = this.usuarioLog.direccion;
+      this.fechaNacimiento = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
+      this.comuna = this.usuarioLog.comuna;
+      this.region = this.usuarioLog.region;
+      this.fechaNacDate = this.usuarioLog.fechaNacimiento;
       this.usuarioEditado = {
         nomusuario: this.nomusuario,
         nombre: this.nombrebd,
@@ -98,13 +128,39 @@ export class PerfilComponent implements OnInit {
         direccion: this.direccion,
         fono: this.fono
       }
-      console.log(this.usuarioEditado)
-    }, 3000)
+      console.log(this.idU)
+
+      this.favoritoService.getListaFavUser(this.idU).subscribe(
+        res => { this.favoritos = res; }
+      )
+      setTimeout(() => {
+        if (this.nombre == undefined) {
+          window.location.reload;
+        }
+        console.log(this.favoritos)
+        for (let i = 0; i < this.favoritos.length; i++) {
+        
+            this.productoServices.getIdProducto(this.favoritos[i].id_producto).subscribe(
+              res => {
+                this.productosFavList = res;})
+                  this.ListFAV.push(this.productosFavList)
+                
+          
+        }
+        console.log(this.ListFAV)
+      }, 3000)
+
+    }, 5000)
+
 
   }
 
 
   update() {
+
+    this.register = true;
+    console.log(this.nomusuario)
+    
     let nuevo: Usuario = {
 
       nomusuario: "",
@@ -187,13 +243,58 @@ export class PerfilComponent implements OnInit {
     } else {
       nuevo.fechaNacimiento = obj.fechaNacimiento;
     }
-   
-    this.usuarioService.putUser(this.idU,user).subscribe(
+    if(this.nombre.length <= 3 ) {
+      alert("Verifique los datos ingresados")
+      this.register= false
+        
+    }else if(this.apellidobd.length <= 3 ){
+      alert("Verifique los datos ingresados")
+      this.register= false
+      
+    }else if(this.nomusuario.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.password.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.correo.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.fechaNacimiento.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.region.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.comuna.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.direccion.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if(this.genero.length <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else if( this.fono <= 3 ){
+        alert("Verifique los datos ingresados")
+        this.register= false
+        
+      }else{
+
+    this.usuarioService.putUser(this.idU, user).subscribe(
       res => this.obs = res
     )
     alert("Se han actualizado los datos")
-      window.location.reload();
+    window.location.reload();
 
   }
 }
-
+}

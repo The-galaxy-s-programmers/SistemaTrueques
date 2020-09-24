@@ -12,7 +12,7 @@
                 <li><a href="#"><i class="fa fa-envelope-o"></i> lostruequegalaxia@gmail.com</a></li>
                 <li><a href="#"><i class="fa fa-map-marker"></i> 420 Galaxy</a></li>
             </ul>
-            <ul class="header-links pull-right">
+            <ul *ngIf="show2" class="header-links pull-right">
                 <li><a routerLink="Error"> Error</a></li>
                 <li><a routerLink="Perfil"> Mi Perfil</a></li>
                 <li><a routerLink="RegistroUsuario"><i class="fa fa-angellist"></i> Registrate</a></li>
@@ -74,7 +74,7 @@
                             <a href="#">
                                 <i class="fa fa-heart-o"></i>
                                 <span>Favoritos</span>
-                                <div class="qty">5</div>
+                                <div class="qty">{{countFav}}</div>
                             </a>
                         </div>
                         <!-- /Wishlist -->
@@ -159,14 +159,17 @@
                     <div class="footer">
                         <h3 class="footer-title">Categorias</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Tecnologia</a></li>
-                            <li><a href="#"> Electrodomesticos</a></li>
-                            <li><a href="#">Smartphones</a></li>
-                            <li><a href="#">Deportes</a></li>
-                            <li><a href="#">Musica</a></li>
-                            <li><a href="#">Vehiculos</a></li>
-                            <li><a href="#">Accesorios</a></li>
-                            <li><a href="#">Hogar</a></li>
+                            <li><a (click)="tecnologia()">Tecnologia</a></li>
+                            <li><a (click)="electro()"> Electrodomesticos</a></li>
+                            <li><a (click)="hogar()">Hogar</a></li>
+                            <li><a (click)="deportes()">Deportes</a></li>
+                            <li><a (click)="musica()">Musica</a></li>
+                            <li><a (click)="vehiculos()">Vehiculos</a></li>
+                            <li><a (click)="accesorios()">Accesorios</a></li>
+                            <li><a (click)="vestuario()">Vestuario y calzado</a></li>
+                            <li><a (click)="belleza()">Belleza Y cuidado personal</a></li>
+                            <li><a (click)="const()">Construccion</a></li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -178,10 +181,10 @@
                         <h3 class="footer-title">Informacion</h3>
                         <ul class="footer-links">
                             <li><a href="/#tab2">Sobre Nosotros</a></li>
-                            <li><a href="#">Contacto</a></li>
-                            <li><a href="">Politicas Privacidad</a></li>
-                            <li><a href="/src/assets/terms_conditions.pdf">Acuerdo del Permutador</a></li>
-                            <li><a href="/src/assets/terminos-y-condiciones-queplan.pdf">Terminos y Condiciones</a></li>
+                            <li><a href="/#tab3">Contacto</a></li>
+                            <li><a href="https://drive.google.com/file/d/1a3UMnKvXI7j1vgv8eNEAPknIzvUuIgPR/view?usp=sharing">Politicas Privacidad</a></li>
+                            <li><a href="https://drive.google.com/file/d/17tbMpfng_4i_EEks8F7ARmb4aL_UoQ9Y/view?usp=sharing">Acuerdo del Permutador</a></li>
+                            <li><a href="https://www.nestle.cl/sites/g/files/pydnoa376/files/2019-07/terms_conditions.pdf">Terminos y Condiciones</a></li>
                         </ul>
                     </div>
                 </div>
@@ -190,11 +193,11 @@
                     <div class="footer">
                         <h3 class="footer-title">Servicios</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Mi Cuenta</a></li>
-                            <li><a href="#">Trueques</a></li>
-                            <li><a href="#">Favoritos</a></li>
-                            <li><a href="#">Ayuda</a></li>
-                            <li><a href="#">Denunciar Trocador</a></li>
+                            <li><a href="Perfil">Mi Cuenta</a></li>
+                            <li><a href="Perfil">Trueques</a></li>
+                            <li><a href="Perfil">Favoritos</a></li>
+                            <li><a href="Report">Ayuda</a></li>
+                            <li><a href="Report">Denunciar Trocador</a></li>
                         </ul>
                     </div>
                 </div>

@@ -41,37 +41,37 @@ export class RegistroUsuarioComponent implements OnInit {
 
     this.register = true;
     console.log(this.nombredusuario)
-    if(this.nombre == undefined || this.nombre.length < 3 ) {
+    if(this.nombre == undefined || this.nombre.length <= 3 ) {
       alert("Verifique los datos ingresados")
         
-    }else if(this.apellido == undefined || this.apellido.length < 3 ){
+    }else if(this.apellido == undefined || this.apellido.length <= 3 ){
       alert("Verifique los datos ingresados")
       
-    }else if(this.nomusuario == undefined || this.nomusuario.length < 3 ){
+    }else if(this.nomusuario == undefined || this.nomusuario.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.password == undefined || this.password.length < 3 ){
+      }else if(this.password == undefined || this.password.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.correo == undefined || this.correo.length < 3 ){
+      }else if(this.correo == undefined || this.correo.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.fechaNacimiento == undefined || this.fechaNacimiento.length < 3 ){
+      }else if(this.fechaNacimiento == undefined || this.fechaNacimiento.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.region == undefined || this.region.length < 3 ){
+      }else if(this.region == undefined || this.region.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.comuna == undefined || this.comuna.length < 3 ){
+      }else if(this.comuna == undefined || this.comuna.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.direccion == undefined || this.direccion.length < 3 ){
+      }else if(this.direccion == undefined || this.direccion.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.genero == undefined || this.genero.length < 3 ){
+      }else if(this.genero == undefined || this.genero.length <= 3 ){
         alert("Verifique los datos ingresados")
         
-      }else if(this.fono == undefined || this.fono < 3 ){
+      }else if(this.fono == undefined || this.fono <= 3 ){
         alert("Verifique los datos ingresados")
         
       }else{
@@ -123,7 +123,7 @@ export class RegistroUsuarioComponent implements OnInit {
           alert("Usuario creado con exito")
           localStorage.setItem("nomUser", this.nomusuario);
           this.register=false;
-          window.location.href = "Perfil";
+          window.location.href = "/Perfil";
           },2000)
         }
       }

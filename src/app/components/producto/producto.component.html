@@ -58,33 +58,19 @@
 								</div>
 							</article>
 						</fieldset>
-						<div class="dropdown">
-
-							<a class="btn btn-danger dropdown-toggle" style="
-							margin-top: 10px;
-						" href="#" role="button"
-								id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Enviar Correo a Trocador </a>
-
-
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								<a class="dropdown-item" href="#">correo@gmail.com</a>
-							</div>
-
-							<br>
-							<br>
-							<br>
-							<button type="button" class="btn btn-danger"style="
-							margin-right: 70px;
+						
+							<button type="button" class="btn btn-outline-danger"style="
+							margin-right: 10px;
 							margin-top: 10px;
 						"><i class="fa fa-handshake-o"></i>
 								Permutar</button>
-							<button routerLink="/Report" class="btn btn-danger" style="margin-top: 10px;"><i
+							<button routerLink="/Report" class="btn btn-outline-warning" style="margin-top: 10px;"><i
 									class="fa fa-exclamation-triangle bigicon"></i></button>
 
-						</div>
+						
 						<br />
 
+						<br />
 
 
 
@@ -129,11 +115,11 @@
 								<br />
 								<ul *ngFor="let chatM of chat">
 									<li>
-										<h3>{{chatM.mensaje}} <a [routerLink]="Report">(Reportar)</a></h3>
+										<h3>[{{chatM.nomUser}}] - {{chatM.mensaje}} <a [routerLink]="Report">(Reportar)</a></h3>
 										<p *ngIf="respuestaDM"><a (click)="responderM(chatM.id)">(Responder)</a></p>
 
 										<div *ngIf="escrituraDM">
-											<textarea class="input" [(ngModel)]="content" name="content"
+											<textarea class="input" id="output" [(ngModel)]="contenta" name="content"
 												placeholder="Comentario"></textarea>
 											<button class="primary-btn" type="submit" value="Add a Post"
 												(click)="addPost()">Enviar</button>
@@ -144,16 +130,22 @@
 								<div *ngIf="mensaje">
 									<textarea class="input" [(ngModel)]="content" name="content"
 										placeholder="Comentario"></textarea>
-									<button class="primary-btn" type="submit" value="Add a Post"
+										<i *ngIf="!show3" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
+									<button *ngIf="show3" class="primary-btn" type="submit" value="Add a Post"
 										(click)="addPost()">Enviar</button>
 									<button class="primary-btn" type="submit" (click)="refrescar()">
 										Refrescar Chat </button>
 								</div>
 								<div *ngIf="bnregistro" style="text-align: center;">
 									<p>Registrate para comentar</p>
-									<button class="primary-btn" type="submit" [routerLink]="RegistroUsuario">
+									<button class="primary-btn" style="margin: 10px;" type="submit" (click)="irRegistro()" >
 										Registrarse </button>
-									<button class="primary-btn" type="submit" (click)="refrescar()">
+										<button class="primary-btn" type="submit" style="margin: 10px;"(click)="irRegistro()">
+											Iniciar sesion </button>
+											<br/>
+
+									<button class="primary-btn" type="submit" style="margin: 10px;" (click)="refrescar()">
 										Refrescar Chat </button>
 								</div>
 
