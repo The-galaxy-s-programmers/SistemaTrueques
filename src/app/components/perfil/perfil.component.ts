@@ -34,11 +34,11 @@ export class PerfilComponent implements OnInit {
 
   myUser: Usuario[] = [];
   productosTuyos: Producto[] = [];
-  productosFavList: Producto[] = [];
+  productosFavList: FavoritoIdProducto[] = [];
   productosFav: Producto;
   favoritos: FavoritoIdProducto[] = [];
   favoritosCount: number;
-  ListFAV: Array<Producto>[] = [];
+  
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
 
@@ -137,17 +137,12 @@ export class PerfilComponent implements OnInit {
         if (this.nombre == undefined) {
           window.location.reload;
         }
-        console.log(this.favoritos)
-        for (let i = 0; i < this.favoritos.length; i++) {
         
-            this.productoServices.getIdProducto(this.favoritos[i].id_producto).subscribe(
-              res => {
-                this.productosFavList = res;})
-                  this.ListFAV.push(this.productosFavList)
-                
-          
-        }
-        console.log(this.ListFAV)
+       
+        
+            this.favoritoService.getListaFavUser(this.idU).subscribe(
+              res => {this.productosFavList = res;})
+                 console.log(this.productosFavList)
       }, 3000)
 
     }, 5000)
