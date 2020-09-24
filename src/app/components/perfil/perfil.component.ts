@@ -44,7 +44,7 @@ export class PerfilComponent implements OnInit {
 
   nombre: string;
   fechanac: String;
-  imagen;
+  
   idU: number;
   nombrebd: string;
   apellidobd: string;
@@ -101,7 +101,7 @@ export class PerfilComponent implements OnInit {
       this.usuarioLog = JSON.parse(JSON.stringify(this.myUser))
       this.nombre = this.usuarioLog.nombre + " " + this.usuarioLog.apellido
       this.fechanac = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
-      this.foto= this.usuarioLog.foto;
+      this.foto = this.usuarioLog.foto;
       this.idU = this.usuarioLog.idU;
       this.nombrebd = this.usuarioLog.nombre;
       this.apellidobd = this.usuarioLog.apellido;
@@ -157,7 +157,7 @@ export class PerfilComponent implements OnInit {
 
 
   update() {
-   
+
     this.register = true;
     console.log(this.nomusuario)
     
@@ -183,7 +183,7 @@ export class PerfilComponent implements OnInit {
     console.log(obj);
     console.log(user);
     console.log(nuevo);
-    console.log(document.getElementById("imagenModel").innerHTML.length)
+    console.log(this.foto);
 
     if (obj.nombre.length == 0) {
       nuevo.nombre = user.nombre;
@@ -220,10 +220,10 @@ export class PerfilComponent implements OnInit {
     } else {
       nuevo.genero = obj.genero;
     }
-    if (document.getElementById("imagenModel").innerHTML.length == 0) {
+    if (obj.foto.length == 0) {
       nuevo.foto = user.foto;
     } else {
-      document.getElementById("imagenModel").innerHTML = obj.foto;
+      nuevo.foto = obj.foto;
     }
     if (obj.password.length == 0) {
       nuevo.password = user.password;
@@ -289,7 +289,7 @@ export class PerfilComponent implements OnInit {
         this.register= false
         
       }else{
-        user.foto = document.getElementById("imagenModel").innerHTML;
+
     this.usuarioService.putUser(this.idU, user).subscribe(
       res => this.obs = res
     )
