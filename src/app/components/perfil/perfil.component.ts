@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { DatePipe } from '@angular/common'
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { FavoritoService } from 'src/app/services/favorito.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/interfaces/producto';
 import { Favorito } from 'src/app/interfaces/favorito';
 import { FavoritoIdProducto } from 'src/app/interfaces/favorito-id-producto';
+
+
+function sleep(ms) {
+  return new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+}
 
 @Component({
   selector: 'app-perfil',
@@ -16,11 +22,13 @@ import { FavoritoIdProducto } from 'src/app/interfaces/favorito-id-producto';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { }
+  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
+    
+  }
 
   ngOnInit(): void {
     this.buscar();
-
+    
 
   }
 
@@ -30,7 +38,7 @@ export class PerfilComponent implements OnInit {
   productosFav: Producto;
   favoritos: FavoritoIdProducto[] = [];
   favoritosCount: number;
-  ListFAV: Producto[] = [];
+  ListFAV: Array<Producto>[] = [];
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
 
@@ -78,6 +86,7 @@ export class PerfilComponent implements OnInit {
     }
 
   }
+  
   buscar() {
 
 
@@ -130,14 +139,13 @@ export class PerfilComponent implements OnInit {
         }
         console.log(this.favoritos)
         for (let i = 0; i < this.favoritos.length; i++) {
-          setTimeout(() => {
+        
             this.productoServices.getIdProducto(this.favoritos[i].id_producto).subscribe(
-
               res => {
-                this.productosFavList = res;
-                this.ListFAV.push(this.productosFavList[i])
-              })
-          })
+                this.productosFavList = res;})
+                  this.ListFAV.push(this.productosFavList)
+                
+          
         }
         console.log(this.ListFAV)
       }, 3000)
