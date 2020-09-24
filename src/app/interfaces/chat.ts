@@ -5,5 +5,8 @@ export interface Chat {
      mensaje:string;
      id_duenio:number;
      respuesta:string;
-     fecha:string;
+     fecha?:string;
+     nomUser:string;
+     nomDuenio:string;
+     nomProducto:string;
 }

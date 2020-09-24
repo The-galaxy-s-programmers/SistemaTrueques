@@ -38,6 +38,7 @@ export class AppComponent {
   user:Usuario[]=[];
   userOnly:Usuario;
   favorito:Favorito[]=[];
+  show2:boolean=false;
 
   selectCat() {
     if (this.Categoria == undefined){
@@ -62,7 +63,14 @@ export class AppComponent {
       this.favoritoServices.getCount(this.userOnly.idU).subscribe(
         res => this.countFav = res
       )
-    },2000)}
+      if(this.countFav == undefined || this.countFav == null){
+        this.countFav = 0;
+      }
+    },2000)
+      if(this.nomUser =="admin"){
+        this.show2 = true;
+      }
+  }
   }
 
   ir() {
