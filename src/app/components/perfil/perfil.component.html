@@ -23,6 +23,8 @@
 				<div class="profile-userbuttons">
 					<button type="button" class="btn btn-warning btn-sm" (click)="ayuda()">Ayuda</button>
 					<button type="button" class="btn btn-danger btn-sm" (click)="borrar();">Borrar Cuenta</button>
+					
+					<button type="button" style="margin-top: 10px ;" class="btn btn-success btn-sm" (click)="ingresoP();">Ingresar Producto</button>
 				</div>
 
 			</div>
@@ -101,6 +103,12 @@
 										<input class="input" value={{fono}} type="tel" 
 											placeholder="Telefono" [(ngModel)]="usuarioLog.fono">
 									</div>
+									<div class="container">
+										<span>Cambiar Imagen</span>
+										<input type="file" class="form-control-file" id="imagenUp" onchange="toBase64()">
+										<div id="imagenModel" [(ngModel)]="usuarioLog.foto" readonly="readonly" style="display: none;"></div>
+									</div>
+									<br/>
 									<div class="form-group">
 										<div class="input-checkbox text-center">
 											<input type="checkbox" id="create-account">
@@ -163,25 +171,35 @@
 				</div>
 				<div class="tab-pane fade" id="tusObjetos" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="row">
-						<div class="col-md-4 col-xs-6">
-							<div class="product">
-								<div class="product-img">
-									<img src="https://http2.mlstatic.com/iphone-11-pro-max64gb-space-gray-bloqueado-x-mora-D_NQ_NP_660346-MLC43288747057_082020-V.webp"
-										alt="">
+						<div class="col-md-4 col-xs-6" *ngFor='let productoA1 of productosFavList'>
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src={{productoA1.imagen}} alt="">
 
-								</div>
-								<div class="product-body">
-									<p class="product-category">Celular</p>
-									<h3 class="product-name"><a href="#">IiPhone 11 Pro Max,64gb Space Gray
-											Bloqueado X
-											Mora <small>(Usado)</small></a></h3>
-									<h4 class="product-price"> <del class="product-old-price"></del></h4>
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">{{productoA1.subcategoria}}</p>
+                                    <h3 class="product-name"><a href="#">{{productoA1.nombre}}
+                                            <small>{{productoA1.uso}}</small></a></h3>
+                                    <h3 class="product-description">{{productoA1.descripcion}}</h3>
+                                    <h6 class="product-price"> {{productoA1.valorReferencia}} <small> Precio Ref:</small>
+                                    </h6>
 
-
-								</div>
-							</div>
-							<!-- /Review Form -->
-						</div>
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                class="tooltipp">Agregar a la lista</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-share"></i><span
+                                                class="tooltipp">Compartir</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span
+                                                class="tooltipp">Ver</span></button>
+                                    </div>
+                                </div>
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn" [routerLink]="'/ProductoA1'"
+                                        (click)="select(productoA1.idP)"><i class="fa fa-exchange"></i> Permutar</button>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="tusReportes" role="tabpanel" aria-labelledby="contact-tab">

@@ -183,7 +183,28 @@
                                     <input type="text" class="form-control" placeholder="Comuna">
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="Region">
+                                    <div class="form-group col-12">
+                                        <select class="form-control" id="exampleFormControlSelect1" required [(ngModel)]="region">
+                                            <optgroup label="Seleccione una Region">
+                                            <option value="Tarapacá" data-id="01">Tarapacá</option>
+                                            <option value="Antofagasta" data-id="02">Antofagasta</option>
+                                            <option value="Atacama" data-id="03">Atacama</option>
+                                            <option value="Coquimbo" data-id="04">Coquimbo</option>
+                                            <option value="Valparaíso" data-id="05">Valparaíso</option>
+                                            <option value="Del Libertador Gral. Bernardo O’Higgins" data-id="06">Del Libertador Gral. Bernardo O’Higgins</option>
+                                            <option value="Del Maule" data-id="07">Del Maule</option>
+                                            <option value="Del Biobío" data-id="08">Del Biobío</option>
+                                            <option value="De la Araucanía" data-id="09">De la Araucanía</option>
+                                            <option value="De los Lagos" data-id="10">De los Lagos</option>
+                                            <option value="Aysén del Gral. Carlos Ibáñez del Campo" data-id="11">Aysén del Gral. Carlos Ibáñez del Campo</option>
+                                            <option value="Magallanes y de la Antártica Chilena" data-id="12">Magallanes y de la Antártica Chilena</option>
+                                            <option value="Metropolitana de Santiago" data-id="13">Metropolitana de Santiago</option>
+                                            <option value="De los Ríos" data-id="14">De los Ríos</option>
+                                            <option value="Arica y Parinacota" data-id="15">Arica y Parinacota</option>
+                                            <option value="Ñuble" data-id="16">Ñuble</option>
+                                        </select>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -207,7 +228,7 @@
                     <div class="container">
                         <span>Subir Imagen</span>
                         <input type="file" class="form-control-file" id="imagenUp" onchange="toBase64()">
-                        <div id="imagenModel" [ngModel]="imagen" readonly="readonly" style="display: none;"></div>
+                        <div id="imagenModel" [(ngModel)]="imagen" readonly="readonly" style="display: none;"></div>
                     </div>
                     <br />
                     <div class="col-12 text-center">
