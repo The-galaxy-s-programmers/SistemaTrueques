@@ -23,6 +23,8 @@
 				<div class="profile-userbuttons">
 					<button type="button" class="btn btn-warning btn-sm" (click)="ayuda()">Ayuda</button>
 					<button type="button" class="btn btn-danger btn-sm" (click)="borrar();">Borrar Cuenta</button>
+					
+					<button type="button" style="margin-top: 10px ;" class="btn btn-success btn-sm" (click)="ingresoP();">Ingresar Producto</button>
 				</div>
 
 			</div>
@@ -101,6 +103,12 @@
 										<input class="input" value={{fono}} type="tel" 
 											placeholder="Telefono" [(ngModel)]="usuarioLog.fono">
 									</div>
+									<div class="container">
+										<span>Cambiar Imagen</span>
+										<input type="file" class="form-control-file" id="imagenUp" onchange="toBase64()">
+										<div id="imagenModel" [(ngModel)]="usuarioLog.foto" readonly="readonly" style="display: none;"></div>
+									</div>
+									<br/>
 									<div class="form-group">
 										<div class="input-checkbox text-center">
 											<input type="checkbox" id="create-account">

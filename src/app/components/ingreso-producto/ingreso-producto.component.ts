@@ -20,6 +20,7 @@ export class IngresoProductoComponent implements OnInit {
 
   }
   imagen;
+  region;
   
   trocar(){
     console.log("funciona")

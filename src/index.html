@@ -55,7 +55,7 @@
 
 	<script type='text/javascript'>
 		function toBase64() {
-			debugger
+			
 			var filesSelected = document.getElementById("imagenUp").files;
 			var fileToLoad = filesSelected[0];
 
@@ -68,7 +68,7 @@
 				//newImage.src = srcData;
 
 				document.getElementById("imagenModel").innerHTML = srcData;
-				console.log("LA IMAGEN EN BASE 64 ES " + document.getElementById("imagenModel").innerHTML);
+				
 			}
 			fileReader.readAsDataURL(fileToLoad);
 		}
