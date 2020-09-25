@@ -7,7 +7,8 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/interfaces/producto';
 import { Favorito } from 'src/app/interfaces/favorito';
 import { FavoritoIdProducto } from 'src/app/interfaces/favorito-id-producto';
-
+import { ReportesService } from 'src/app/services/reportes.service';
+import { Reportes } from 'src/app/interfaces/reportes';
 
 function sleep(ms) {
   return new Promise(
@@ -22,7 +23,7 @@ function sleep(ms) {
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
+  constructor(private usuarioService: UsuarioService,public reportesSevice:ReportesService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
     
   }
 
@@ -31,6 +32,15 @@ export class PerfilComponent implements OnInit {
     
 
   }
+  columnasTabla:String []=[
+    "id",
+    "id_usuario",
+    "fecha",
+    "comentario",
+    "correo",
+    "nombre",
+    "tipo",
+  ]
 
   myUser: Usuario[] = [];
   productosTuyos: Producto[] = [];
@@ -38,7 +48,9 @@ export class PerfilComponent implements OnInit {
   productosFav: Producto;
   favoritos: FavoritoIdProducto[] = [];
   favoritosCount: number;
-  
+  comentarios:Reportes[]=[];
+  productos:Reportes[]=[];
+
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
 
@@ -137,20 +149,38 @@ export class PerfilComponent implements OnInit {
         if (this.nombre == undefined) {
           window.location.reload;
         }
-        
-       
-        
-            this.favoritoService.getListaFavUser(this.idU).subscribe(
+        this.favoritoService.getListaFavUser(this.idU).subscribe(
               res => {this.productosFavList = res;})
-                 console.log(this.productosFavList)
+                 
       }, 3000)
 
     }, 5000)
 
-
+    this.reportesSevice.getListaComentarios().subscribe(
+      res => this.comentarios = res
+    )
+    this.reportesSevice.getListaProductos().subscribe(
+      res => this.productos = res
+    )
   }
 
+  borrarP(id){
+    this.reportesSevice.deleteFav(id).subscribe(
+      res => this.productos = res
+    )
+  }
+  
+  borrarC(id){
+    this.reportesSevice.deleteFav(id).subscribe(
+      res => this.comentarios = res
+    )
+  }
+  
 
+  select(id){
+    localStorage.setItem("bsc","")
+    localStorage.setItem("idP",id)
+  }
   update() {
 
     this.register = true;

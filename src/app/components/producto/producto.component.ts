@@ -10,6 +10,7 @@ import { Chat } from 'src/app/interfaces/chat';
 import { ChatService} from 'src/app/services/chat.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService} from 'src/app/services/usuario.service';
+import { storage } from 'firebase';
 
 interface Post {
   title: string;
@@ -123,8 +124,14 @@ export class ProductoComponent implements OnInit {
 
   }
 
- 
-
+  reportChat(id){
+    localStorage.setItem("coment",id)
+    window.location.href="/Report"
+  }
+  reportProducto(){
+    localStorage.setItem("coment","")
+    window.location.href="/Report"
+  }
   refrescar(){
      
     this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
