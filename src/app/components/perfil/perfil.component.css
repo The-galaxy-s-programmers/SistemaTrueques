@@ -1,6 +1,10 @@
 body {
     background: #F1F3FA;
   }
+ table {
+   width: 100%;
+   padding: 30px;
+ }
   
   /* Profile container */
   .profile {

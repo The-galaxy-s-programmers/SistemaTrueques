@@ -83,12 +83,14 @@
                             right: 50px;
                         "><i class="fa fa-exclamation-triangle bigicon"></i></span>
                             <div class="col-8">
-                                <select class="form-control" id="exampleFormControlSelect1" required [(ngModel)]="tipo">
-                                    <optgroup label="Seleccione Tipo de Reporte">
-                                    <option value="Comentario" data-id="01">Comentario</option>
-                                    <option value="Producto" data-id="02" >Producto</option>
-
-                                </select>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Selecciona un tipo de reporte</mat-label>
+                                    <mat-select [(value)]="selected">
+                                      <mat-option value="Comentario">Comentario</mat-option>
+                                      <mat-option value="Producto">Producto</mat-option>
+                                      <mat-option value="Ayuda">Ayuda</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
                             </div>
                         </div>
 

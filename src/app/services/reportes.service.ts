@@ -19,8 +19,11 @@ export class ReportesService {
   getListaProductos(): Observable<Reportes[]> {
     return this.http.get<Reportes[]>(this.url+'/productos')
   }
+  getListaAyuda(): Observable<Reportes[]> {
+    return this.http.get<Reportes[]>(this.url+'/ayuda')
+  }
 
-  deleteFav(id):Observable<Reportes[]>{
+  deleteReport(id):Observable<Reportes[]>{
     return this.http.delete<Reportes[]>(this.url+'/'+id)
   }
   nuevoReport(reportes:Reportes) {

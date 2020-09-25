@@ -34,6 +34,7 @@ export class ReportComponent implements OnInit {
   UserL:Usuario[]=[];
   user:Usuario;
   obs;
+  selected:String;
 
   inicio(){
 
@@ -43,9 +44,14 @@ export class ReportComponent implements OnInit {
     if(localStorage.getItem("coment").length > 0 ){
       this.show1=true;
       this.show2=true;
-    }else if(localStorage.getItem("coment").length == 0){
+    }else if(localStorage.getItem("coment").length == 0 || localStorage.getItem("a").length == 0){
       this.show1=true;
       this.show2=false;
+    }else if(localStorage.getItem("a").length > 0){
+      this.show1=false;
+      this.show2=false;
+      localStorage.setItem("idP","");
+      localStorage.setItem("coment","");
     }
 
     setTimeout(()=> {
@@ -63,11 +69,11 @@ export class ReportComponent implements OnInit {
   enviar(){
     let report:Reportes = {
       "id_usuario":this.id_u,
-      "fecha":this.datePipe.transform(Date.now()),
+      "fecha":this.datePipe.transform(Date.now(),'yyyy-MM-dd'),
       "comentario" : "Id del comentario : "+this.idComentario+" Id del Producto : "+this.idProducto+" Comentario : "+this.comentario,
       "correo" : this.correo,
       "nombre" : this.nomUsuario,
-      "tipo" : this.tipo 
+      "tipo" : this.selected
     }
     console.log(report)
     this.reporteService.nuevoReport(report).subscribe(

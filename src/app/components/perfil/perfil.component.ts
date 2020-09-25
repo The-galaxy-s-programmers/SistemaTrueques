@@ -40,6 +40,7 @@ export class PerfilComponent implements OnInit {
     "correo",
     "nombre",
     "tipo",
+    "botonera"
   ]
 
   myUser: Usuario[] = [];
@@ -50,6 +51,7 @@ export class PerfilComponent implements OnInit {
   favoritosCount: number;
   comentarios:Reportes[]=[];
   productos:Reportes[]=[];
+  ayudas:Reportes[]=[];
 
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
@@ -79,6 +81,7 @@ export class PerfilComponent implements OnInit {
   ayuda() {
     localStorage.setItem("idP", null);
     window.location.href = "/Report";
+    localStorage.setItem("a","ayuda");
 
   }
 
@@ -162,17 +165,36 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaProductos().subscribe(
       res => this.productos = res
     )
+    this.reportesSevice.getListaAyuda().subscribe(
+      res => this.ayudas = res
+    )
   }
 
   borrarP(id){
-    this.reportesSevice.deleteFav(id).subscribe(
+    this.reportesSevice.deleteReport(id).subscribe(
       res => this.productos = res
     )
+    this.reportesSevice.getListaProductos().subscribe(
+      res => this.productos = res
+    )
+
   }
   
   borrarC(id){
-    this.reportesSevice.deleteFav(id).subscribe(
+    this.reportesSevice.deleteReport(id).subscribe(
       res => this.comentarios = res
+    )
+    this.reportesSevice.getListaComentarios().subscribe(
+      res => this.comentarios = res
+    )
+    
+  }
+  borrarA(id){
+    this.reportesSevice.deleteReport(id).subscribe(
+      res => this.ayudas = res
+    )
+    this.reportesSevice.getListaAyuda().subscribe(
+      res => this.ayudas = res
     )
   }
   

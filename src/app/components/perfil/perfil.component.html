@@ -188,10 +188,6 @@
                                     <div class="product-btns">
                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
                                                 class="tooltipp">Agregar a la lista</span></button>
-<<<<<<< HEAD
-=======
-                                        
->>>>>>> 0dffb2d1d6f00d8b02b8457810f9041e4fe42a17
                                         <button class="quick-view"><i class="fa fa-eye"></i><span
                                                 class="tooltipp">Ver</span></button>
                                     </div>
@@ -210,7 +206,7 @@
 							<div class="alert alert-danger" role="alert">
 								Comentario
 							  </div>
-							<table mat-table style="width: 100%;" [dataSource]="comentarios">
+							<table mat-table style="padding: 30px;" [dataSource]="comentarios">
 								<mat-text-column name="id"></mat-text-column>
 								<mat-text-column name="id_usuario"></mat-text-column>
 								<mat-text-column name="fecha"></mat-text-column>
@@ -221,7 +217,7 @@
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button href="#" class="btn btn-danger" (click)="borrarC(row.id);">Borrar Reporte</Button>
+										<Button  class="btn btn-danger" (click)="borrarC(row.id);">Borrar Reporte</Button>
 							
 									</mat-cell>
 								</ng-container>
@@ -231,7 +227,7 @@
 							<div class="alert alert-danger" role="alert">
 								Producto
 							  </div>
-							<table mat-table style="width: 100%;" [dataSource]="productos">
+							<table mat-table style="padding: 30px;" [dataSource]="productos">
 								<mat-text-column name="id"></mat-text-column>
 								<mat-text-column name="id_usuario"></mat-text-column>
 								<mat-text-column name="fecha"></mat-text-column>
@@ -242,7 +238,28 @@
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button href="#" class="btn btn-danger" (click)="borrarP(row.id);">Borrar Reporte</Button>
+										<Button  class="btn btn-danger" (click)="borrarP(row.id);">Borrar Reporte</Button>
+							
+									</mat-cell>
+								</ng-container>
+								<tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+								<tr mat-row *matRowDef="let row; columns:columnasTabla"></tr>
+							</table>
+							<div class="alert alert-danger" role="alert">
+								Ayuda
+							  </div>
+							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
+								<mat-text-column name="id"></mat-text-column>
+								<mat-text-column name="id_usuario"></mat-text-column>
+								<mat-text-column name="fecha"></mat-text-column>
+								<mat-text-column name="comentario"></mat-text-column>
+								<mat-text-column name="correo"></mat-text-column>
+								<mat-text-column name="nombre"></mat-text-column>
+								<mat-text-column name="tipo"></mat-text-column>
+								<ng-container matColumnDef="botonera">
+									<mat-header-cell *matHeaderCellDef></mat-header-cell>
+									<mat-cell *matCellDef="let row">
+										<Button  class="btn btn-danger" (click)="borrarA(row.id);">Borrar Reporte</Button>
 							
 									</mat-cell>
 								</ng-container>

@@ -11,6 +11,8 @@ import { ChatService} from 'src/app/services/chat.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService} from 'src/app/services/usuario.service';
 import { storage } from 'firebase';
+import { FavoritoService } from 'src/app/services/favorito.service';
+import { Favorito } from 'src/app/interfaces/favorito';
 
 interface Post {
   title: string;
@@ -37,7 +39,7 @@ export class ProductoComponent implements OnInit {
   post: Observable<Post>;
   datepipe: any;
 
-  constructor(private afs: AngularFirestore,private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatService:ChatService) { }
+  constructor(private favoritoService:FavoritoService,private afs: AngularFirestore,private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatService:ChatService) { }
 
   ngOnInit(): void {
     this.postsCol = this.afs.collection('posts'/*, ref => ref.where('title', '==', 'coursetro')*/);
@@ -94,6 +96,7 @@ export class ProductoComponent implements OnInit {
   top4:Producto[]=[];
   Comentario:Chat;
   chat:Chat[]=[];
+  exist:number;
   irRegistro(){
     window.location.href="/RegistroUsuario"
   }
@@ -123,13 +126,47 @@ export class ProductoComponent implements OnInit {
    },2000)
 
   }
+  a=0;
+  favorito:Favorito[]=[];
+  d:number;
+  corazon(){
+    this.a=this.a+1;
+    
+    this.favoritoService.getexistFav(this.idU,this.idPu).subscribe(
+      res => this.exist = res
+    )
+    setTimeout(()=>{
+     let fav:Favorito={
+        id_usuarioF: this.idU,
+        id_producto: this.idPu
+    }
+      if(this.exist == 1){
+        
+    
+        alert("Articulo ya en favoritos - Presione denuevo para borrar")
+        if(this.a==2){
+          this.favoritoService.deleteFav(this.idU, this.idPu).subscribe(
+            res => this.favorito = res
+            )
+            this.a = 0;
+
+        }
+      }else{
+        this.favoritoService.postFav(fav).subscribe(
+          res => console.log(res)
+        )
+      }
+    })
+  }
 
   reportChat(id){
     localStorage.setItem("coment",id)
+    localStorage.setItem("a","")
     window.location.href="/Report"
   }
   reportProducto(){
     localStorage.setItem("coment","")
+    localStorage.setItem("a","")
     window.location.href="/Report"
   }
   refrescar(){

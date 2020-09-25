@@ -25,11 +25,14 @@ export class FavoritoService {
   deleteFav(id_u,id_p):Observable<Favorito[]>{
     return this.http.delete<Favorito[]>(this.url+'/'+id_u+'/'+id_p)
   }
-  postUser(favorito:Favorito) {
+  postFav(favorito:Favorito) {
     return this.http.post(`${this.url}`,favorito,this.httpOptions)
   }
   getCount(id): Observable<number> {
     return this.http.get<number>(this.url+this.nomusuario+id)
+  }
+  getexistFav(id_u,id_p):Observable<number> {
+    return this.http.get<number>(this.url+this.nomusuario+'/'+id_u+'/'+id_p)
   }
 
 }
