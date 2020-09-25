@@ -20,6 +20,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ReportComponent } from './components/report/report.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UnsuscribeComponent } from './components/unsuscribe/unsuscribe.component';
+import { ChatProductoComponent } from './components/chat-producto/chat-producto.component';
 
 // Paste in your credentials that you saved earlier
 var firebaseConfig = {
@@ -43,7 +45,9 @@ var firebaseConfig = {
     IngresoProductoComponent,
     PerfilComponent,
     ErrorComponent,
-    ReportComponent
+    ReportComponent,
+    UnsuscribeComponent,
+    ChatProductoComponent
   ],
   imports: [
     BrowserModule,
