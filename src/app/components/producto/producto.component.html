@@ -64,7 +64,7 @@
 							margin-top: 10px;
 						"><i class="fa fa-handshake-o"></i>
 								Permutar</button>
-							<button routerLink="/Report" class="btn btn-outline-warning" style="margin-top: 10px;"><i
+							<button (click)="reportProducto()" class="btn btn-outline-warning" style="margin-top: 10px;"><i
 									class="fa fa-exclamation-triangle bigicon"></i></button>
 
 						
@@ -115,7 +115,7 @@
 								<br />
 								<ul *ngFor="let chatM of chat">
 									<li>
-										<h3>[{{chatM.nomUser}}] - {{chatM.mensaje}} <a [routerLink]="Report">(Reportar)</a></h3>
+										<h3>[{{chatM.nomUser}}] - {{chatM.mensaje}} <a (click)="reportChat(chatM.id)">(Reportar)</a></h3>
 										<p *ngIf="respuestaDM"><a (click)="responderM(chatM.id)">(Responder)</a></p>
 
 										<div *ngIf="escrituraDM">

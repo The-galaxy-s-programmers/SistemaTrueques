@@ -14,7 +14,7 @@
                             right: 50px;
                         "><i class="fa fa-user bigicon"></i></span>
                             <div class="col-8">
-                                <input readonly="readonly" id="fname" name="Nombre Usuario" type="text"
+                                <input readonly="readonly"name="Nombre Usuario" type="text"
                                     placeholder="Nombre Usuario" class="form-control" [(ngModel)]="nomUsuario">
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             right: 50px;
                         "><i class="fa fa-user bigicon"></i></span>
                             <div class="col-8">
-                                <input readonly="readonly" id="lname" name="name" type="text" placeholder="Nombre"
+                                <input readonly="readonly"  name="name" type="text" placeholder="Nombre"
                                     class="form-control" [(ngModel)]="nombre">
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                             right: 50px;
                         "><i class="fa fa-id-badge bigicon"></i></span>
                             <div class="col-8">
-                                <input id="lname" name="ID Producto" type="text" placeholder="ID Producto"
+                                <input  name="ID Producto" type="text" placeholder="ID Producto"
                                     readonly="readonly" class="form-control" [(ngModel)]="idProducto">
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             right: 50px;
                         "><i class="fa fa-id-badge bigicon"></i></span>
                             <div class="col-8">
-                                <input id="lname" name="id Comentario" type="text" placeholder="ID Comentario"
+                                <input  name="ID Comentario" type="text" placeholder="ID Comentario"
                                     readonly="readonly" class="form-control" [(ngModel)]="idComentario">
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             right: 55px;
                         "><i class="fa fa-envelope-o bigicon"></i></span>
                             <div class="col-8">
-                                <input readonly="readonly" id="email" name="email" type="text"
+                                <input readonly="readonly"  name="email" type="text"
                                     placeholder="Ingresa tu Correo" class="form-control" [(ngModel)]="correo">
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             right: 50px;
                         "><i class="fa fa-phone-square bigicon"></i></span>
                             <div class="col-8">
-                                <input readonly="readonly" id="phone" name="phone" type="text" placeholder="Telefono"
+                                <input readonly="readonly" name="phone" type="text" placeholder="Telefono"
                                     class="form-control" [(ngModel)]="telefono">
                             </div>
                         </div>
@@ -84,9 +84,9 @@
                         "><i class="fa fa-exclamation-triangle bigicon"></i></span>
                             <div class="col-8">
                                 <select class="form-control" id="exampleFormControlSelect1" required [(ngModel)]="tipo">
-                                    <option label="Seleccione Tipo de Reporte">Seleccione Tipo de Reporte</option>
+                                    <optgroup label="Seleccione Tipo de Reporte">
                                     <option value="Comentario" data-id="01">Comentario</option>
-                                    <option value="Producto" data-id="02">Producto</option>
+                                    <option value="Producto" data-id="02" >Producto</option>
 
                                 </select>
                             </div>
