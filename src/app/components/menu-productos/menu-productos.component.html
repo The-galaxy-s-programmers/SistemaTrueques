@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <!-- /aside Widget -->
-                    
+
                     <!-- mas vendidos -->
                     <div class="aside" *ngFor='let topProductos of topListaProductos'>
                         <h3 class="aside-title">Mas Recientes</h3>
@@ -171,10 +171,11 @@
                             <div class="product-body">
 
                                 <p class="product-category"><small>{{topProductos.categoria}}</small></p>
-                                <h3 class="product-name"><a href="#"> <strong>{{topProductos.nombre}}</strong>
-                                        {{topProductos.descripcion}}<small>{{topProductos.valorReferencia}}</small></a>
+                                <h3 class="product-name"><a > <strong>{{topProductos.nombre}}</strong>
+                                        {{topProductos.descripcion}} <small>{{topProductos.valorReferencia}}</small></a>
                                 </h3>
                                 <h4 class="product-price"> <del class="product-old-price"></del></h4>
+                                
                             </div>
                             <br>
                             <br>
@@ -182,7 +183,7 @@
                     </div>
                     <!-- /mas vendidos -->
                 </div>
-                
+
                 <!-- /ASIDE -->
 
                 <!-- STORE -->
@@ -226,7 +227,7 @@
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">{{producto.subcategoria}}</p>
-                                    <h3 class="product-name"><a href="#">{{producto.nombre}}
+                                    <h3 class="product-name"><a >{{producto.nombre}}
                                             <small>{{producto.uso}}</small></a></h3>
                                     <h3 class="product-description">{{producto.descripcion}}</h3>
                                     <h6 class="product-price"> {{producto.valorReferencia}} <small> Precio Ref:</small>
@@ -235,9 +236,7 @@
                                     <div class="product-btns">
                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
                                                 class="tooltipp">Agregar a la lista</span></button>
-                                        
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
+
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
