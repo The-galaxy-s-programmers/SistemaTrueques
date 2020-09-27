@@ -8,13 +8,13 @@ import { Producto } from 'src/app/interfaces/producto';
 import { Favorito } from 'src/app/interfaces/favorito';
 import { FavoritoIdProducto } from 'src/app/interfaces/favorito-id-producto';
 import { ReportesService } from 'src/app/services/reportes.service';
+import { SuscripcionService } from 'src/app/services/suscripcion.service';
 import { Reportes } from 'src/app/interfaces/reportes';
+import { Suscripcion } from 'src/app/interfaces/suscripcion';
+import { SuscripcionNormal } from 'src/app/interfaces/suscripcion-normal';
 
-function sleep(ms) {
-  return new Promise(
-    resolve => setTimeout(resolve, ms)
-  );
-}
+
+
 
 @Component({
   selector: 'app-perfil',
@@ -23,13 +23,15 @@ function sleep(ms) {
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private usuarioService: UsuarioService,public reportesSevice:ReportesService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
+  constructor(private suscripcionService:SuscripcionService,private usuarioService: UsuarioService,public reportesSevice:ReportesService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
     
   }
 
   ngOnInit(): void {
     this.buscar();
-    
+    if(localStorage.getItem("nomUser") == "admin"){
+      this.Show32=true;
+    }
 
   }
   columnasTabla:String []=[
@@ -42,7 +44,44 @@ export class PerfilComponent implements OnInit {
     "tipo",
     "botonera"
   ]
-
+  columnaTabla:String []=[
+    "id",
+    "correo",
+    "botonera"
+  ]
+  columnTabla:String[]=[
+    "idU", 
+    "nomusuario",
+    "nombre",
+    "apellido",
+    "fechaNacimiento",
+    "correo",
+    "region",
+    "comuna",
+    "genero",
+    "password",
+    "direccion",
+    "fono",
+    "botonera"
+  ]
+  columTabla:String[]=[
+    "idP",
+    "nombre",
+    "descripcion",
+    "categoria",
+    "fechaPublicacion",
+    "uso",
+    "valorReferencia",
+    "ubicacion",
+    "subcategoria",
+    "id_usuario",
+    "botonera"
+  ]
+  SuscripcionNormal:SuscripcionNormal[]=[];
+  Suscripcion:Suscripcion[]=[];
+  
+  comentarioAll:String;
+  Show32:boolean=false;
   myUser: Usuario[] = [];
   productosTuyos: Producto[] = [];
   productosFavList: FavoritoIdProducto[] = [];
@@ -84,7 +123,9 @@ export class PerfilComponent implements OnInit {
     localStorage.setItem("a","ayuda");
 
   }
+  ENVIARALL(){
 
+  }
   borrar() {
     var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
     if (r == true) {

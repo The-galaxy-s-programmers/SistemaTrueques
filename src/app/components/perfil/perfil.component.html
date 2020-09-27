@@ -23,8 +23,9 @@
 				<div class="profile-userbuttons">
 					<button type="button" class="btn btn-warning btn-sm" (click)="ayuda()">Ayuda</button>
 					<button type="button" class="btn btn-danger btn-sm" (click)="borrar();">Borrar Cuenta</button>
-					
-					<button type="button" style="margin-top: 10px ;" class="btn btn-success btn-sm" (click)="ingresoP();">Ingresar Producto</button>
+
+					<button type="button" style="margin-top: 10px ;" class="btn btn-success btn-sm"
+						(click)="ingresoP();">Ingresar Producto</button>
 				</div>
 
 			</div>
@@ -44,10 +45,23 @@
 					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#tusObjetos" role="tab"
 						aria-controls="contact" aria-selected="false">Favoritos</a>
 				</li>
-				<li class="nav-report">
+				<li *ngIf="Show32" class="nav-report">
 					<a class="nav-link" id="report-tab" data-toggle="tab" href="#tusReportes" role="tab"
 						aria-controls="Report" aria-selected="false">Reportes</a>
 				</li>
+				<li *ngIf="Show32" class="nav-report">
+					<a class="nav-link" id="report-tab" data-toggle="tab" href="#tusSusc" role="tab"
+						aria-controls="Report" aria-selected="false">Suscripciones</a>
+				</li>
+				<li *ngIf="Show32" class="nav-report">
+					<a class="nav-link" id="report-tab" data-toggle="tab" href="#tusProduc" role="tab"
+						aria-controls="Report" aria-selected="false">Productos</a>
+				</li>
+				<li *ngIf="Show32" class="nav-report">
+					<a class="nav-link" id="report-tab" data-toggle="tab" href="#tusUser" role="tab"
+						aria-controls="Report" aria-selected="false">Usuarios</a>
+				</li>
+
 			</ul>
 
 			<div class="tab-content" id="myTabContent">
@@ -59,56 +73,59 @@
 								<div class="col-3"></div>
 								<div class="col-6">
 									<div class="form-group">
-										<input class="input" value={{nombrebd}} type="text" 
-											placeholder="Nombre"  [(ngModel)]="usuarioLog.nombre">
+										<input class="input" value={{nombrebd}} type="text" placeholder="Nombre"
+											[(ngModel)]="usuarioLog.nombre">
 									</div>
 									<div class="form-group">
-										<input class="input" value={{apellidobd}} type="text" 
-											placeholder="Apellido"  [(ngModel)]="usuarioLog.apellido">
+										<input class="input" value={{apellidobd}} type="text" placeholder="Apellido"
+											[(ngModel)]="usuarioLog.apellido">
 									</div>
 									<div class="form-group">
-										<input class="input" value={{nomusuario}} type="text" 
-											placeholder="Nombre de Usuario"  [(ngModel)]="usuarioLog.nomusuario">
+										<input class="input" value={{nomusuario}} type="text"
+											placeholder="Nombre de Usuario" [(ngModel)]="usuarioLog.nomusuario">
 									</div>
 									<div class="form-group">
-										<input class="input" value={{password}} type="password"
-											placeholder="Contraseña"  [(ngModel)]="usuarioLog.password" >
+										<input class="input" value={{password}} type="password" placeholder="Contraseña"
+											[(ngModel)]="usuarioLog.password">
 									</div>
 									<div class="form-group">
-										<input class="input" value={{correo}} type="email" 
-											placeholder="Correo"  [(ngModel)]="usuarioLog.correo">
+										<input class="input" value={{correo}} type="email" placeholder="Correo"
+											[(ngModel)]="usuarioLog.correo">
 									</div>
 									<div class="form-group">
-										<input class="input" value ={{fechaNacimiento}} 
-											placeholder="Fecha Nacimiento"  [(ngModel)]="fechaNacimiento">
-									</div>
-
-									<div class="form-group">
-										<input class="input" value={{region}}  placeholder="Region"  [(ngModel)]="usuarioLog.region">
+										<input class="input" value={{fechaNacimiento}} placeholder="Fecha Nacimiento"
+											[(ngModel)]="fechaNacimiento">
 									</div>
 
 									<div class="form-group">
-										<input class="input" value={{comuna}} type="text" 
-											placeholder="Comuna"  [(ngModel)]="usuarioLog.comuna">
+										<input class="input" value={{region}} placeholder="Region"
+											[(ngModel)]="usuarioLog.region">
+									</div>
+
+									<div class="form-group">
+										<input class="input" value={{comuna}} type="text" placeholder="Comuna"
+											[(ngModel)]="usuarioLog.comuna">
 									</div>
 									<div class="form-group">
-										<input class="input" value={{direccion}} type="text" 
-											placeholder="Direccion"  [(ngModel)]="usuarioLog.direccion">
+										<input class="input" value={{direccion}} type="text" placeholder="Direccion"
+											[(ngModel)]="usuarioLog.direccion">
 									</div>
 									<div class="form-group">
-										<input class="input" value={{genero}} type="text" 
-											placeholder="Genero"  [(ngModel)]="usuarioLog.genero">
+										<input class="input" value={{genero}} type="text" placeholder="Genero"
+											[(ngModel)]="usuarioLog.genero">
 									</div>
 									<div class="form-group">
-										<input class="input" value={{fono}} type="tel" 
-											placeholder="Telefono" [(ngModel)]="usuarioLog.fono">
+										<input class="input" value={{fono}} type="tel" placeholder="Telefono"
+											[(ngModel)]="usuarioLog.fono">
 									</div>
 									<div class="container">
 										<span>Cambiar Imagen</span>
-										<input type="file" class="form-control-file" id="imagenUp" onchange="toBase64()">
-										<div id="imagenModel" [(ngModel)]="usuarioLog.foto" readonly="readonly" style="display: none;"></div>
+										<input type="file" class="form-control-file" id="imagenUp"
+											onchange="toBase64()">
+										<div id="imagenModel" [(ngModel)]="usuarioLog.foto" readonly="readonly"
+											style="display: none;"></div>
 									</div>
-									<br/>
+									<br />
 									<div class="form-group">
 										<div class="input-checkbox text-center">
 											<input type="checkbox" id="create-account">
@@ -171,41 +188,44 @@
 				</div>
 				<div class="tab-pane fade" id="tusObjetos" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="row">
-						<div class="col-md-4 col-xs-6" *ngFor='let productoA1 of productosFavList'>
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src={{productoA1.imagen}} alt="">
+						<div class="col-8" *ngFor='let productoA1 of productosFavList'>
+							<div class="product">
+								<div class="product-img">
+									<img src={{productoA1.imagen}} alt="">
 
-                                </div>
-                                <div class="product-body">
-                                    <p class="product-category">{{productoA1.subcategoria}}</p>
-                                    <h3 class="product-name"><a href="#">{{productoA1.nombre}}
-                                            <small>{{productoA1.uso}}</small></a></h3>
-                                    <h3 class="product-description">{{productoA1.descripcion}}</h3>
-                                    <h6 class="product-price"> {{productoA1.valorReferencia}} <small> Precio Ref:</small>
-                                    </h6>
+								</div>
+								<div class="product-body">
+									<p class="product-category">{{productoA1.subcategoria}}</p>
+									<h3 class="product-name"><a href="#">{{productoA1.nombre}}
+											<small>{{productoA1.uso}}</small></a></h3>
+									<h3 class="product-description">{{productoA1.descripcion}}</h3>
+									<h6 class="product-price"> {{productoA1.valorReferencia}} <small> Precio
+											Ref:</small>
+									</h6>
 
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                class="tooltipp">Ver</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn" [routerLink]="'/Producto'"
-                                        (click)="select(productoA1.idP)"><i class="fa fa-exchange"></i> Ir a Permutar</button>
-                                </div>
-                            </div>
-                        </div>
+									<div class="product-btns">
+										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+												class="tooltipp">Agregar a la lista</span></button>
+										<button class="quick-view"><i class="fa fa-eye"></i><span
+												class="tooltipp">Ver</span></button>
+									</div>
+								</div>
+								<div class="add-to-cart">
+									<button class="add-to-cart-btn" [routerLink]="'/Producto'"
+										(click)="select(productoA1.idP)"><i class="fa fa-exchange"></i> Ir a
+										Permutar</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="tusReportes" role="tabpanel" aria-labelledby="contact-tab">
+				<div *ngIf="Show32" class="tab-pane fade" id="tusReportes" role="tabpanel"
+					aria-labelledby="contact-tab">
 					<div class="row">
-						<div class="col-md-4 col-xs-6">
+						<div class="col-8">
 							<div class="alert alert-danger" role="alert">
 								Comentario
-							  </div>
+							</div>
 							<table mat-table style="padding: 30px;" [dataSource]="comentarios">
 								<mat-text-column name="id"></mat-text-column>
 								<mat-text-column name="id_usuario"></mat-text-column>
@@ -217,8 +237,8 @@
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button  class="btn btn-danger" (click)="borrarC(row.id);">Borrar Reporte</Button>
-							
+										<Button class="btn btn-danger" (click)="borrarC(row.id);">Borrar</Button>
+
 									</mat-cell>
 								</ng-container>
 								<tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
@@ -226,7 +246,7 @@
 							</table>
 							<div class="alert alert-danger" role="alert">
 								Producto
-							  </div>
+							</div>
 							<table mat-table style="padding: 30px;" [dataSource]="productos">
 								<mat-text-column name="id"></mat-text-column>
 								<mat-text-column name="id_usuario"></mat-text-column>
@@ -238,8 +258,8 @@
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button  class="btn btn-danger" (click)="borrarP(row.id);">Borrar Reporte</Button>
-							
+										<Button class="btn btn-danger" (click)="borrarP(row.id);">Borrar</Button>
+
 									</mat-cell>
 								</ng-container>
 								<tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
@@ -247,7 +267,7 @@
 							</table>
 							<div class="alert alert-danger" role="alert">
 								Ayuda
-							  </div>
+							</div>
 							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
 								<mat-text-column name="id"></mat-text-column>
 								<mat-text-column name="id_usuario"></mat-text-column>
@@ -259,22 +279,121 @@
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button  class="btn btn-danger" (click)="borrarA(row.id);">Borrar Reporte</Button>
-							
+										<Button class="btn btn-danger" (click)="borrarA(row.id);">Borrar </Button>
+
 									</mat-cell>
 								</ng-container>
 								<tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
 								<tr mat-row *matRowDef="let row; columns:columnasTabla"></tr>
 							</table>
-							
+
+
+
 							<!-- /Review Form -->
 						</div>
 					</div>
 				</div>
+				<div *ngIf="Show32" class="tab-pane fade" id="tusSusc" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-8">
+							<div class="alert alert-danger" role="alert">
+								Suscripciones
+							</div>
+							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
+								<mat-text-column name="id"></mat-text-column>
+								<mat-text-column name="correo"></mat-text-column>
+								<ng-container matColumnDef="botonera">
+									<mat-header-cell *matHeaderCellDef></mat-header-cell>
+									<mat-cell *matCellDef="let row">
+										<Button class="btn btn-danger" (click)="borrarA(row.id);">Borrar </Button>
 
+									</mat-cell>
+								</ng-container>
+								<tr mat-header-row *matHeaderRowDef="columnaTabla"></tr>
+								<tr mat-row *matRowDef="let row; columns:columnaTabla"></tr>
+							</table>
+						</div>
+					</div>
+					<br />
+					<div class="alert alert-danger" role="alert">
+						<h3>Enviar noticias a todos los Usuarios</h3>
+					</div>
+					<div class="form-group">
+						<div class="col-8">
+							<textarea class="form-control" id="message" name="message"
+								placeholder="Ingresa aqui tu comentario sobre el reporte" onkeyup="countChars(this);"
+								[(ngModel)]="comentarioAll"></textarea>
+							<p id="charNum">0 characters</p>
+						</div>
+						<Button class="btn btn-outline-danger" (click)="ENVIARALL();">Enviar</Button>
+					</div>
+				</div>
+				<div *ngIf="Show32" class="tab-pane fade" id="tusProduc" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-md-4 col-xs-6">
+							<div class="alert alert-danger" role="alert">
+								Productos
+							</div>
+							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
+								<mat-text-column name="idP"></mat-text-column>
+								<mat-text-column name="nombre"></mat-text-column>
+								<mat-text-column name="descripcion"></mat-text-column>
+								<mat-text-column name="categoria"></mat-text-column>
+								<mat-text-column name="fechaPublicacion"></mat-text-column>
+								<mat-text-column name="uso"></mat-text-column>
+								<mat-text-column name="valorReferencia"></mat-text-column>
+								<mat-text-column name="ubicacion"></mat-text-column>
+								<mat-text-column name="subcategoria"></mat-text-column>
+								<mat-text-column name="id_usuario"></mat-text-column>
+								<ng-container matColumnDef="botonera">
+									<mat-header-cell *matHeaderCellDef></mat-header-cell>
+									<mat-cell *matCellDef="let row">
+										<Button class="btn btn-danger" (click)="borrarA(row.id);">Borrar
+											Reporte</Button>
+
+									</mat-cell>
+								</ng-container>
+								<tr mat-header-row *matHeaderRowDef="columTabla"></tr>
+								<tr mat-row *matRowDef="let row; columns:columTabla"></tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="Show32" class="tab-pane fade" id="tusUser" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-md-4 col-xs-6">
+							<div class="alert alert-danger" role="alert">
+								Usuarios
+							</div>
+							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
+								<mat-text-column name="idU"></mat-text-column>
+								<mat-text-column name="nomusuario"></mat-text-column>
+								<mat-text-column name="nombre"></mat-text-column>
+								<mat-text-column name="apellido"></mat-text-column>
+								<mat-text-column name="fechaNacimiento"></mat-text-column>
+								<mat-text-column name="correo"></mat-text-column>
+								<mat-text-column name="region"></mat-text-column>
+								<mat-text-column name="comuna"></mat-text-column>
+								<mat-text-column name="genero"></mat-text-column>
+								<mat-text-column name="password"></mat-text-column>
+								<mat-text-column name="direccion"></mat-text-column>
+								<mat-text-column name="fono"></mat-text-column>
+								<ng-container matColumnDef="botonera">
+									<mat-header-cell *matHeaderCellDef></mat-header-cell>
+									<mat-cell *matCellDef="let row">
+										<Button class="btn btn-danger" (click)="borrarA(row.id);">Borrar
+											Reporte</Button>
+
+									</mat-cell>
+								</ng-container>
+								<tr mat-header-row *matHeaderRowDef="columnTabla"></tr>
+								<tr mat-row *matRowDef="let row; columns:columnTabla"></tr>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<br>
 	<br>
-	

@@ -30,31 +30,21 @@ interface PostId extends Post {
 })
 export class ProductoComponent implements OnInit {
 
-
-
-  postsCol: AngularFirestoreCollection<Post>;
-  posts: any;
-
-  postDoc: AngularFirestoreDocument<Post>;
-  post: Observable<Post>;
-  datepipe: any;
-
   constructor(private favoritoService:FavoritoService,private afs: AngularFirestore,private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatService:ChatService) { }
 
   ngOnInit(): void {
-    this.postsCol = this.afs.collection('posts'/*, ref => ref.where('title', '==', 'coursetro')*/);
-    this.posts = this.postsCol.snapshotChanges()
-      .map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data() as Post;
-          const id = a.payload.doc.id;
-          return { id, data };
-        });
-      });
     this.buscar();
     this.inicio();
-  }
+    this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
+      res => this.UserFav =res
+    )
+     this.Ad = JSON.parse(JSON.stringify(this.UserFav))
+     if(localStorage.getItem("nomUser")=="admin"){
+       this.borrarMM=true;
+     }
 
+  }
+Ad;
   title: string;
   content: string;
   producto: Producto[];
@@ -96,23 +86,26 @@ export class ProductoComponent implements OnInit {
   top4:Producto[]=[];
   Comentario:Chat;
   chat:Chat[]=[];
-  exist:number;
+  exist:boolean;
+  UserFav:Usuario[]=[];
+  borrarMM:boolean=false;
+
   irRegistro(){
     window.location.href="/RegistroUsuario"
   }
 
   addPost() {
 
-  this.Comentario={
-    id_producto:parseInt(localStorage.getItem("idP")),
-     id_user:this.userL.idU,
-     mensaje:this.content,
-     id_duenio:this.idPu,
-     respuesta:"",
-     nomUser:this.userL.nomusuario,
-     nomDuenio:this.duenioL.nomusuario,
-     nomProducto:this.nombre,
-  }
+    this.Comentario={
+      id_producto:parseInt(localStorage.getItem("idP")),
+       id_user:this.userL.idU,
+       mensaje:this.content,
+       id_duenio:this.idPu,
+       respuesta:"",
+       nomUser:this.userL.nomusuario,
+       nomDuenio:this.duenioL.nomusuario,
+       nomProducto:this.nombre
+    }
 
    this.chatService.postMensaje(this.Comentario).subscribe(
      res=> {console.log(res)},err => console.log(err)
@@ -126,37 +119,53 @@ export class ProductoComponent implements OnInit {
    },2000)
 
   }
-  a=0;
+  a:number=1;
   favorito:Favorito[]=[];
-  d:number;
+  SHOW123:boolean=false;
   corazon(){
-    this.a=this.a+1;
+    this.SHOW123=true;
+   
     
-    this.favoritoService.getexistFav(this.idU,this.idPu).subscribe(
+    
+     console.log(this.a)
+  
+    this.favoritoService.getexistFav(localStorage.getItem("idU"),localStorage.getItem("idP")).subscribe(
       res => this.exist = res
     )
-    setTimeout(()=>{
-     let fav:Favorito={
-        id_usuarioF: this.idU,
-        id_producto: this.idPu
+      
+  const fav={
+      id_usuarioF:  parseInt(localStorage.getItem("idU")),
+      id_producto: parseInt(localStorage.getItem("idP"))
     }
-      if(this.exist == 1){
-        
-    
-        alert("Articulo ya en favoritos - Presione denuevo para borrar")
-        if(this.a==2){
-          this.favoritoService.deleteFav(this.idU, this.idPu).subscribe(
+    setTimeout(()=>{
+      this.a++;
+      console.log(this.exist)
+     
+      if(this.exist == true){
+        if(this.a == 2){
+        alert("Articulo ya en favoritos - Presione denuevo para borrar");
+        this.SHOW123=false;
+        }
+       
+        else if(this.a==3){
+          this.favoritoService.deleteFav(localStorage.getItem("idU"),localStorage.getItem("idP")).subscribe(
             res => this.favorito = res
             )
-            this.a = 0;
-
+            this.a = 1;
+            console.log("borrando")
+            alert("Articulo borrado de favoritos");
+            location.reload();
         }
-      }else{
+      }else if(this.exist == false){
         this.favoritoService.postFav(fav).subscribe(
           res => console.log(res)
+          
         )
-      }
-    })
+        console.log("añadiendo");
+        alert("Articulo añadido a favoritos");
+        location.reload();
+      } 
+    },3000) 
   }
 
   reportChat(id){
@@ -196,6 +205,7 @@ export class ProductoComponent implements OnInit {
     )
 
   }
+  id_producto;
   buscar() {
     this.show3=false;
     let a = localStorage.getItem("idP")
@@ -210,6 +220,7 @@ export class ProductoComponent implements OnInit {
     
     setTimeout(()=>{
    const obj = JSON.parse(JSON.stringify(this.producto))
+      this.id_producto=obj.id;
       this.nombre=obj.nombre;
       this.descripcion=obj.descripcion;
       this.categoria=obj.categoria;
@@ -226,6 +237,7 @@ export class ProductoComponent implements OnInit {
         res=> this.duenio = res
       )
       
+      
       this.productoService.getTop4CategoriaProducto(this.categoria).subscribe(
         res => this.top4 = res
       )
@@ -234,6 +246,9 @@ export class ProductoComponent implements OnInit {
     setTimeout(()=>{
       this.duenioL = JSON.parse(JSON.stringify(this.duenio))
       this.show3=true;
+      if(localStorage.getItem("nomUser")==this.duenioL.nomusuario){
+       this.respuestaDM=true;
+      }
      
     },5000)
 
@@ -247,15 +262,24 @@ export class ProductoComponent implements OnInit {
   
   Responder() {
 
-    if (this.click == 0) { this.show = false; this.click = 1; }
-    else if (this.click == 1) { this.show = true; this.click = 0; this.resp = this.respuesta }
+    if (this.click == 0) {
+       this.show = false; this.click = 1; }
+    else if (this.click == 1) {
+       this.show = true; this.click = 0; this.resp = this.respuesta }
 
   }
   Enviar() {
     this.correo; //Hay que enviar correo
   }
+  
   responderM(id){
 
+  }
+  borrarMensaje(id){
+
+  }
+  Trocar(){
+    window.location.href="/Chat"
   }
 
 }

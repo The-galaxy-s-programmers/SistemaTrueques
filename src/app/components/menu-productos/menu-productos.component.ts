@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Favorito } from 'src/app/interfaces/favorito';
 import { Producto } from "src/app/interfaces/producto";
+import { FavoritoService } from 'src/app/services/favorito.service';
 import { ProductoService } from "src/app/services/producto.service"
 
 
@@ -10,7 +12,7 @@ import { ProductoService } from "src/app/services/producto.service"
 })
 export class MenuProductosComponent implements OnInit {
 
-  constructor(private productosServices: ProductoService) { }
+  constructor(private productosServices: ProductoService,private favoritoService:FavoritoService) { }
 
   
   ngOnInit(): void {
@@ -47,6 +49,55 @@ export class MenuProductosComponent implements OnInit {
         setTimeout(()=>{
           this.showA=false
         },2000)
+  }
+  a:number=1;
+  favorito:Favorito[]=[];
+  SHOW123:boolean=false;
+  exist:boolean;
+  corazon(idP){
+    this.SHOW123=true;
+   
+    
+    
+     console.log(this.a)
+  
+    this.favoritoService.getexistFav(localStorage.getItem("idU"),idP).subscribe(
+      res => this.exist = res
+    )
+      
+  const fav={
+      id_usuarioF:  parseInt(localStorage.getItem("idU")),
+      id_producto: idP
+    }
+    setTimeout(()=>{
+      this.a++;
+      console.log(this.exist)
+     
+      if(this.exist == true){
+        if(this.a == 2){
+        alert("Articulo ya en favoritos - Presione denuevo para borrar");
+        this.SHOW123=false;
+        }
+       
+        else if(this.a==3){
+          this.favoritoService.deleteFav(localStorage.getItem("idU"),idP).subscribe(
+            res => this.favorito = res
+            )
+            this.a = 1;
+            console.log("borrando")
+            alert("Articulo borrado de favoritos");
+            location.reload();
+        }
+      }else if(this.exist == false){
+        this.favoritoService.postFav(fav).subscribe(
+          res => console.log(res)
+          
+        )
+        console.log("añadiendo");
+        alert("Articulo añadido a favoritos");
+        location.reload();
+      } 
+    },3000) 
   }
   bsc(){
     this.productosServices.getNomProducto(localStorage.getItem("bsc")).subscribe(

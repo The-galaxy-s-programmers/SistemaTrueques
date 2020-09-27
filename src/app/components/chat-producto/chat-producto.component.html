@@ -1,1 +1,41 @@
-<p>chat-producto works!</p>
+
+<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="row">
+        <div class="col-1">
+            <br />
+
+        </div>
+        <div class="col-9">
+            <br />
+            <ul *ngFor="let chatM of chat">
+                <li>
+                    <h3>[{{ chatM.nomUser }}] - {{chatM.mensaje}} <a (click)="reportChat(chatM.id)">(Reportar)</a></h3>
+
+                    <div *ngIf="escrituraDM">
+                        <textarea class="input" id="output" [(ngModel)]="contenta" name="content"
+                            placeholder="Comentario"></textarea>
+                        <button class="primary-btn" type="submit" value="Add a Post"
+                            (click)="addPost()">Enviar</button>
+                    </div>
+                </li>
+            </ul>
+
+            <div style="text-align: right;">
+                <textarea class="input" [(ngModel)]="content" name="content"
+                    placeholder="Comentario"></textarea>
+                    <i *ngIf="!show3" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+                <button *ngIf="show3" class="primary-btn" type="submit" value="Add a Post"
+                    (click)="addPost()">Enviar</button>
+                <button class="primary-btn" type="submit" (click)="refrescar()">
+                    Refrescar Chat </button>
+            </div>
+
+        </div>
+        <div class="col-2">
+            <br />
+
+        </div>
+        <!-- /Review Form -->
+    </div>
+</div>

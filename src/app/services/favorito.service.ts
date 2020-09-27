@@ -31,8 +31,8 @@ export class FavoritoService {
   getCount(id): Observable<number> {
     return this.http.get<number>(this.url+this.nomusuario+id)
   }
-  getexistFav(id_u,id_p):Observable<number> {
-    return this.http.get<number>(this.url+this.nomusuario+'/'+id_u+'/'+id_p)
+  getexistFav(id_u,id_p):Observable<boolean> {
+    return this.http.get<boolean>(this.url+this.nomusuario+id_u+'/'+id_p)
   }
 
 }

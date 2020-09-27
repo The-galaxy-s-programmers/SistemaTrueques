@@ -5,6 +5,7 @@ import { Usuario } from './interfaces/usuario';
 import { UsuarioService } from './services/usuario.service';
 import { Favorito } from './interfaces/favorito';
 import { FavoritoService } from './services/favorito.service';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ export class AppComponent {
   ngOnInit(): void {
     this.setea()
     this.Fecha = this.datePipe.transform(this.myFecha, 'yyyy');
+    
   }
 
   cuenta: string;
@@ -60,18 +62,27 @@ export class AppComponent {
     )
     setTimeout(()=>{
       this.userOnly=JSON.parse(JSON.stringify(this.user))
+      localStorage.setItem("idU",stringify(this.userOnly.idU))
       this.favoritoServices.getCount(this.userOnly.idU).subscribe(
         res => this.countFav = res
       )
       if(this.countFav == undefined || this.countFav == null){
         this.countFav = 0;
       }
-    },2000)
-      if(this.nomUser =="admin"){
-        this.show2 = true;
-      }
+     if(localStorage.getItem("nomUser").length > 2){
+        if(localStorage.getItem("idU") == "undefined" || localStorage.getItem("idU") == undefined ){
+          location.reload();
+        }
+     }
+     
+    },3000)
+    if(this.nomUser =="admin"){
+      this.show2 = true;
+    }
   }
+ 
   }
+  
 
   ir() {
     let a = localStorage.getItem("nomUser");

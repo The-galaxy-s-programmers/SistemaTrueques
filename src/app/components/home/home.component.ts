@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Favorito } from 'src/app/interfaces/favorito';
+import { FavoritoService } from 'src/app/services/favorito.service';
 import { Producto } from '../../interfaces/producto';
 import { ProductoService } from '../../services/producto.service';
 
@@ -10,7 +12,7 @@ import { ProductoService } from '../../services/producto.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productoService: ProductoService, private router: Router) { }
+  constructor(private productoService: ProductoService, private router: Router,private favoritoService:FavoritoService) { }
 
   ngOnInit(): void {
     this.buscar()
@@ -21,7 +23,55 @@ export class HomeComponent implements OnInit {
   }
 
   
+  a:number=1;
+  favorito:Favorito[]=[];
+  SHOW123:boolean=false;
+  exist:boolean;
+  corazon(idP){
+    this.SHOW123=true;
+   
+    
+    
+     console.log(this.a)
   
+    this.favoritoService.getexistFav(localStorage.getItem("idU"),idP).subscribe(
+      res => this.exist = res
+    )
+      
+  const fav={
+      id_usuarioF:  parseInt(localStorage.getItem("idU")),
+      id_producto: idP
+    }
+    setTimeout(()=>{
+      this.a++;
+      console.log(this.exist)
+     
+      if(this.exist == true){
+        if(this.a == 2){
+        alert("Articulo ya en favoritos - Presione denuevo para borrar");
+        this.SHOW123=false;
+        }
+       
+        else if(this.a==3){
+          this.favoritoService.deleteFav(localStorage.getItem("idU"),idP).subscribe(
+            res => this.favorito = res
+            )
+            this.a = 1;
+            console.log("borrando")
+            alert("Articulo borrado de favoritos");
+            location.reload();
+        }
+      }else if(this.exist == false){
+        this.favoritoService.postFav(fav).subscribe(
+          res => console.log(res)
+          
+        )
+        console.log("añadiendo");
+        alert("Articulo añadido a favoritos");
+        location.reload();
+      } 
+    },3000) 
+  }
 
 
   top4: Producto[] = [];

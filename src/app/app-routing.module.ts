@@ -8,6 +8,7 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ErrorComponent } from './components/error/error.component';
 import {ReportComponent} from './components/report/report.component';
+import {ChatProductoComponent } from './components/chat-producto/chat-producto.component'
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path:"Perfil", component:PerfilComponent},
   {path:"Error", component:ErrorComponent},
   {path:"Report", component:ReportComponent},
-
+  {path:"Chat", component:ChatProductoComponent},
 ];
 
 @NgModule({
