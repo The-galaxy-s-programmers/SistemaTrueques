@@ -133,6 +133,9 @@ export class RegistroUsuarioComponent implements OnInit {
           )
           setTimeout(() => {
           alert("Usuario creado con exito")
+          this.usuarioService.EnvioEmails(nuevo.correo).subscribe(
+            res=> console.log(res)
+          )
           localStorage.setItem("nomUser", this.nomusuario);
           this.register=false;
           window.location.href = "/Perfil";

@@ -9,65 +9,65 @@
                     <div class="container">
                         <span> Nombre del producto</span>
                         <div class="col-12">
-                            <input name="name" type="text" placeholder="Nombre" class="form-control">
+                            <input name="name" type="text" placeholder="Nombre" [(ngModel)]="nombre" class="form-control">
                         </div>
                     </div>
                     <br />
                     <div class="container">
                         <span> Descripcion</span>
                         <div class="col-12">
-                            <textarea class="form-control" aria-label="Descripcion"></textarea>
+                            <textarea class="form-control" aria-label="Descripcion"  [(ngModel)]="descripcion"></textarea>
                         </div>
                     </div>
                     <br />
                     <div class="container">
                         <div class="col-12">
                             <span>Categoria</span>
-                            <select class="form-control" id="exampleFormControlSelect1" required>
+                            <select class="form-control" id="exampleFormControlSelect1"  [(ngModel)]="categoria" required>
                                 <optgroup label="Seleccione una Categoria">
 
                                 </optgroup>
                                 <optgroup label="Tecnologia">
-                                    <option value="1">Notebook</option>
-                                    <option value="2">Celulares</option>
-                                    <option value="3">Camaras</option>
-                                    <option value="4">Accesorios</option>
-                                    <option value="5">Audifonos</option>
-                                    <option value="6">Televisores</option>
-                                    <option value="7">Conosolas</option>
-                                    <option value="8">Otros</option>
+                                    <option value="Notebook">Notebook</option>
+                                    <option value="Celulares">Celulares</option>
+                                    <option value="Camaras">Camaras</option>
+                                    <option value="Accesorios">Accesorios</option>
+                                    <option value="Audifonos">Audifonos</option>
+                                    <option value="Televisores">Televisores</option>
+                                    <option value="Conosolas">Conosolas</option>
+                                    <option value="Otros">Otros</option>
                                 </optgroup>
                                 <optgroup label="Electrodomesticos">
-                                    <option value="1">Cuidado Personal</option>
-                                    <option value="2">Climatizacion</option>
-                                    <option value="3">Dispensador y Purificadores</option>
-                                    <option value="4">Hornos y Cocinas</option>
-                                    <option value="5">Lavado</option>
-                                    <option value="6">Cocina y Otros</option>
-                                    <option value="7">Otros</option>
+                                    <option value="Cuidado Personal">Cuidado Personal</option>
+                                    <option value="Climatizacion">Climatizacion</option>
+                                    <option value="Dispensador y Purificadores">Dispensador y Purificadores</option>
+                                    <option value="Hornos y Cocinas">Hornos y Cocinas</option>
+                                    <option value="Lavado">Lavado</option>
+                                    <option value="Cocina y Otros">Cocina y Otros</option>
+                                    <option value="Otros">Otros</option>
                                 </optgroup>
                                 <optgroup label="Hogar">
-                                    <option value="1">Terraza y Jardín</option>
-                                    <option value="2">Decoración</option>
-                                    <option value="3">Menaje cocina</option>
-                                    <option value="4">Menaje comedor</option>
-                                    <option value="5">Baño</option>
-                                    <option value="6">Parrillas y Quincho</option>
-                                    <option value="7">Dormitorio</option>
-                                    <option value="8">Iluminacion</option>
-                                    <option value="9">Otros</option>
+                                    <option value="Terraza y Jardín">Terraza y Jardín</option>
+                                    <option value="Decoración">Decoración</option>
+                                    <option value="Menaje cocina">Menaje cocina</option>
+                                    <option value="Menaje comedor">Menaje comedor</option>
+                                    <option value="Baño">Baño</option>
+                                    <option value="Parrillas y Quincho">Parrillas y Quincho</option>
+                                    <option value="Dormitorio">Dormitorio</option>
+                                    <option value="Iluminacion">Iluminacion</option>
+                                    <option value="Otros">Otros</option>
                                 </optgroup>
                                 <optgroup label="Deportes">
-                                    <option value="1">Boxeo</option>
-                                    <option value="2">Basquetbol</option>
-                                    <option value="3">Ciclismo</option>
-                                    <option value="4">Fitness</option>
-                                    <option value="5">Futbol</option>
-                                    <option value="6">Hockey</option>
-                                    <option value="7">Juegos de salon</option>
-                                    <option value="8">Scooters</option>
-                                    <option value="9">Natacion</option>
-                                    <option value="10">Patin, Gimnasia y danza</option>
+                                    <option value="Boxeo">Boxeo</option>
+                                    <option value="Basquetbol">Basquetbol</option>
+                                    <option value="Ciclismo">Ciclismo</option>
+                                    <option value="Fitness">Fitness</option>
+                                    <option value="Futbol">Futbol</option>
+                                    <option value="Hockey">Hockey</option>
+                                    <option value="Juegos de salon">Juegos de salon</option>
+                                    <option value="Scooters">Scooters</option>
+                                    <option value="Natacion">Natacion</option>
+                                    <option value="Patin, Gimnasia y danza">Patin, Gimnasia y danza</option>
                                     <option value="11">Pilates y Yoga</option>
                                     <option value="12">Ropa Deportiva</option>
                                     <option value="13">Deportes de Tablas</option>
@@ -144,17 +144,17 @@
                                     <option value="18">Otros</option>
                                 </optgroup>
                                 <optgroup label="Accesorios">
-                                    <option>Relojes</option>
-                                    <option>Joyeria</option>
-                                    <option>Lapices y Plumas</option>
-                                    <option>Piedras Preciosas</option>
-                                    <option>Pulsometros y Cronometros</option>
-                                    <option>Smartwach</option>
-                                    <option>Sombreros y Gorros</option>
-                                    <option>Anteojos</option>
-                                    <option>Libros</option>
-                                    <option>Espejos</option>
-                                    <option>Antiguedades</option>
+                                    <option value="1" >Relojes</option>
+                                    <option value="2">Joyeria</option>
+                                    <option value="3">Lapices y Plumas</option>
+                                    <option value="4">Piedras Preciosas</option>
+                                    <option value="5">Pulsometros y Cronometros</option>
+                                    <option value="6">Smartwach</option>
+                                    <option value="7">Sombreros y Gorros</option>
+                                    <option value="8">Anteojos</option>
+                                    <option value="9">Libros</option>
+                                    <option value="10">Espejos</option>
+                                    <option value="11">Antiguedades</option>
                                 </optgroup>
                             </select>
                         </div>
@@ -164,13 +164,13 @@
                         <span> Uso</span>
                         <div class="col-auto my-1">
                             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="uso" required>
                                 <option selected>Seleccione uso...</option>
-                                <option value="1">Ningun Uso</option>
-                                <option value="2">Poco Uso</option>
-                                <option value="3">Medio Uso</option>
-                                <option value="4">Mucho Uso</option>
-                                <option value="">Inusable</option>
+                                <option value="Ningun Uso">Ningun Uso</option>
+                                <option value="Poco Uso">Poco Uso</option>
+                                <option value="Medio Uso">Medio Uso</option>
+                                <option value="Mucho Uso">Mucho Uso</option>
+                                <option value="Inusable">Inusable</option>
                             </select>
                         </div>
                     </div>
@@ -180,11 +180,11 @@
                         <div class="col-12">
                             <div class="form-group input-group">
                                 <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="Comuna">
+                                    <input type="text" class="form-control"  [(ngModel)]="comuna" placeholder="Comuna">
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group col-12">
-                                        <select class="form-control" id="exampleFormControlSelect1" required [(ngModel)]="region">
+                                        <select class="form-control" [(ngModel)]="region" id="exampleFormControlSelect1" required [(ngModel)]="region">
                                             <optgroup label="Seleccione una Region">
                                             <option value="Tarapacá" data-id="01">Tarapacá</option>
                                             <option value="Antofagasta" data-id="02">Antofagasta</option>
@@ -213,14 +213,14 @@
                     <div class="container">
                         <span> Valor Refencial</span>
                         <div class="col-12">
-                            <input name="precio" class="number" placeholder="Valor" class="form-control">
+                            <input  [(ngModel)]="valorReferencial" name="precio" class="number" placeholder="Valor" class="form-control">
                         </div>
                     </div>
                     <br />
                     <div class="container">
                         <span> Fecha de publicacion</span>
                         <div class="col-12">
-                            <input name="Fecha" class="date" placeholder="" class="form-control" readonly="readonly"
+                            <input  [(ngModel)]="fecha" name="Fecha" class="date" placeholder="" class="form-control" readonly="readonly"
                                 value={{Fecha}}>
                         </div>
                     </div>
@@ -233,7 +233,7 @@
                     <br />
                     <div class="col-12 text-center">
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1"  [(ngModel)]="check">
                             <label class="form-check-label" for="exampleCheck1">Acepta los <a href="https://drive.google.com/file/d/1oTj_LRM-qwty72ojU-S8UZakP-X7q84h/view?usp=sharing" target="_blank">Terminos y
                                     Condiciones</a></label>
                         </div>
