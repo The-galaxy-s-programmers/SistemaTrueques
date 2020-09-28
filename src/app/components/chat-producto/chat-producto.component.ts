@@ -76,20 +76,28 @@ ap;
       res=> this.Duenio = res
     )
     setTimeout(()=>{
-      if(JSON.parse(JSON.stringify(this.Duenio)).id_duenio==null){
+      console.log(JSON.parse(JSON.stringify(this.Duenio))[0])
+      if(JSON.parse(JSON.stringify(this.Duenio))[0].id_duenio==null){
        this.ad= localStorage.getItem("idD");
       }
-    else if(localStorage.getItem("idU")==JSON.parse(JSON.stringify(this.Duenio)).id_duenio){
-     this.ap=localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio)).id_producto)
-      this.ab=JSON.parse(JSON.stringify(this.Duenio)).id_user
-      this.ad=JSON.parse(JSON.stringify(this.Duenio)).id_duenio
+    else if(parseInt(localStorage.getItem("idU"))==parseInt(localStorage.getItem("idD"))){
+    localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio))[0].id_producto)
+      this.ab=JSON.parse(JSON.stringify(this.Duenio))[0].id_user
+      this.ad=JSON.parse(JSON.stringify(this.Duenio))[0].id_duenio
     this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
       res => this.chat = res
-    )}else{
+    )}
+    else if(localStorage.getItem("idU")!=localStorage.getItem("idD")){
+      localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio))[0].id_producto)
+        this.ab=localStorage.getItem("idU")
+        this.ad=JSON.parse(JSON.stringify(this.Duenio))[0].id_duenio
+      this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
+        res => this.chat = res
+      )}else{
       this.ab=localStorage.getItem("idU");
       this.ad= localStorage.getItem("idD");
     }
-  },4000)
+  },3000)
   }
 
   addPost() {
@@ -100,12 +108,12 @@ ap;
        mensaje:this.content,
        id_duenio:this.ad,
        nomUser:localStorage.getItem("nomUser"),
-       nomDuenio:JSON.parse(JSON.stringify(this.Duenio)).nomDuenio,
-       nomProducto:JSON.parse(JSON.stringify(this.Duenio)).nomProducto,
+       nomDuenio:JSON.parse(JSON.stringify(this.duenioL)).nomusuario,
+       nomProducto:this.nombre,
        token:parseInt(localStorage.getItem("token")),
        mensajePor:parseInt(localStorage.getItem("idU"))
     }
-
+    console.log(this.Comentario)
    this.chatPrivService.postMensaje(this.Comentario).subscribe(
      res=> {console.log(res)},err => console.log(err)
    )
@@ -115,7 +123,7 @@ ap;
 
   setTimeout(()=>{
     this.content="";
-   },2000)
+   },3000)
 
   }
 
@@ -160,7 +168,7 @@ ap;
       
       
      
-    },4000)
+    },2500)
    
     setTimeout(()=>{
       this.duenioL = JSON.parse(JSON.stringify(this.duenio))

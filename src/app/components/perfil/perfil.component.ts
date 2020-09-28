@@ -36,6 +36,9 @@ export class PerfilComponent implements OnInit {
     if(localStorage.getItem("nomUser") == "admin"){
       this.Show32=true;
     }
+    this.productoServices.getListaProductoid(localStorage.getItem("idU")).subscribe(
+      res => this.productosListUser = res
+      )
 
   }
   columnasTabla:String []=[
@@ -157,6 +160,7 @@ export class PerfilComponent implements OnInit {
   }
   
   buscar() {
+
     this.chatPrivService.getListaMensaje(localStorage.getItem("idU")).subscribe(
       res=> this.chatPriv = res
     )
@@ -233,9 +237,7 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.getListaUser().subscribe(
       res => this.usuariosall = res
        )
-    this.productoServices.getListaProductoid(localStorage.getItem("idU")).subscribe(
-    res => this.productosListUser = res
-    )
+   
 
   }
   a:number=1;
