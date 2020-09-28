@@ -37,6 +37,7 @@ export class RegistroUsuarioComponent implements OnInit {
   validaNomUser: boolean;
   showSpin: boolean = true;
   check:boolean = false;
+  
   create() {
 
     this.register = true;

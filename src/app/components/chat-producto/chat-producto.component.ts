@@ -64,6 +64,8 @@ export class ChatProductoComponent implements OnInit {
   constructor(private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatPrivService:ChatPrivService) { }
 Duenio:ChatPriv[]=[];
 ab;
+ad;
+ap;
   ngOnInit(): void {
       
     this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
@@ -74,13 +76,18 @@ ab;
       res=> this.Duenio = res
     )
     setTimeout(()=>{
-    if(localStorage.getItem("idU")==JSON.parse(JSON.stringify(this.Duenio)).id_duenio){
-      localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio)).id_producto)
+      if(JSON.parse(JSON.stringify(this.Duenio)).id_duenio==null){
+       this.ad= localStorage.getItem("idD");
+      }
+    else if(localStorage.getItem("idU")==JSON.parse(JSON.stringify(this.Duenio)).id_duenio){
+     this.ap=localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio)).id_producto)
       this.ab=JSON.parse(JSON.stringify(this.Duenio)).id_user
+      this.ad=JSON.parse(JSON.stringify(this.Duenio)).id_duenio
     this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
       res => this.chat = res
     )}else{
       this.ab=localStorage.getItem("idU");
+      this.ad= localStorage.getItem("idD");
     }
   },4000)
   }
@@ -89,9 +96,9 @@ ab;
 
     this.Comentario={
       id_producto:parseInt(localStorage.getItem("idP")),
-       id_user:JSON.parse(JSON.stringify(this.Duenio)).id_user,
+       id_user:this.ab,
        mensaje:this.content,
-       id_duenio:JSON.parse(JSON.stringify(this.Duenio)).id_user,
+       id_duenio:this.ad,
        nomUser:localStorage.getItem("nomUser"),
        nomDuenio:JSON.parse(JSON.stringify(this.Duenio)).nomDuenio,
        nomProducto:JSON.parse(JSON.stringify(this.Duenio)).nomProducto,

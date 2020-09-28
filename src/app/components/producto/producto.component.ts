@@ -302,6 +302,7 @@ export class ProductoComponent implements OnInit {
         this.SHOW12=false;
       } else {
         localStorage.setItem("token",localStorage.getItem("idU")+stringify(this.idPu)+localStorage.getItem("idP"))
+        localStorage.setItem("idD",stringify(this.idPu))
         window.location.href = "/Chat";
       }
     }, 2000)

@@ -2,6 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { DatePipe} from '@angular/common';
 import { Producto } from 'src/app/interfaces/producto';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
+import { ProductoService} from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-ingreso-producto',
@@ -49,7 +50,7 @@ export class IngresoProductoComponent implements OnInit {
       id_usuario:parseInt(localStorage.getItem("idU"))
     }
     console.log(this.ingresoProducto)
-    this.productoService.postProducto(this.ingresoProducto).suscribe(
+    this.productoService.postProducto(this.ingresoProducto).subscribe(
       res => console.log(res)
     )
     console.log("funciona")
