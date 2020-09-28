@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Favorito } from 'src/app/interfaces/favorito';
+import { Suscripcion } from 'src/app/interfaces/suscripcion';
+import { SuscripcionNormal } from 'src/app/interfaces/suscripcion-normal';
 import { FavoritoService } from 'src/app/services/favorito.service';
+import { SuscripcionService } from 'src/app/services/suscripcion.service';
 import { Producto } from '../../interfaces/producto';
 import { ProductoService } from '../../services/producto.service';
 
@@ -12,7 +15,7 @@ import { ProductoService } from '../../services/producto.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productoService: ProductoService, private router: Router,private favoritoService:FavoritoService) { }
+  constructor(private productoService: ProductoService, private router: Router,private favoritoService:FavoritoService,private suscripcionService:SuscripcionService) { }
 
   ngOnInit(): void {
     this.buscar()
@@ -27,6 +30,22 @@ export class HomeComponent implements OnInit {
   favorito:Favorito[]=[];
   SHOW123:boolean=false;
   exist:boolean;
+  correoSub:string;
+ 
+
+  sub(){
+    const SubCorreo:SuscripcionNormal={
+      "correo":this.correoSub
+    }
+    this.suscripcionService.postSubs(SubCorreo).subscribe(
+      res => console.log(res)
+    )
+    this.suscripcionService.EnvioEmails(this.correoSub).subscribe(
+      res => console.log("enviadooo "+ res)
+    )
+    console.log(this.correoSub)
+  }
+
   corazon(idP){
     this.SHOW123=true;
    

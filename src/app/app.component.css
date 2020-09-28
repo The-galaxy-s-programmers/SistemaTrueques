@@ -40,4 +40,7 @@
   border: none;
   border-radius: 40px 0px 0px 40px;
  }
-  
+ th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+  padding-left: 24px;
+  padding-right: 24px;
+}

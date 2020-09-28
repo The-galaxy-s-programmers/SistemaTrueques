@@ -8,4 +8,6 @@ export interface ChatPriv {
      nomUser:string;
      nomDuenio:string;
      nomProducto:string;
+     token:number;
+     mensajePor:number;
 }

@@ -200,10 +200,10 @@
             <div class="col-md-12">
                 <div class="newsletter">
                     <p>Ingresa tu correo y recibe las ultimas actualizaciones de productos</p>
-                    <form>
-                        <input class="input" type="email" placeholder="Ingresa tu email">
-                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Suscribete</button>
-                    </form>
+                  
+                        <input class="input" type="email" placeholder="Ingresa tu email" [(ngModel)]="correoSub">
+                        <button class="newsletter-btn" (click)="sub()"><i class="fa fa-envelope"></i> Suscribete</button>
+                   <br/>
                     <ul class="newsletter-follow">
                         <li>
                             <a href="https://www.facebook.com/Trueques-Galaxy-113422797182848/"><i class="fa fa-facebook"></i></a>

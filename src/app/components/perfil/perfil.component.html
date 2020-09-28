@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-left:0px">
 	<div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar">
@@ -60,6 +60,10 @@
 				<li *ngIf="Show32" class="nav-report">
 					<a class="nav-link" id="report-tab" data-toggle="tab" href="#tusUser" role="tab"
 						aria-controls="Report" aria-selected="false">Usuarios</a>
+				</li>
+				<li class="nav-report">
+					<a class="nav-link" id="report-tab" data-toggle="tab" href="#mensaje" role="tab"
+						aria-controls="Report" aria-selected="false">Mensajes</a>
 				</li>
 
 			</ul>
@@ -139,48 +143,33 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="objetosPermutados" role="tabpanel" aria-labelledby="profile-tab">
+				<div class="tab-pane fade" id="objetosPermutados" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="col-md-4 col-xs-6">
-									<div class="product">
-										<div class="product-img">
-											<img src="https://http2.mlstatic.com/D_NQ_NP_727032-MLC43344620840_092020-V.webp"
-												alt="">
+						<div class="col-md-4 col-xs-6" *ngFor='let productoA2 of productosListUser'>
+							<div class="product">
+								<div class="product-img">
+									<img src={{productoA2.imagen}} alt="">
 
-										</div>
-										<div class="product-body">
-											<p class="product-category">Notebook</p>
-											<h3 class="product-name"><a href="#">Notebook Gamer Acer Nitro 5
-													<small>(Usado)</small></a></h3>
-											<h4 class="product-price"> <del class="product-old-price"></del></h4>
-										</div>
+								</div>
+								<div class="product-body">
+									<p class="product-category">{{productoA2.subcategoria}}</p>
+									<h3 class="product-name"><a href="#">{{productoA2.nombre}}
+											<small>{{productoA2.uso}}</small></a></h3>
+									<h3 class="product-description">{{productoA2.descripcion}}</h3>
+									<h6 class="product-price"> {{productoA2.valorReferencia}} <small> Precio
+											Ref:</small>
+									</h6>
 
+									<div class="product-btns">
+										<button (click)=corazon(productoA2.idP); class="add-to-wishlist"><i
+												class="fa fa-heart-o"></i><span class="tooltipp">Agregar a la
+												lista</span></button>
 									</div>
 								</div>
-								<!-- /product -->
-
-								<div class="clearfix visible-sm visible-xs"></div>
-
-								<!-- product -->
-								<div class="col-md-4 col-xs-6">
-									<div class="product">
-										<div class="product-img">
-											<img src="https://http2.mlstatic.com/camara-canon-80-d-D_NQ_NP_618920-MLC42259430802_062020-V.webp"
-												alt="">
-
-										</div>
-										<div class="product-body">
-											<p class="product-category">Camara</p>
-											<h3 class="product-name"><a href="#">CAMARA CANON 80D
-													<small>(Usado)</small></a>
-											</h3>
-											<h4 class="product-price"> <del class="product-old-price"></del></h4>
-
-
-										</div>
-									</div>
+								<div class="add-to-cart">
+									<button class="add-to-cart-btn" [routerLink]="'/Producto'"
+										(click)="select(productoA2.idP)"><i class="fa fa-exchange"></i> Ir a
+										Ver </button>
 								</div>
 							</div>
 						</div>
@@ -188,7 +177,7 @@
 				</div>
 				<div class="tab-pane fade" id="tusObjetos" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="row">
-						<div class="col-8" *ngFor='let productoA1 of productosFavList'>
+						<div class="col-md-4 col-xs-6" *ngFor='let productoA1 of productosFavList'>
 							<div class="product">
 								<div class="product-img">
 									<img src={{productoA1.imagen}} alt="">
@@ -226,14 +215,14 @@
 							<div class="alert alert-danger" role="alert">
 								Comentario
 							</div>
-							<table mat-table style="padding: 30px;" [dataSource]="comentarios">
-								<mat-text-column name="id"></mat-text-column>
-								<mat-text-column name="id_usuario"></mat-text-column>
-								<mat-text-column name="fecha"></mat-text-column>
-								<mat-text-column name="comentario"></mat-text-column>
-								<mat-text-column name="correo"></mat-text-column>
-								<mat-text-column name="nombre"></mat-text-column>
-								<mat-text-column name="tipo"></mat-text-column>
+							<table mat-table style="padding: 40px;" [dataSource]="comentarios">
+								<mat-text-column  name="id"></mat-text-column>
+								<mat-text-column  name="id_usuario"></mat-text-column>
+								<mat-text-column  name="fecha"></mat-text-column>
+								<mat-text-column  name="comentario"></mat-text-column>
+								<mat-text-column  name="correo"></mat-text-column>
+								<mat-text-column  name="nombre"></mat-text-column>
+								<mat-text-column  name="tipo"></mat-text-column>
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
@@ -247,14 +236,14 @@
 							<div class="alert alert-danger" role="alert">
 								Producto
 							</div>
-							<table mat-table style="padding: 30px;" [dataSource]="productos">
-								<mat-text-column name="id"></mat-text-column>
-								<mat-text-column name="id_usuario"></mat-text-column>
-								<mat-text-column name="fecha"></mat-text-column>
-								<mat-text-column name="comentario"></mat-text-column>
-								<mat-text-column name="correo"></mat-text-column>
-								<mat-text-column name="nombre"></mat-text-column>
-								<mat-text-column name="tipo"></mat-text-column>
+							<table mat-table style="padding: 40px;" [dataSource]="productos">
+								<mat-text-column  name="id"></mat-text-column>
+								<mat-text-column  name="id_usuario"></mat-text-column>
+								<mat-text-column  name="fecha"></mat-text-column>
+								<mat-text-column  name="comentario"></mat-text-column>
+								<mat-text-column  name="correo"></mat-text-column>
+								<mat-text-column  name="nombre"></mat-text-column>
+								<mat-text-column  name="tipo"></mat-text-column>
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
@@ -263,19 +252,19 @@
 									</mat-cell>
 								</ng-container>
 								<tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
-								<tr mat-row *matRowDef="let row; columns:columnasTabla"></tr>
+								<tr mat-row *matRowDef="let row; columns:columnasTabla"></tr>f
 							</table>
 							<div class="alert alert-danger" role="alert">
 								Ayuda
 							</div>
-							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
-								<mat-text-column name="id"></mat-text-column>
-								<mat-text-column name="id_usuario"></mat-text-column>
-								<mat-text-column name="fecha"></mat-text-column>
-								<mat-text-column name="comentario"></mat-text-column>
-								<mat-text-column name="correo"></mat-text-column>
-								<mat-text-column name="nombre"></mat-text-column>
-								<mat-text-column name="tipo"></mat-text-column>
+							<table mat-table style="padding: 40px;" [dataSource]="ayudas">
+								<mat-text-column  name="id"></mat-text-column>
+								<mat-text-column  name="id_usuario"></mat-text-column>
+								<mat-text-column  name="fecha"></mat-text-column>
+								<mat-text-column  name="comentario"></mat-text-column>
+								<mat-text-column  name="correo"></mat-text-column>
+								<mat-text-column  name="nombre"></mat-text-column>
+								<mat-text-column  name="tipo"></mat-text-column>
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
@@ -299,13 +288,13 @@
 							<div class="alert alert-danger" role="alert">
 								Suscripciones
 							</div>
-							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
-								<mat-text-column name="id"></mat-text-column>
-								<mat-text-column name="correo"></mat-text-column>
+							<table mat-table style="padding: 40px;" [dataSource]="subs">
+								<mat-text-column  name="id"></mat-text-column>
+								<mat-text-column  name="correo"></mat-text-column>
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button class="btn btn-danger" (click)="borrarA(row.id);">Borrar </Button>
+										<Button class="btn btn-danger" (click)="borrarSub(row.correo);">Borrar </Button>
 
 									</mat-cell>
 								</ng-container>
@@ -334,22 +323,22 @@
 							<div class="alert alert-danger" role="alert">
 								Productos
 							</div>
-							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
-								<mat-text-column name="idP"></mat-text-column>
-								<mat-text-column name="nombre"></mat-text-column>
-								<mat-text-column name="descripcion"></mat-text-column>
-								<mat-text-column name="categoria"></mat-text-column>
-								<mat-text-column name="fechaPublicacion"></mat-text-column>
-								<mat-text-column name="uso"></mat-text-column>
-								<mat-text-column name="valorReferencia"></mat-text-column>
-								<mat-text-column name="ubicacion"></mat-text-column>
-								<mat-text-column name="subcategoria"></mat-text-column>
-								<mat-text-column name="id_usuario"></mat-text-column>
+							<table mat-table style="padding: 40px;" [dataSource]="productosall">
+								<mat-text-column  name="idP"></mat-text-column>
+								<mat-text-column  name="nombre"></mat-text-column>
+								<mat-text-column  name="descripcion"></mat-text-column>
+								<mat-text-column  name="categoria"></mat-text-column>
+								<mat-text-column  name="fechaPublicacion"></mat-text-column>
+								<mat-text-column  name="uso"></mat-text-column>
+								<mat-text-column  name="valorReferencia"></mat-text-column>
+								<mat-text-column  name="ubicacion"></mat-text-column>
+								<mat-text-column  name="subcategoria"></mat-text-column>
+								<mat-text-column  name="id_usuario"></mat-text-column>
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button class="btn btn-danger" (click)="borrarA(row.id);">Borrar
-											Reporte</Button>
+										<Button class="btn btn-danger" (click)="borrarPro(row.idP);">Borrar
+										</Button>
 
 									</mat-cell>
 								</ng-container>
@@ -365,29 +354,52 @@
 							<div class="alert alert-danger" role="alert">
 								Usuarios
 							</div>
-							<table mat-table style="padding: 30px;" [dataSource]="ayudas">
-								<mat-text-column name="idU"></mat-text-column>
-								<mat-text-column name="nomusuario"></mat-text-column>
-								<mat-text-column name="nombre"></mat-text-column>
-								<mat-text-column name="apellido"></mat-text-column>
-								<mat-text-column name="fechaNacimiento"></mat-text-column>
-								<mat-text-column name="correo"></mat-text-column>
-								<mat-text-column name="region"></mat-text-column>
-								<mat-text-column name="comuna"></mat-text-column>
-								<mat-text-column name="genero"></mat-text-column>
-								<mat-text-column name="password"></mat-text-column>
-								<mat-text-column name="direccion"></mat-text-column>
-								<mat-text-column name="fono"></mat-text-column>
+							<table mat-table style="padding: 40px;" [dataSource]="usuariosall">
+								<mat-text-column  name="idU"></mat-text-column>
+								<mat-text-column  name="nomusuario"></mat-text-column>
+								<mat-text-column  name="nombre"></mat-text-column>
+								<mat-text-column  name="apellido"></mat-text-column>
+								<mat-text-column  name="fechaNacimiento"></mat-text-column>
+								<mat-text-column  name="correo"></mat-text-column>
+								<mat-text-column  name="region"></mat-text-column>
+								<mat-text-column  name="comuna"></mat-text-column>
+								<mat-text-column  name="genero"></mat-text-column>
+								<mat-text-column  name="password"></mat-text-column>
+								<mat-text-column  name="direccion"></mat-text-column>
+								<mat-text-column  name="fono"></mat-text-column>
 								<ng-container matColumnDef="botonera">
 									<mat-header-cell *matHeaderCellDef></mat-header-cell>
 									<mat-cell *matCellDef="let row">
-										<Button class="btn btn-danger" (click)="borrarA(row.id);">Borrar
-											Reporte</Button>
+										<Button class="btn btn-danger" (click)="borrarUser(row.idU);">Borrar
+										</Button>
 
 									</mat-cell>
 								</ng-container>
 								<tr mat-header-row *matHeaderRowDef="columnTabla"></tr>
 								<tr mat-row *matRowDef="let row; columns:columnTabla"></tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="mensaje" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-md-4 col-xs-6">
+							<div class="alert alert-danger" role="alert">
+								Usuarios
+							</div>
+							<table mat-table style="padding: 40px;" [dataSource]="chatPriv">
+								<mat-text-column  name="token"></mat-text-column>
+								<mat-text-column  name="nomProducto"></mat-text-column>
+								<ng-container matColumnDef="botonera">
+									<mat-header-cell *matHeaderCellDef></mat-header-cell>
+									<mat-cell *matCellDef="let row">
+										<Button  class="btn btn-danger" (click)="irChat(row.token);"> Ver Mensajes
+										</Button>
+										
+									</mat-cell>
+								</ng-container>
+								<tr mat-header-row *matHeaderRowDef="coluTabla"></tr>
+								<tr mat-row *matRowDef="let row; columns:coluTabla"></tr>
 							</table>
 						</div>
 					</div>

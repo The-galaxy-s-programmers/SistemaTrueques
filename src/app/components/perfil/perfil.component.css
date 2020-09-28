@@ -109,3 +109,7 @@ body {
     background: #fff;
     min-height: 460px;
   }
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+}

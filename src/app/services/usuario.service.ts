@@ -50,5 +50,8 @@ export class UsuarioService {
   getIfExisteUser(nomusuario:String): Observable<boolean> {
     return this.http.get<boolean>(this.url + this.existe + nomusuario)
   }
-
+  
+  EnvioEmails(correo):Observable<number> {
+    return this.http.get<number>(this.url+"/envio/"+correo)
+  }
 }

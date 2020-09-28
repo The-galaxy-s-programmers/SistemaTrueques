@@ -12,6 +12,10 @@ import { SuscripcionService } from 'src/app/services/suscripcion.service';
 import { Reportes } from 'src/app/interfaces/reportes';
 import { Suscripcion } from 'src/app/interfaces/suscripcion';
 import { SuscripcionNormal } from 'src/app/interfaces/suscripcion-normal';
+import { ChatPrivService } from 'src/app/services/chat-priv.service'
+import { ChatPriv } from 'src/app/interfaces/chat-priv';
+import { ChatPrivToken } from 'src/app/interfaces/chat-priv-token';
+
 
 
 
@@ -23,7 +27,7 @@ import { SuscripcionNormal } from 'src/app/interfaces/suscripcion-normal';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private suscripcionService:SuscripcionService,private usuarioService: UsuarioService,public reportesSevice:ReportesService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
+  constructor(private chatPrivService:ChatPrivService,private suscripcionService:SuscripcionService,private usuarioService: UsuarioService,public reportesSevice:ReportesService, public datepipe: DatePipe, public favoritoService: FavoritoService, public productoServices: ProductoService) { 
     
   }
 
@@ -77,6 +81,11 @@ export class PerfilComponent implements OnInit {
     "id_usuario",
     "botonera"
   ]
+  coluTabla:String[]=[
+    "token",
+    "nomProducto",
+    "botonera"
+  ]
   SuscripcionNormal:SuscripcionNormal[]=[];
   Suscripcion:Suscripcion[]=[];
   
@@ -91,6 +100,9 @@ export class PerfilComponent implements OnInit {
   comentarios:Reportes[]=[];
   productos:Reportes[]=[];
   ayudas:Reportes[]=[];
+  subs:SuscripcionNormal[]=[];
+  productosall:Producto[]=[];
+  usuariosall:Usuario[]=[];
 
   usuarioLog: Usuario;
   usuarioEditado: Usuario;
@@ -114,7 +126,8 @@ export class PerfilComponent implements OnInit {
   foto: string;
 
   obs: number;
-
+  productosListUser:Producto[]=[];
+  chatPriv:ChatPrivToken[]=[];
   register:boolean=false;
 
   ayuda() {
@@ -144,7 +157,9 @@ export class PerfilComponent implements OnInit {
   }
   
   buscar() {
-
+    this.chatPrivService.getListaMensaje(localStorage.getItem("idU")).subscribe(
+      res=> this.chatPriv = res
+    )
 
     this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
       res => {
@@ -209,8 +224,97 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaAyuda().subscribe(
       res => this.ayudas = res
     )
-  }
+    this.suscripcionService.getListaSubsNormal().subscribe(
+      res => this.subs = res
+    )
+    this.productoServices.getListaProducto().subscribe(
+      res => this.productosall = res
+    )
+    this.usuarioService.getListaUser().subscribe(
+      res => this.usuariosall = res
+       )
+    this.productoServices.getListaProductoid(localStorage.getItem("idU")).subscribe(
+    res => this.productosListUser = res
+    )
 
+  }
+  a:number=1;
+  favorito:Favorito[]=[];
+  SHOW123:boolean=false;
+  exist:boolean;
+  corazon(idP){
+    this.SHOW123=true;
+   
+    
+    
+     console.log(this.a)
+  
+    this.favoritoService.getexistFav(localStorage.getItem("idU"),idP).subscribe(
+      res => this.exist = res
+    )
+      
+  const fav={
+      id_usuarioF:  parseInt(localStorage.getItem("idU")),
+      id_producto: idP
+    }
+    setTimeout(()=>{
+      this.a++;
+      console.log(this.exist)
+     
+      if(this.exist == true){
+        if(this.a == 2){
+        alert("Articulo ya en favoritos - Presione denuevo para borrar");
+        this.SHOW123=false;
+        }
+       
+        else if(this.a==3){
+          this.favoritoService.deleteFav(localStorage.getItem("idU"),idP).subscribe(
+            res => this.favorito = res
+            )
+            this.a = 1;
+            console.log("borrando")
+            alert("Articulo borrado de favoritos");
+            location.reload();
+        }
+      }else if(this.exist == false){
+        this.favoritoService.postFav(fav).subscribe(
+          res => console.log(res)
+          
+        )
+        console.log("añadiendo");
+        alert("Articulo añadido a favoritos");
+        location.reload();
+      } 
+    },3000) 
+  }
+  
+  borrarPro(id){
+    this.productoServices.deleteProducto(id).subscribe(
+      res => this.productosall = res
+    )
+    this.productoServices.getListaProducto().subscribe(
+      res => this.productosall = res
+    )
+    location.reload();
+  }
+  borrarUser(id){
+    this.usuarioService.deleteUsuario(id).subscribe(
+      res => this.usuariosall = res
+    )
+    this.usuarioService.getListaUser().subscribe(
+      res => this.usuariosall = res
+       )
+       location.reload();
+  }
+  borrarSub(correo){
+    this.suscripcionService.deleteSubs(correo).subscribe(
+      res => this.subs = res
+    )
+    this.suscripcionService.getListaSubsNormal().subscribe(
+      res => this.subs = res
+    )
+    location.reload();
+  }
   borrarP(id){
     this.reportesSevice.deleteReport(id).subscribe(
       res => this.productos = res
@@ -218,7 +322,7 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaProductos().subscribe(
       res => this.productos = res
     )
-
+    location.reload();
   }
   
   borrarC(id){
@@ -228,7 +332,7 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaComentarios().subscribe(
       res => this.comentarios = res
     )
-    
+    location.reload();
   }
   borrarA(id){
     this.reportesSevice.deleteReport(id).subscribe(
@@ -237,6 +341,7 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaAyuda().subscribe(
       res => this.ayudas = res
     )
+    location.reload();
   }
   
 
@@ -332,7 +437,7 @@ export class PerfilComponent implements OnInit {
     } else {
       nuevo.fechaNacimiento = obj.fechaNacimiento;
     }
-    if(this.nombre.length <= 3 ) {
+    if(this.nombre.length <= 3  ) {
       alert("Verifique los datos ingresados")
       this.register= false
         
@@ -340,7 +445,7 @@ export class PerfilComponent implements OnInit {
       alert("Verifique los datos ingresados")
       this.register= false
       
-    }else if(this.nomusuario.length <= 3 ){
+    }else if(this.nomusuario.length <= 3 ||this.nomusuario == "undefined" ||this.nomusuario == "null"){
         alert("Verifique los datos ingresados")
         this.register= false
         
@@ -382,11 +487,17 @@ export class PerfilComponent implements OnInit {
       res => this.obs = res
     )
     alert("Se han actualizado los datos")
-    window.location.reload();
+    location.reload();
 
   }
 }
 ingresoP(){
   window.location.href="/IngresoProducto"
+}
+
+irChat(id){
+  localStorage.setItem("token",id)
+  window.location.href="/Chat"
+
 }
 }

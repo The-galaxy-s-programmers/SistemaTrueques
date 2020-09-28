@@ -20,6 +20,9 @@ export class ProductoService {
   getListaProducto(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.url)
   }
+  getListaProductoid(id): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.url+'/idU/'+id)
+  }
 
   getNomProducto(NomProducto): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.url + this.nomusuario+"nombre/" + NomProducto)

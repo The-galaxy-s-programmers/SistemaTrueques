@@ -1,4 +1,5 @@
 import { DatePipe } from '@angular/common';
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Chat } from 'src/app/interfaces/chat';
 import { ChatPriv } from 'src/app/interfaces/chat-priv';
@@ -61,43 +62,59 @@ export class ChatProductoComponent implements OnInit {
   borrarMM:boolean=false;
 
   constructor(private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatPrivService:ChatPrivService) { }
-
+Duenio:ChatPriv[]=[];
+ab;
   ngOnInit(): void {
-    this.buscar();
-    setTimeout(()=>{
-    this.chatPrivService.getListaMensajeId(localStorage.getItem("idP"),localStorage.getItem("idU"),this.idPu).subscribe(
+      
+    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
       res => this.chat = res
     )
-  },3000)
+    this.buscar();
+    this.chatPrivService.getListaxToken(localStorage.getItem("token")).subscribe(
+      res=> this.Duenio = res
+    )
+    setTimeout(()=>{
+    if(localStorage.getItem("idU")==JSON.parse(JSON.stringify(this.Duenio)).id_duenio){
+      localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio)).id_producto)
+      this.ab=JSON.parse(JSON.stringify(this.Duenio)).id_user
+    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
+      res => this.chat = res
+    )}else{
+      this.ab=localStorage.getItem("idU");
+    }
+  },4000)
   }
+
   addPost() {
 
     this.Comentario={
       id_producto:parseInt(localStorage.getItem("idP")),
-       id_user:this.userL.idU,
+       id_user:JSON.parse(JSON.stringify(this.Duenio)).id_user,
        mensaje:this.content,
-       id_duenio:this.idPu,
-       nomUser:this.userL.nomusuario,
-       nomDuenio:this.duenioL.nomusuario,
-       nomProducto:this.nombre
+       id_duenio:JSON.parse(JSON.stringify(this.Duenio)).id_user,
+       nomUser:localStorage.getItem("nomUser"),
+       nomDuenio:JSON.parse(JSON.stringify(this.Duenio)).nomDuenio,
+       nomProducto:JSON.parse(JSON.stringify(this.Duenio)).nomProducto,
+       token:parseInt(localStorage.getItem("token")),
+       mensajePor:parseInt(localStorage.getItem("idU"))
     }
 
    this.chatPrivService.postMensaje(this.Comentario).subscribe(
      res=> {console.log(res)},err => console.log(err)
    )
-   
+   this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
+    res => this.chat = res
+  )
+
   setTimeout(()=>{
     this.content="";
-    this.chatPrivService.getListaMensajeId(localStorage.getItem("idP"),localStorage.getItem("idU"),this.idPu).subscribe(
-      res => this.chat = res
-    )
    },2000)
 
   }
 
   refrescar(){
      
-    this.chatPrivService.getListaMensajeId(localStorage.getItem("idP"),localStorage.getItem("idU"),this.idPu).subscribe(
+    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
       res => this.chat = res
     )
 
@@ -136,7 +153,7 @@ export class ChatProductoComponent implements OnInit {
       
       
      
-    },3000)
+    },4000)
    
     setTimeout(()=>{
       this.duenioL = JSON.parse(JSON.stringify(this.duenio))
@@ -147,5 +164,10 @@ export class ChatProductoComponent implements OnInit {
      
     },5000)
 
+  }
+  reportChat(id) {
+    localStorage.setItem("coment", id +" "+ localStorage.getItem("token") )
+    localStorage.setItem("a", "")
+    window.location.href = "/Report"
   }
 }

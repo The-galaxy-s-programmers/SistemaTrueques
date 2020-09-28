@@ -54,7 +54,7 @@ export class AppComponent {
   }
   setea() {
     this.nomUser = localStorage.getItem("nomUser");
-    if(this.nomUser == undefined || this.nomUser == null || this.nomUser.length <= 3 ){
+    if(this.nomUser == undefined || this.nomUser == null || this.nomUser.length <= 3 || this.nomUser == "undefined" || this.nomUser == "null"  ){
       this.countFav = 0;
     }else{
     this.usuarioServices.getNomUser(this.nomUser).subscribe(
@@ -87,10 +87,11 @@ export class AppComponent {
   ir() {
     let a = localStorage.getItem("nomUser");
     let b = localStorage.getItem("password");
-    if (a.length == 0 || b.length == 0) {
+      if(a == undefined || a == null  || a == "undefined" || a == "null"|| a.length <= 3){
       window.location.href = "/RegistroUsuario";
 
-    } else {
+    }
+    else {
       window.location.href = "/Perfil";
     }
   }

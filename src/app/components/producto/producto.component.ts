@@ -7,12 +7,13 @@ import 'rxjs/Rx';
 import { defaultThrottleConfig } from 'rxjs/internal-compatibility';
 import { DatePipe, getLocaleDateFormat } from '@angular/common';
 import { Chat } from 'src/app/interfaces/chat';
-import { ChatService} from 'src/app/services/chat.service';
+import { ChatService } from 'src/app/services/chat.service';
 import { Usuario } from 'src/app/interfaces/usuario';
-import { UsuarioService} from 'src/app/services/usuario.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { storage } from 'firebase';
 import { FavoritoService } from 'src/app/services/favorito.service';
 import { Favorito } from 'src/app/interfaces/favorito';
+import { stringify } from '@angular/compiler/src/util';
 
 interface Post {
   title: string;
@@ -30,45 +31,45 @@ interface PostId extends Post {
 })
 export class ProductoComponent implements OnInit {
 
-  constructor(private favoritoService:FavoritoService,private afs: AngularFirestore,private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatService:ChatService) { }
+  constructor(private favoritoService: FavoritoService, private afs: AngularFirestore, private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.buscar();
     this.inicio();
     this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
-      res => this.UserFav =res
+      res => this.UserFav = res
     )
-     this.Ad = JSON.parse(JSON.stringify(this.UserFav))
-     if(localStorage.getItem("nomUser")=="admin"){
-       this.borrarMM=true;
-     }
+    this.Ad = JSON.parse(JSON.stringify(this.UserFav))
+    if (localStorage.getItem("nomUser") == "admin") {
+      this.borrarMM = true;
+    }
 
   }
-Ad;
+  Ad;
   title: string;
   content: string;
   producto: Producto[];
-  user:Usuario[]=[];
-  userL:Usuario;
-  duenio:Usuario[]=[];
-  duenioL:Usuario;
+  user: Usuario[] = [];
+  userL: Usuario;
+  duenio: Usuario[] = [];
+  duenioL: Usuario;
 
 
-  idU:number;
-  fechastring:string;
-  idP ?:number;
-  nombre:string;
-  descripcion:string;
-  categoria:string;
-  fechaPublicacion:String;
-  uso:string;
-  imagen:string;
-  valorReferencia:number;
-  ubicacion:string;
-  subcategoria:string;
-  id_usuario:number;
-  
-  escrituraDM:boolean;
+  idU: number;
+  fechastring: string;
+  idP?: number;
+  nombre: string;
+  descripcion: string;
+  categoria: string;
+  fechaPublicacion: String;
+  uso: string;
+  imagen: string;
+  valorReferencia: number;
+  ubicacion: string;
+  subcategoria: string;
+  id_usuario: number;
+
+  escrituraDM: boolean;
   correo: string;
   coment: string;
   id: number;
@@ -77,126 +78,138 @@ Ad;
   click = 0;
   respuesta: string;
   resp = "";
-  respuestaDM:boolean;
-  contenta:string;
-  show3:boolean;
-  mensaje=false;
-  bnregistro=true;
-  idPu:number;
-  top4:Producto[]=[];
-  Comentario:Chat;
-  chat:Chat[]=[];
-  exist:boolean;
-  UserFav:Usuario[]=[];
-  borrarMM:boolean=false;
+  respuestaDM: boolean;
+  contenta: string;
+  show3: boolean;
+  mensaje = false;
+  bnregistro = true;
+  idPu: number;
+  top4: Producto[] = [];
+  Comentario: Chat;
+  chat: Chat[] = [];
+  exist: boolean;
+  UserFav: Usuario[] = [];
+  borrarMM: boolean = false;
 
-  irRegistro(){
-    window.location.href="/RegistroUsuario"
+  irRegistro() {
+    window.location.href = "/RegistroUsuario"
   }
 
   addPost() {
 
-    this.Comentario={
-      id_producto:parseInt(localStorage.getItem("idP")),
-       id_user:this.userL.idU,
-       mensaje:this.content,
-       id_duenio:this.idPu,
-       respuesta:"",
-       nomUser:this.userL.nomusuario,
-       nomDuenio:this.duenioL.nomusuario,
-       nomProducto:this.nombre
+    this.Comentario = {
+      id_producto: parseInt(localStorage.getItem("idP")),
+      id_user: this.userL.idU,
+      mensaje: this.content,
+      id_duenio: this.idPu,
+      respuesta: "",
+      nomUser: this.userL.nomusuario,
+      nomDuenio: this.duenioL.nomusuario,
+      nomProducto: this.nombre
     }
 
-   this.chatService.postMensaje(this.Comentario).subscribe(
-     res=> {console.log(res)},err => console.log(err)
-   )
-   
-  setTimeout(()=>{
-    this.content="";
-    this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
-      res => this.chat = res
+    this.chatService.postMensaje(this.Comentario).subscribe(
+      res => { console.log(res) }, err => console.log(err)
     )
-   },2000)
+
+    setTimeout(() => {
+      this.content = "";
+      this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
+        res => this.chat = res
+      )
+    }, 2000)
 
   }
-  a:number=1;
-  favorito:Favorito[]=[];
-  SHOW123:boolean=false;
-  corazon(){
-    this.SHOW123=true;
-   
-    
-    
-     console.log(this.a)
-  
-    this.favoritoService.getexistFav(localStorage.getItem("idU"),localStorage.getItem("idP")).subscribe(
+  a: number = 1;
+  favorito: Favorito[] = [];
+  SHOW123: boolean = false;
+  corazon() {
+    this.SHOW123 = true;
+
+
+
+    console.log(this.a)
+
+    this.favoritoService.getexistFav(localStorage.getItem("idU"), localStorage.getItem("idP")).subscribe(
       res => this.exist = res
     )
-      
-  const fav={
-      id_usuarioF:  parseInt(localStorage.getItem("idU")),
+
+    const fav = {
+      id_usuarioF: parseInt(localStorage.getItem("idU")),
       id_producto: parseInt(localStorage.getItem("idP"))
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.a++;
       console.log(this.exist)
-     
-      if(this.exist == true){
-        if(this.a == 2){
-        alert("Articulo ya en favoritos - Presione denuevo para borrar");
-        this.SHOW123=false;
+
+      if (this.exist == true) {
+        if (this.a == 2) {
+          alert("Articulo ya en favoritos - Presione denuevo para borrar");
+          this.SHOW123 = false;
         }
-       
-        else if(this.a==3){
-          this.favoritoService.deleteFav(localStorage.getItem("idU"),localStorage.getItem("idP")).subscribe(
+
+        else if (this.a == 3) {
+          this.favoritoService.deleteFav(localStorage.getItem("idU"), localStorage.getItem("idP")).subscribe(
             res => this.favorito = res
-            )
-            this.a = 1;
-            console.log("borrando")
-            alert("Articulo borrado de favoritos");
-            location.reload();
+          )
+          this.a = 1;
+          console.log("borrando")
+          alert("Articulo borrado de favoritos");
+          location.reload();
         }
-      }else if(this.exist == false){
+      } else if (this.exist == false) {
         this.favoritoService.postFav(fav).subscribe(
           res => console.log(res)
-          
+
         )
         console.log("añadiendo");
         alert("Articulo añadido a favoritos");
         location.reload();
-      } 
-    },3000) 
+      }
+    }, 3000)
   }
 
-  reportChat(id){
-    localStorage.setItem("coment",id)
-    localStorage.setItem("a","")
-    window.location.href="/Report"
+  reportChat(id) {
+    localStorage.setItem("coment", id)
+    localStorage.setItem("a", "")
+    window.location.href = "/Report"
   }
-  reportProducto(){
-    localStorage.setItem("coment","")
-    localStorage.setItem("a","")
-    window.location.href="/Report"
+  SHOW1=false;
+  reportProducto() {
+    this.SHOW1 = true;
+    setTimeout(() => {
+      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+        alert("Usted es dueño de este producto");
+        this.SHOW1=false;
+      } else {
+        window.location.href = "/Chat";
+        localStorage.setItem("coment", "")
+        localStorage.setItem("a", "")
+        window.location.href = "/Report"
+      }
+    }, 2000)
+   
+
   }
-  refrescar(){
-     
+  refrescar() {
+
     this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
       res => this.chat = res
     )
 
   }
 
-  inicio(){
+  inicio() {
     console.log(localStorage.getItem("nomUser"))
-    
-    if( localStorage.getItem("nomUser") == null || localStorage.getItem("password") == null || localStorage.getItem("nomUser").length <= 2 ){
+
+    if (localStorage.getItem("nomUser") == null || localStorage.getItem("password") == null || localStorage.getItem("nomUser").length <= 2) {
       console.log("hola")
-      this.bnregistro=true;
-      this.mensaje=false;
-    }else{
+      this.bnregistro = true;
+      this.mensaje = false;
+    } else {
       console.log("adios")
-      this.bnregistro=false;
-      this.mensaje=true;
+      this.bnregistro = false;
+      this.mensaje = true;
     }
     console.log(this.idP)
 
@@ -207,7 +220,7 @@ Ad;
   }
   id_producto;
   buscar() {
-    this.show3=false;
+    this.show3 = false;
     let a = localStorage.getItem("idP")
     this.productoService.getIdProducto(a).subscribe(
       res => {
@@ -215,71 +228,85 @@ Ad;
       }, err => console.log(err)
     )
     this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
-      res=> this.user = res
+      res => this.user = res
     )
-    
-    setTimeout(()=>{
-   const obj = JSON.parse(JSON.stringify(this.producto))
-      this.id_producto=obj.id;
-      this.nombre=obj.nombre;
-      this.descripcion=obj.descripcion;
-      this.categoria=obj.categoria;
-      this.fechaPublicacion=obj.fechaPublicacion;
-      this.imagen=obj.imagen;
-      this.idPu=obj.id_usuario;
-      this.ubicacion=obj.ubicacion;
-      this.subcategoria=obj.subcategoria;
-      this.uso=obj.uso;
-      this.fechastring=this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
+
+    setTimeout(() => {
+      const obj = JSON.parse(JSON.stringify(this.producto))
+      this.id_producto = obj.id;
+      this.nombre = obj.nombre;
+      this.descripcion = obj.descripcion;
+      this.categoria = obj.categoria;
+      this.fechaPublicacion = obj.fechaPublicacion;
+      this.imagen = obj.imagen;
+      this.idPu = obj.id_usuario;
+      this.ubicacion = obj.ubicacion;
+      this.subcategoria = obj.subcategoria;
+      this.uso = obj.uso;
+      this.fechastring = this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
       this.userL = JSON.parse(JSON.stringify(this.user))
-      this.idU=this.userL.idU;
+      this.idU = this.userL.idU;
       this.usuarioService.getIdUser(this.idPu).subscribe(
-        res=> this.duenio = res
+        res => this.duenio = res
       )
-      
-      
+
+
       this.productoService.getTop4CategoriaProducto(this.categoria).subscribe(
         res => this.top4 = res
       )
-    },3000)
-   
-    setTimeout(()=>{
+    }, 3000)
+
+    setTimeout(() => {
       this.duenioL = JSON.parse(JSON.stringify(this.duenio))
-      this.show3=true;
-      if(localStorage.getItem("nomUser")==this.duenioL.nomusuario){
-       this.respuestaDM=true;
+      this.show3 = true;
+      localStorage.setItem("idD",stringify(this.duenioL.idU))
+      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+        this.respuestaDM = true;
       }
-     
-    },5000)
+      console.log(this.duenioL.nomusuario);
+    }, 6000)
 
   }
-  select(id){
+  select(id) {
     console.log(id);
-    localStorage.setItem("idP",id)
-    window.location.href="/Producto";
+    localStorage.setItem("idP", id)
+    window.location.href = "/Producto";
   }
 
-  
+
   Responder() {
 
     if (this.click == 0) {
-       this.show = false; this.click = 1; }
+      this.show = false; this.click = 1;
+    }
     else if (this.click == 1) {
-       this.show = true; this.click = 0; this.resp = this.respuesta }
+      this.show = true; this.click = 0; this.resp = this.respuesta
+    }
 
   }
-  Enviar() {
-    this.correo; //Hay que enviar correo
-  }
-  
-  responderM(id){
+
+
+  responderM(id) {
 
   }
-  borrarMensaje(id){
+  borrarMensaje(id) {
 
   }
-  Trocar(){
-    window.location.href="/Chat"
+  SHOW12 = false;
+
+  Trocar() {
+    this.SHOW12 = true;
+    setTimeout(() => {
+      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+        alert("Usted es dueño de este producto");
+        this.SHOW12=false;
+      } else {
+        localStorage.setItem("token",localStorage.getItem("idU")+stringify(this.idPu)+localStorage.getItem("idP"))
+        window.location.href = "/Chat";
+      }
+    }, 2000)
   }
 
 }
+
+

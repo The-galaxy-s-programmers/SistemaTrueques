@@ -59,14 +59,18 @@
 							</article>
 						</fieldset>
 						
-							<button (click)="Trocar()"type="button" class="btn btn-outline-danger"style="
+							<button *ngIf="!SHOW12" (click)="Trocar()"type="button" class="btn btn-outline-danger"style="
 							margin-right: 10px;
 							margin-top: 10px;
 						"><i class="fa fa-handshake-o"></i>
 								Permutar</button>
+								<i *ngIf="SHOW12" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
 								
-							<button (click)="reportProducto()" class="btn btn-outline-warning" style="margin-top: 10px; margin-right: 10px;"><i
+							<button *ngIf="!SHOW1"(click)="reportProducto()" class="btn btn-outline-warning" style="margin-top: 10px; margin-right: 10px;"><i
 									class="fa fa-exclamation-triangle bigicon"></i></button>
+									<i *ngIf="SHOW1" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
 									<i *ngIf="SHOW123" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
                             <span class="sr-only">Loading...</span>
 							<button *ngIf="!SHOW123" (click)="corazon()" class="btn btn-outline-dark" style="margin-top: 10px;"><i
@@ -120,8 +124,8 @@
 								<br />
 								<ul *ngFor="let chatM of chat">
 									<li>
-										<h3>[{{ chatM.nomUser }}] - {{ chatM.mensaje }} <a (click)="reportChat(chatM.id)">(Reportar)</a><a *ngIf="borrarMM"(click)="borrarMensaje(chatM.id)"></a></h3>
-										<p *ngIf="respuestaDM"><a (click)="responderM(chatM.id)">(Responder)</a></p>
+										<h3>[{{ chatM.nomUser }}] - {{ chatM.mensaje }} <a (click)="reportChat(chatM.id)">(Reportar)</a><a *ngIf="borrarMM"(click)="borrarMensaje(chatM.id)"></a><a *ngIf="respuestaDM" (click)="responderM(chatM.id)">(Responder)</a></h3>
+										
 
 										<div *ngIf="escrituraDM">
 											<textarea class="input" id="output" [(ngModel)]="contenta" name="content"
