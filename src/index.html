@@ -54,27 +54,6 @@
 	   <![endif]-->
 
 	<script type='text/javascript'>
-		function toBase64() {
-			
-			var filesSelected = document.getElementById("imagenUp").files;
-			var fileToLoad = filesSelected[0];
-
-			var fileReader = new FileReader();
-
-			fileReader.onload = function (fileLoadedEvent) {
-				var srcData = fileLoadedEvent.target.result
-
-				//var newImage = document.createElement('img');
-				//newImage.src = srcData;
-
-				document.getElementById("imagenModel").innerHTML = srcData;
-				
-			}
-			fileReader.readAsDataURL(fileToLoad);
-		}
-
-	</script>
-	<script type='text/javascript'>
 		function countChars(obj){
     var maxLength = 1000;
     var strLength = obj.value.length;

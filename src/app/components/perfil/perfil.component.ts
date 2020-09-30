@@ -351,12 +351,38 @@ export class PerfilComponent implements OnInit {
     localStorage.setItem("bsc","")
     localStorage.setItem("idP",id)
   }
+  changeListener($event) : void {
+    this.readThis($event.target);
+  }
+  
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+  
+    myReader.onloadend = (e) => {
+      this.imagenFoto = myReader.result;
+    }
+    myReader.readAsDataURL(file);
+  }
   update() {
 
     this.register = true;
     console.log(this.nomusuario)
     
-    let nuevo: Usuario;
+    let nuevo: Usuario = {
+      nomusuario:"",
+    nombre:"",
+    apellido:"",
+    fechaNacimiento:"",
+    correo:"",
+    region:"",
+    comuna:"",
+    genero:"",
+    foto:"",
+    password:"",
+    direccion:"",
+    fono:0
+    };
 
     const obj = JSON.parse(JSON.stringify(this.usuarioEditado));
     const user = JSON.parse(JSON.stringify(this.usuarioLog));
@@ -364,8 +390,14 @@ export class PerfilComponent implements OnInit {
     console.log(obj);
     console.log(user);
     console.log(this.foto);
+    console.log(this.nombrebd)
+    console.log(user.nombre.length);
+
+    
+    
+
     console.log(this.imagenFoto);
-    debugger
+   
 
     if (obj.nombre.length == user.nombre.length) {
       nuevo.nombre = obj.nombre;
@@ -420,66 +452,72 @@ export class PerfilComponent implements OnInit {
       nuevo.fono = user.fono;
     } else {
       nuevo.fono = obj.fono;
-    }
+    } 
     if (obj.fechaNacimiento == 0) {
       nuevo.fechaNacimiento = user.fechaNacimiento;
     } else {
       nuevo.fechaNacimiento = obj.fechaNacimiento;
     }
-    if(this.nombrebd.length <= 3  ) {
+    if(this.imagenFoto == "undefined" || this.imagenFoto == undefined){
+      nuevo.foto = obj.foto;
+    }else{
+      user.foto = this.imagenFoto;
+    }
+
+    console.log(user.nombre)
+    console.log(this.nombrebd)
+
+    if(user.nombre.length <= 3 ) {
       alert("Verifique los datos ingresados")
       this.register= false
         
-    }else if(this.apellidobd.length <= 3 ){
+    }else if(user.apellido.length <= 3){
       alert("Verifique los datos ingresados")
       this.register= false
       
-    }else if(this.nomusuario.length <= 3 ||this.nomusuario == "undefined" ||this.nomusuario == "null"){
+    }else if(user.nomusuario.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if(this.password.length <= 3 ){
+      }else if(user.password.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if(this.correo.length <= 3 ){
+      }else if(user.correo.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if(this.fechaNacimiento.length <= 3 ){
+      }else if(user.fechaNacimiento.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if(this.region.length <= 3 ){
+      }else if(user.region.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if(this.comuna.length <= 3 ){
+      }else if(user.comuna.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if(this.direccion.length <= 3 ){
+      }else if(user.direccion.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if(this.genero.length <= 3 ){
+      }else if(user.genero.length <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
         
-      }else if( this.fono <= 3 ){
+      }else if( user.fono <= 3 ){
         alert("Verifique los datos ingresados")
         this.register= false
-        
       }else{
-
-    /* this.usuarioService.putUser(this.idU, user).subscribe(
-      res => this.obs = res
-) */
-console.log(nuevo)
-    alert("Se han actualizado los datos")
-    location.reload();
-
-  }
+       this.usuarioService.putUser(this.idU, user).subscribe(
+              res => this.obs = res) 
+      console.log(nuevo);
+      alert("Se han actualizado los datos")
+      location.reload(); 
+    }
+  
 }
 ingresoP(){
   window.location.href="/IngresoProducto"
