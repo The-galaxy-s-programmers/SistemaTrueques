@@ -91,7 +91,7 @@ export class PerfilComponent implements OnInit {
   ]
   SuscripcionNormal:SuscripcionNormal[]=[];
   Suscripcion:Suscripcion[]=[];
-  
+  imagenFoto;
   comentarioAll:String;
   Show32:boolean=false;
   myUser: Usuario[] = [];
@@ -176,7 +176,7 @@ export class PerfilComponent implements OnInit {
       this.usuarioLog = JSON.parse(JSON.stringify(this.myUser))
       this.nombre = this.usuarioLog.nombre + " " + this.usuarioLog.apellido
       this.fechanac = this.datepipe.transform(this.usuarioLog.fechaNacimiento, 'dd-MM-yyyy');
-      this.foto = this.usuarioLog.foto;
+      this.foto=this.usuarioLog.foto
       this.idU = this.usuarioLog.idU;
       this.nombrebd = this.usuarioLog.nombre;
       this.apellidobd = this.usuarioLog.apellido;
@@ -356,34 +356,21 @@ export class PerfilComponent implements OnInit {
     this.register = true;
     console.log(this.nomusuario)
     
-    let nuevo: Usuario = {
-
-      nomusuario: "",
-      nombre: "",
-      apellido: "",
-      fechaNacimiento: null,
-      correo: "",
-      region: "",
-      comuna: "",
-      genero: "",
-      foto: "",
-      password: "",
-      direccion: "",
-      fono: 0
-    }
+    let nuevo: Usuario;
 
     const obj = JSON.parse(JSON.stringify(this.usuarioEditado));
     const user = JSON.parse(JSON.stringify(this.usuarioLog));
 
     console.log(obj);
     console.log(user);
-    console.log(nuevo);
     console.log(this.foto);
+    console.log(this.imagenFoto);
+    debugger
 
-    if (obj.nombre.length == 0) {
-      nuevo.nombre = user.nombre;
-    } else {
+    if (obj.nombre.length == user.nombre.length) {
       nuevo.nombre = obj.nombre;
+    } else {
+      nuevo.nombre = user.nombre;
     }
     if (obj.apellido.length == 0) {
       nuevo.apellido = user.apellido;
@@ -439,7 +426,7 @@ export class PerfilComponent implements OnInit {
     } else {
       nuevo.fechaNacimiento = obj.fechaNacimiento;
     }
-    if(this.nombre.length <= 3  ) {
+    if(this.nombrebd.length <= 3  ) {
       alert("Verifique los datos ingresados")
       this.register= false
         
@@ -485,9 +472,10 @@ export class PerfilComponent implements OnInit {
         
       }else{
 
-    this.usuarioService.putUser(this.idU, user).subscribe(
+    /* this.usuarioService.putUser(this.idU, user).subscribe(
       res => this.obs = res
-    )
+) */
+console.log(nuevo)
     alert("Se han actualizado los datos")
     location.reload();
 

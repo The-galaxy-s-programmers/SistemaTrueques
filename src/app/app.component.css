@@ -44,3 +44,13 @@
   padding-left: 24px;
   padding-right: 24px;
 }
+.letraaa{
+    color: white;
+}
+.letraaa:hover{
+    color:white;
+  }
+  
+.letraaa:active{
+    color: white;
+  }

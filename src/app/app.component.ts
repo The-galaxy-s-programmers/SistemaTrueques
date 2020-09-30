@@ -70,8 +70,16 @@ export class AppComponent {
         this.countFav = 0;
       }
      if(localStorage.getItem("nomUser").length > 2){
-        if(localStorage.getItem("idU") == "undefined" || localStorage.getItem("idU") == undefined ){
-          location.reload();
+        while(localStorage.getItem("idU") == "undefined" || localStorage.getItem("idU") == undefined ){
+          this.usuarioServices.getNomUser(this.nomUser).subscribe(
+            res => this.user = res 
+          )
+          setTimeout(()=>{ console.log("wait")},2500)
+          
+          if(parseInt(localStorage.getItem("idU")) >= 0 ){
+            break;
+          }
+       
         }
      }
      

@@ -60,60 +60,54 @@ export class ChatProductoComponent implements OnInit {
   exist:boolean;
   UserFav:Usuario[]=[];
   borrarMM:boolean=false;
+  obj;
 
   constructor(private usuarioService:UsuarioService, private productoService: ProductoService,public datePipe:DatePipe, private chatPrivService:ChatPrivService) { }
-Duenio:ChatPriv[]=[];
-ab;
-ad;
-ap;
+    Duenio:ChatPriv[]=[];
+    aa:string;
+    ab:string;
+    ac:string;
+
   ngOnInit(): void {
       
-    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
-      res => this.chat = res
+    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(// chat general
+      res => {this.chat = res},err=>{console.log(err)}
     )
     this.buscar();
-    this.chatPrivService.getListaxToken(localStorage.getItem("token")).subscribe(
-      res=> this.Duenio = res
+    this.chatPrivService.getListaxToken(localStorage.getItem("token")).subscribe( // chat top 1 
+      res=>{ this.Duenio = res},err=>{console.log(err)}
     )
     setTimeout(()=>{
-      console.log(JSON.parse(JSON.stringify(this.Duenio))[0])
-      if(JSON.parse(JSON.stringify(this.Duenio))[0].id_duenio==null){
-       this.ad= localStorage.getItem("idD");
-      }
-    else if(parseInt(localStorage.getItem("idU"))==parseInt(localStorage.getItem("idD"))){
-    localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio))[0].id_producto)
-      this.ab=JSON.parse(JSON.stringify(this.Duenio))[0].id_user
-      this.ad=JSON.parse(JSON.stringify(this.Duenio))[0].id_duenio
-    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
-      res => this.chat = res
-    )}
-    else if(localStorage.getItem("idU")!=localStorage.getItem("idD")){
-      localStorage.setItem("idP",JSON.parse(JSON.stringify(this.Duenio))[0].id_producto)
-        this.ab=localStorage.getItem("idU")
-        this.ad=JSON.parse(JSON.stringify(this.Duenio))[0].id_duenio
-      this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
-        res => this.chat = res
-      )}else{
-      this.ab=localStorage.getItem("idU");
-      this.ad= localStorage.getItem("idD");
-    }
-  },3000)
+   if(this.Duenio[0].nomDuenio==localStorage.getItem("nomUser")){
+     this.ab=stringify(this.Duenio[0].id_producto)
+     this.aa=stringify(this.Duenio[0].id_user)
+     this.ac=this.Duenio[0].nomUser
+   }else{
+    this.aa=localStorage.getItem("idU");
+    this.ab=localStorage.getItem("idP");
+    this.ac=localStorage.getItem("nomUser")
+   }
+    console.log(this.chat[0])
+  }
+    ,3000)
   }
 
   addPost() {
 
     this.Comentario={
-      id_producto:parseInt(localStorage.getItem("idP")),
-       id_user:this.ab,
+      id_producto:parseInt(this.ab),
+       id_user:parseInt(this.aa),
        mensaje:this.content,
-       id_duenio:this.ad,
-       nomUser:localStorage.getItem("nomUser"),
-       nomDuenio:JSON.parse(JSON.stringify(this.duenioL)).nomusuario,
-       nomProducto:this.nombre,
+       id_duenio:this.obj.id_usuario,
+       nomUser:this.ac,
+       nomDuenio:this.duenioL.nomusuario,
+       nomProducto:this.obj.nombre,
        token:parseInt(localStorage.getItem("token")),
        mensajePor:parseInt(localStorage.getItem("idU"))
     }
+
     console.log(this.Comentario)
+
    this.chatPrivService.postMensaje(this.Comentario).subscribe(
      res=> {console.log(res)},err => console.log(err)
    )
@@ -136,33 +130,19 @@ ap;
   }
 
   buscar() {
-    this.show3=false;
+    this.show3=false; 
     let a = localStorage.getItem("idP")
     this.productoService.getIdProducto(a).subscribe(
       res => {
         this.producto = res
       }, err => console.log(err)
     )
-    this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
-      res=> this.user = res
-    )
     
     setTimeout(()=>{
-   const obj = JSON.parse(JSON.stringify(this.producto))
-      this.nombre=obj.nombre;
-      this.descripcion=obj.descripcion;
-      this.categoria=obj.categoria;
-      this.fechaPublicacion=obj.fechaPublicacion;
-      this.imagen=obj.imagen;
-      this.idPu=obj.id_usuario;
-      this.ubicacion=obj.ubicacion;
-      this.subcategoria=obj.subcategoria;
-      this.uso=obj.uso;
-      this.fechastring=this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
-      this.userL = JSON.parse(JSON.stringify(this.user))
-      this.idU=this.userL.idU;
-      console.log(obj.id_usuario)
-      this.usuarioService.getIdUser(this.idPu).subscribe(
+      this.obj = JSON.parse(JSON.stringify(this.producto))
+      console.log(this.obj.id_usuario,this.obj.nombre)
+
+      this.usuarioService.getIdUser(this.obj.id_usuario).subscribe(
         res=> this.duenio = res
       )
       
@@ -173,12 +153,9 @@ ap;
     setTimeout(()=>{
       this.duenioL = JSON.parse(JSON.stringify(this.duenio))
       this.show3=true;
-      if(localStorage.getItem("nomUser")==this.duenioL.nomusuario){
-       this.respuestaDM=true;
-      }
-     
+      console.log(this.duenioL.nomusuario)
     },5000)
-
+ 
   }
   reportChat(id) {
     localStorage.setItem("coment", id +" "+ localStorage.getItem("token") )

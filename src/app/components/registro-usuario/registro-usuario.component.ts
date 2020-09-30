@@ -152,7 +152,6 @@ export class RegistroUsuarioComponent implements OnInit {
 
   iniciar() {
     this.showSpin = false;
-    console.log(this.nombredusuario)
     if(this.nombredusuario == undefined || this.passworddusuario == undefined ) {
       alert("Verifique los datos ingresados")
         this.showSpin=true;
