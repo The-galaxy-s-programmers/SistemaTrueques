@@ -219,7 +219,10 @@ export class ProductoComponent implements OnInit {
 
   }
   id_producto;
+  deletethis=false;
   buscar() {
+
+   
     this.show3 = false;
     let a = localStorage.getItem("idP")
     this.productoService.getIdProducto(a).subscribe(
@@ -264,6 +267,10 @@ export class ProductoComponent implements OnInit {
         this.respuestaDM = true;
       }
       console.log(this.duenioL.nomusuario);
+      if(this.duenioL.nomusuario == "undefined" || this.duenioL.nomusuario == undefined){ this.buscar(); }
+      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+        this.deletethis=true;
+      } 
     }, 6000)
 
   }
@@ -307,6 +314,13 @@ export class ProductoComponent implements OnInit {
       }
     }, 2000)
   }
+delete(){
+  this.productoService.deleteProducto(localStorage.getItem("idP")).subscribe(
+    res=> console.log(res)
+  )
+  window.location.href="/Perfil"
+  localStorage.setItem("idP","")
+}
 
 }
 

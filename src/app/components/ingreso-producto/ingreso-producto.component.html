@@ -5,157 +5,49 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Ingrese producto a trocar</h3>
-
+                    <div class="alert alert-danger" role="alert">
+                        ¡Los datos de los productos necesitan minimo 3 caracteres!
+                    </div>
                     <div class="container">
                         <span> Nombre del producto</span>
                         <div class="col-12">
-                            <input name="name" type="text" placeholder="Nombre" [(ngModel)]="nombre" class="form-control">
+                            <input name="name" type="text" placeholder="Nombre" required [(ngModel)]="nombre"
+                                class="form-control">
                         </div>
                     </div>
                     <br />
                     <div class="container">
                         <span> Descripcion</span>
                         <div class="col-12">
-                            <textarea class="form-control" aria-label="Descripcion"  [(ngModel)]="descripcion"></textarea>
+                            <textarea class="form-control" aria-label="Descripcion" required
+                                [(ngModel)]="descripcion"></textarea>
                         </div>
                     </div>
                     <br />
                     <div class="container">
                         <div class="col-12">
                             <span>Categoria</span>
-                            <select class="form-control" id="exampleFormControlSelect1"  [(ngModel)]="categoria" required>
-                                <optgroup label="Seleccione una Categoria">
-
-                                </optgroup>
-                                <optgroup label="Tecnologia">
-                                    <option value="Notebook">Notebook</option>
-                                    <option value="Celulares">Celulares</option>
-                                    <option value="Camaras">Camaras</option>
-                                    <option value="Accesorios">Accesorios</option>
-                                    <option value="Audifonos">Audifonos</option>
-                                    <option value="Televisores">Televisores</option>
-                                    <option value="Conosolas">Conosolas</option>
-                                    <option value="Otros">Otros</option>
-                                </optgroup>
-                                <optgroup label="Electrodomesticos">
-                                    <option value="Cuidado Personal">Cuidado Personal</option>
-                                    <option value="Climatizacion">Climatizacion</option>
-                                    <option value="Dispensador y Purificadores">Dispensador y Purificadores</option>
-                                    <option value="Hornos y Cocinas">Hornos y Cocinas</option>
-                                    <option value="Lavado">Lavado</option>
-                                    <option value="Cocina y Otros">Cocina y Otros</option>
-                                    <option value="Otros">Otros</option>
-                                </optgroup>
-                                <optgroup label="Hogar">
-                                    <option value="Terraza y Jardín">Terraza y Jardín</option>
-                                    <option value="Decoración">Decoración</option>
-                                    <option value="Menaje cocina">Menaje cocina</option>
-                                    <option value="Menaje comedor">Menaje comedor</option>
-                                    <option value="Baño">Baño</option>
-                                    <option value="Parrillas y Quincho">Parrillas y Quincho</option>
-                                    <option value="Dormitorio">Dormitorio</option>
-                                    <option value="Iluminacion">Iluminacion</option>
-                                    <option value="Otros">Otros</option>
-                                </optgroup>
-                                <optgroup label="Deportes">
-                                    <option value="Boxeo">Boxeo</option>
-                                    <option value="Basquetbol">Basquetbol</option>
-                                    <option value="Ciclismo">Ciclismo</option>
-                                    <option value="Fitness">Fitness</option>
-                                    <option value="Futbol">Futbol</option>
-                                    <option value="Hockey">Hockey</option>
-                                    <option value="Juegos de salon">Juegos de salon</option>
-                                    <option value="Scooters">Scooters</option>
-                                    <option value="Natacion">Natacion</option>
-                                    <option value="Patin, Gimnasia y danza">Patin, Gimnasia y danza</option>
-                                    <option value="11">Pilates y Yoga</option>
-                                    <option value="12">Ropa Deportiva</option>
-                                    <option value="13">Deportes de Tablas</option>
-                                    <option value="14">Suplementos</option>
-                                    <option value="15">Tenis</option>
-                                    <option value="16">Trekking y Montañismo</option>
-                                    <option value="17">Voleibol</option>
-                                    <option value="18">Zapatillas</option>
-                                    <option value="19">Otros</option>
-
-                                </optgroup>
-                                <optgroup label="Musica">
-                                    <option value="1">Bateria y Percusión</option>
-                                    <option value="2">Equipo de DJ y Accesorios</option>
-                                    <option value="3">Estudio de Grabacion</option>
-                                    <option value="4">Instrumento de Cuerdas</option>
-                                    <option value="5">Instrumento de Viento</option>
-                                    <option value="6">Microfonos y Amplificadores</option>
-                                    <option value="7">Parlantes y Bafles</option>
-                                    <option value="8">Teclados y Pianos</option>
-                                    <option value="9">Otros</option>
-                                </optgroup>
-                                <optgroup label="Vehiculos">
-                                    <option value="1">Llantas</option>
-                                    <option value="2">GPS</option>
-                                    <option value="3">Herramientas de Limpieza</option>
-                                    <option value="4">Repuestos de Autos y Camionetas</option>
-                                    <option value="5">Repuestos de Motos y Cutrimotos</option>
-                                    <option value="6">Seguridad Vehicular</option>
-                                    <option value="7">Autos Chocados</option>
-                                    <option value="8">Autos de Coleccion</option>
-                                    <option value="9">Autos y Camionetas</option>
-                                    <option value="10">Camiones</option>
-                                    <option value="11">Motos</option>
-                                    <option value="12">Otros Vehiculos</option>
-                                </optgroup>
-                                <optgroup label="Construccion">
-                                    <option value="1">Electricidad</option>
-                                    <option value="2">Gasfiteria</option>
-                                    <option value="3">Herramientas</option>
-                                    <option value="4">Mobiliario para Baños</option>
-                                    <option value="5">Mobiliario para Cocinas</option>
-                                    <option value="6">Pinturas</option>
-                                    <option value="7">Pisos y Revestimientos</option>
-                                    <option value="8">Otros</option>
-                                </optgroup>
-                                <optgroup label="Belleza y Cuidado Personal">
-                                    <option value="1">Articulos de Peluqueria</option>
-                                    <option value="2">Barberia</option>
-                                    <option value="3">Cuidado de la Piel</option>
-                                    <option value="4">Cuidado del Cabello</option>
-                                    <option value="5">Farmacia</option>
-                                    <option value="6">Maquillaje y Perfumes</option>
-                                    <option value="7">Otros</option>
-                                </optgroup>
-                                <optgroup label="Vestuario y Calzado">
-                                    <option value="1">Accesorios de Moda</option>
-                                    <option value="2">Bermudas y Shorts</option>
-                                    <option value="3">Blusas</option>
-                                    <option value="4">Bolsos, Carteras y Mochilas</option>
-                                    <option value="5">Calzados</option>
-                                    <option value="6">Calzas</option>
-                                    <option value="7">Camisas</option>
-                                    <option value="8">Chalecos, Chaquetas y Parkas</option>
-                                    <option value="9">Enteritos</option>
-                                    <option value="10">Faldas</option>
-                                    <option value="11">Pantalones y Jeans</option>
-                                    <option value="12">Poleras y Polerones</option>
-                                    <option value="13">Ropa de Dormir</option>
-                                    <option value="14">Ternos</option>
-                                    <option value="15">Trajes de Baño</option>
-                                    <option value="16">Uniformes de Trabajo</option>
-                                    <option value="17">Vestuario de Bebe</option>
-                                    <option value="18">Otros</option>
-                                </optgroup>
-                                <optgroup label="Accesorios">
-                                    <option value="1" >Relojes</option>
-                                    <option value="2">Joyeria</option>
-                                    <option value="3">Lapices y Plumas</option>
-                                    <option value="4">Piedras Preciosas</option>
-                                    <option value="5">Pulsometros y Cronometros</option>
-                                    <option value="6">Smartwach</option>
-                                    <option value="7">Sombreros y Gorros</option>
-                                    <option value="8">Anteojos</option>
-                                    <option value="9">Libros</option>
-                                    <option value="10">Espejos</option>
-                                    <option value="11">Antiguedades</option>
-                                </optgroup>
+                            <select class="form-control" id="categoria" name="categoria" [(ngModel)]="categoria"
+                                required>
+                                <option value="Tecnologia">Tecnologia</option>
+                                <option value="Electrodomesticos">Electrodomesticos</option>
+                                <option value="Hogar">Hogar</option>
+                                <option value="Deportes">Deportes</option>
+                                <option value="Musica">Musica</option>
+                                <option value="Vehiculos">Vehiculos</option>
+                                <option value="Construccion">Construccion</option>
+                                <option value="Belleza y Cuidado Personal">Belleza y Cuidado Personal</option>
+                                <option value="Vestuario y Calzado">Vestuario y Calzado</option>
+                                <option value="Accesorios">Accesorios</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="container">
+                        <div class="col-12">
+                            <span>SubCategoria</span>
+                            <select class="form-control" id="subcategoria" name="subcategoria"  [(ngModel)]="subcategoria"
+                                required>
                             </select>
                         </div>
                     </div>
@@ -164,7 +56,8 @@
                         <span> Uso</span>
                         <div class="col-auto my-1">
                             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="uso" required>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="uso"
+                                required>
                                 <option selected>Seleccione uso...</option>
                                 <option value="Ningun Uso">Ningun Uso</option>
                                 <option value="Poco Uso">Poco Uso</option>
@@ -180,31 +73,40 @@
                         <div class="col-12">
                             <div class="form-group input-group">
                                 <div class="col-6">
-                                    <input type="text" class="form-control"  [(ngModel)]="comuna" placeholder="Comuna">
+                                    <span> Comuna </span>
+                                    <input type="text" class="form-control" [(ngModel)]="comuna" required
+                                        placeholder="Comuna">
                                 </div>
                                 <div class="col-6">
+                                    <span> Region </span>
                                     <div class="form-group col-12">
-                                        <select class="form-control" [(ngModel)]="region" id="exampleFormControlSelect1" required [(ngModel)]="region">
+                                        <select class="form-control" [(ngModel)]="region" id="exampleFormControlSelect1"
+                                            required [(ngModel)]="region">
                                             <optgroup label="Seleccione una Region">
-                                            <option value="Tarapacá" data-id="01">Tarapacá</option>
-                                            <option value="Antofagasta" data-id="02">Antofagasta</option>
-                                            <option value="Atacama" data-id="03">Atacama</option>
-                                            <option value="Coquimbo" data-id="04">Coquimbo</option>
-                                            <option value="Valparaíso" data-id="05">Valparaíso</option>
-                                            <option value="Del Libertador Gral. Bernardo O’Higgins" data-id="06">Del Libertador Gral. Bernardo O’Higgins</option>
-                                            <option value="Del Maule" data-id="07">Del Maule</option>
-                                            <option value="Del Biobío" data-id="08">Del Biobío</option>
-                                            <option value="De la Araucanía" data-id="09">De la Araucanía</option>
-                                            <option value="De los Lagos" data-id="10">De los Lagos</option>
-                                            <option value="Aysén del Gral. Carlos Ibáñez del Campo" data-id="11">Aysén del Gral. Carlos Ibáñez del Campo</option>
-                                            <option value="Magallanes y de la Antártica Chilena" data-id="12">Magallanes y de la Antártica Chilena</option>
-                                            <option value="Metropolitana de Santiago" data-id="13">Metropolitana de Santiago</option>
-                                            <option value="De los Ríos" data-id="14">De los Ríos</option>
-                                            <option value="Arica y Parinacota" data-id="15">Arica y Parinacota</option>
-                                            <option value="Ñuble" data-id="16">Ñuble</option>
+                                                <option value="Tarapacá" data-id="01">Tarapacá</option>
+                                                <option value="Antofagasta" data-id="02">Antofagasta</option>
+                                                <option value="Atacama" data-id="03">Atacama</option>
+                                                <option value="Coquimbo" data-id="04">Coquimbo</option>
+                                                <option value="Valparaíso" data-id="05">Valparaíso</option>
+                                                <option value="Del Libertador Gral. Bernardo O’Higgins" data-id="06">Del
+                                                    Libertador Gral. Bernardo O’Higgins</option>
+                                                <option value="Del Maule" data-id="07">Del Maule</option>
+                                                <option value="Del Biobío" data-id="08">Del Biobío</option>
+                                                <option value="De la Araucanía" data-id="09">De la Araucanía</option>
+                                                <option value="De los Lagos" data-id="10">De los Lagos</option>
+                                                <option value="Aysén del Gral. Carlos Ibáñez del Campo" data-id="11">
+                                                    Aysén del Gral. Carlos Ibáñez del Campo</option>
+                                                <option value="Magallanes y de la Antártica Chilena" data-id="12">
+                                                    Magallanes y de la Antártica Chilena</option>
+                                                <option value="Metropolitana de Santiago" data-id="13">Metropolitana de
+                                                    Santiago</option>
+                                                <option value="De los Ríos" data-id="14">De los Ríos</option>
+                                                <option value="Arica y Parinacota" data-id="15">Arica y Parinacota
+                                                </option>
+                                                <option value="Ñuble" data-id="16">Ñuble</option>
                                         </select>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -213,28 +115,31 @@
                     <div class="container">
                         <span> Valor Refencial</span>
                         <div class="col-12">
-                            <input  [(ngModel)]="valorReferencial" name="precio" class="number" placeholder="Valor" class="form-control">
+                            <input [(ngModel)]="valorReferencial" required name="precio" class="number"
+                                placeholder="Valor" class="form-control">
                         </div>
                     </div>
                     <br />
                     <div class="container">
                         <span> Fecha de publicacion</span>
                         <div class="col-12">
-                            <input  [(ngModel)]="fecha" name="Fecha" class="date" placeholder="" class="form-control" readonly="readonly"
-                                value={{Fecha}}>
+                            <input name="Fecha" class="date" placeholder="" required class="form-control"
+                                readonly="readonly" value={{Fecha}}>
                         </div>
                     </div>
                     <br />
                     <div class="container">
-                        <span>Subir Imagen</span>
-                        <input type="file" class="form-control-file" id="imagenUp" onchange="toBase64()">
-                        <div id="imagenModel" [(ngModel)]="imagen" readonly="readonly" style="display: none;"></div>
+                        <span>Subir Imagen </span>
+                        <input type="file" accept="image/*" required (change)="changeListener($event)"
+                            [(ngModel)]="imagen">
                     </div>
                     <br />
                     <div class="col-12 text-center">
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1"  [(ngModel)]="check">
-                            <label class="form-check-label" for="exampleCheck1">Acepta los <a href="https://drive.google.com/file/d/1oTj_LRM-qwty72ojU-S8UZakP-X7q84h/view?usp=sharing" target="_blank">Terminos y
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="check">
+                            <label class="form-check-label" for="exampleCheck1">Acepta los <a
+                                    href="https://drive.google.com/file/d/1oTj_LRM-qwty72ojU-S8UZakP-X7q84h/view?usp=sharing"
+                                    target="_blank">Terminos y
                                     Condiciones</a></label>
                         </div>
                     </div>

@@ -73,5 +73,43 @@
 <body class="mat-typography">
 	<app-root></app-root>
 </body>
+<script type='text/javascript'>
+    $(document).on("change", "#categoria", function () {
 
+        var Tecnologia = "<option value='Notebook'>Notebook</option><option value='Celulares'>Celulares</option><option value='Camaras'>Camaras</option><option value='Accesorios'>Accesorios</option><option value='Audifonos'>Audifonos</option><option value='Televisores'>Televisores</option><option value='Conosolas'>Conosolas</option><option value='Otros'>Otros</option>"
+        var Electrodomesticos = "<option value='Cuidado Personal'>Cuidado Personal</option><option value='Climatizacion'>Climatizacion</option><option value='Dispensador y Purificadores'>Dispensador y Purificadores</option><option value='Hornos y Cocinas'>Hornos y Cocinas</option><option value='Lavado'>Lavado</option><option value='Cocina y Otros'>Cocina y Otros</option><option value='Otros'>Otros</option>"
+        var Hogar = "<option value='Terraza y Jardín'>Terraza y Jardín</option><option value='Decoración'>Decoración</option><option value='Menaje cocina'>Menaje cocina</option><option value='Menaje comedor'>Menaje comedor</option><option value='Baño'>Baño</option><option value='Parrillas y Quincho'>Parrillas y Quincho</option><option value='Dormitorio'>Dormitorio</option><option value='Iluminacion'>Iluminacion</option><option value='Otros'>Otros</option>"
+        var Deportes = "<option value='Boxeo'>Boxeo</option><option value='Basquetbol'>Basquetbol</option><option value='Ciclismo'>Ciclismo</option><option value='Fitness'>Fitness</option><option value='Futbol'>Futbol</option><option value='Hockey'>Hockey</option><option value='Juegos de salon'>Juegos de salon</option><option value='Scooters'>Scooters</option><option value='Natacion'>Natacion</option><option value='Patin, Gimnasia y danza'>Patin, Gimnasia y danza</option><option value='Pilates y Yoga'>Pilates y Yoga</option><option value='Ropa Deportiva'>Ropa Deportiva</option><option value='Deportes de Tablas'>Deportes de Tablas</option><option value='Suplementos'>Suplementos</option><option value='Tenis'>Tenis</option><option value='Trekking y Montañismo'>Trekking y Montañismo</option><option value='Voleibol'>Voleibol</option><option value='Zapatillas'>Zapatillas</option><option value='Otros'>Otros</option>"
+        var Musica = "<option value='Bateria y Percusión'>Bateria y Percusión</option><option value='Equipo de DJ y Accesorios'>Equipo de DJ y Accesorios</option><option value='Estudio de Grabacion'>Estudio de Grabacion</option><option value='Instrumento de Cuerdas'>Instrumento de Cuerdas</option><option value='Instrumento de Viento'>Instrumento de Viento</option><option value='Microfonos y Amplificadores'>Microfonos y Amplificadores</option><option value='Parlantes y Bafles'>Parlantes y Bafles</option><option value='Teclados y Pianos'>Teclados y Pianos</option><option value='Otros'>Otros</option>"
+        var Vehiculos = "<option value='Llantas'>Llantas</option><option value='GPS'>GPS</option><option value='Herramientas de Limpieza'>Herramientas de Limpieza</option><option value='Repuestos de Autos y Camionetas'>Repuestos de Autos y Camionetas</option><option value='Repuestos de Motos y Cutrimotos'>Repuestos de Motos y Cutrimotos</option><option value='Seguridad Vehicular'>Seguridad Vehicular</option><option value='Autos Chocados'>Autos Chocados</option><option value='Autos de Coleccion'>Autos de Coleccion</option><option value='Autos y Camionetas'>Autos y Camionetas</option><option value='Camiones'>Camiones</option><option value='Motos'>Motos</option><option value='Otros Vehiculos'>Otros Vehiculos</option>"
+        var Accesorios = "<option value='Relojes' >Relojes</option><option value='Joyeria'>Joyeria</option><option value='Lapices y Plumas'>Lapices y Plumas</option><option value='Piedras Preciosas'>Piedras Preciosas</option><option value='Pulsometros y Cronometros'>Pulsometros y Cronometros</option><option value='Smartwach'>Smartwach</option><option value='Sombreros y Gorros'>Sombreros y Gorros</option><option value='Anteojos'>Anteojos</option><option value='Libros'>Libros</option><option value='Espejos'>Espejos</option><option value='Antiguedades'>Antiguedades</option><option value='Otros'>Otros</option>"
+        var Vestuario_y_Calzado = "<option value='Accesorios de Moda'>Accesorios de Moda</option><option value='Bermudas y Shorts'>Bermudas y Shorts</option><option value='Blusas'>Blusas</option><option value='Bolsos, Carteras y Mochilas'>Bolsos, Carteras y Mochilas</option><option value='Calzados'>Calzados</option><option value='Calzas'>Calzas</option><option value='Camisas'>Camisas</option><option value='Chalecos, Chaquetas y Parkas'>Chalecos, Chaquetas y Parkas</option><option value='Enteritos'>Enteritos</option><option value='Faldas'>Faldas</option><option value='Pantalones y Jeans'>Pantalones y Jeans</option><option value='Poleras y Polerones'>Poleras y Polerones</option><option value='Ropa de Dormir'>Ropa de Dormir</option><option value='Ternos'>Ternos</option><option value='Trajes de Baño'>Trajes de Baño</option><option value='Uniformes de Trabajo'>Uniformes de Trabajo</option><option value='Vestuario de Bebe'>Vestuario de Bebe</option><option value='Otros'>Otros</option>"
+        var Belleza_y_Cuidado_Personal = "<option value='1'>Articulos de Peluqueria</option><option value='2'>Barberia</option><option value='3'>Cuidado de la Piel</option><option value='4'>Cuidado del Cabello</option><option value='5'>Farmacia</option><option value='6'>Maquillaje y Perfumes</option><option value='Otros'>Otros</option>"
+        var Construccion = "<option value='Electricidad'>Electricidad</option><option value='Gasfiteria'>Gasfiteria</option><option value='Herramientas'>Herramientas</option><option value='Mobiliario para Baños'>Mobiliario para Baños</option><option value='Mobiliario para Cocinas'>Mobiliario para Cocinas</option><option value='Pinturas'>Pinturas</option><option value='Pisos y Revestimientos'>Pisos y Revestimientos</option><option value='Otros'>Otros</option>"
+
+        var idCategoria = $("#categoria option:selected").val();
+
+        if (idCategoria == "Tecnologia")
+            $("#subcategoria").html(Tecnologia);
+        else if (idCategoria == "Electrodomesticos")
+            $("#subcategoria").html(Electrodomesticos);
+            else if (idCategoria == "Hogar")
+            $("#subcategoria").html(Hogar);
+            else if (idCategoria == "Deportes")
+            $("#subcategoria").html(Deportes);
+            else if (idCategoria == "Musica")
+            $("#subcategoria").html(Musica);
+            else if (idCategoria == "Vehiculos")
+            $("#subcategoria").html(Vehiculos);
+            else if (idCategoria == "Accesorios")
+            $("#subcategoria").html(Accesorios);
+            else if (idCategoria == "Vestuario y Calzado")
+            $("#subcategoria").html(Vestuario_y_Calzado);
+            else if (idCategoria == "Belleza y Cuidado Personal")
+            $("#subcategoria").html(Electrodomesticos);
+            else if (idCategoria == "Construccion")
+            $("#subcategoria").html(Construccion);
+    
+    });
+</script>
 </html>

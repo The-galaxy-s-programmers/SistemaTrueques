@@ -69,20 +69,19 @@ export class AppComponent {
       if(this.countFav == undefined || this.countFav == null){
         this.countFav = 0;
       }
+      if(localStorage.getItem("idU") == "undefined" || localStorage.getItem("idU") == undefined ){
+        this.usuarioServices.getNomUser(this.nomUser).subscribe(
+          res => this.user = res 
+        )
+      }
+   
      if(localStorage.getItem("nomUser").length > 2){
-        while(localStorage.getItem("idU") == "undefined" || localStorage.getItem("idU") == undefined ){
+        if(localStorage.getItem("idU") == "undefined" || localStorage.getItem("idU") == undefined ){
           this.usuarioServices.getNomUser(this.nomUser).subscribe(
             res => this.user = res 
           )
-          setTimeout(()=>{ console.log("wait")},2500)
-          
-          if(parseInt(localStorage.getItem("idU")) >= 0 ){
-            break;
-          }
-       
         }
      }
-     
     },3000)
     if(this.nomUser =="admin"){
       this.show2 = true;
