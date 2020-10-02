@@ -84,31 +84,50 @@ export class ChatProductoComponent implements OnInit {
       }, 2500)
 
     } else if (this.Option == true) {
+      if (parseInt(localStorage.getItem("idU")) == this.TopParaRevision[0].id_duenio) {
 
+        setTimeout(() => {
+          this.chat = {
+            id_producto: this.TopParaRevision[0].id_producto,
+            id_user: this.TopParaRevision[0].id_user,
+            mensaje: this.content,
+            id_duenio: this.TopParaRevision[0].id_duenio,
+            nomUser: this.TopParaRevision[0].nomDuenio,
+            nomDuenio: this.TopParaRevision[0].nomDuenio,
+            nomProducto: this.TopParaRevision[0].nomProducto,
+            token: parseInt(localStorage.getItem("token")),
+            mensajePor: parseInt(localStorage.getItem("idU"))
+          }
+          this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
+        }, 2500)
+
+
+      } else {
+
+        setTimeout(() => {
+          this.chat = {
+            id_producto: this.TopParaRevision[0].id_producto,
+            id_user: this.TopParaRevision[0].id_user,
+            mensaje: this.content,
+            id_duenio: this.TopParaRevision[0].id_duenio,
+            nomUser: this.TopParaRevision[0].nomUser,
+            nomDuenio: this.TopParaRevision[0].nomDuenio,
+            nomProducto: this.TopParaRevision[0].nomProducto,
+            token: parseInt(localStorage.getItem("token")),
+            mensajePor: parseInt(localStorage.getItem("idU"))
+          }
+          this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
+        }, 2500)
+
+      }
       setTimeout(() => {
-        this.chat = {
-          id_producto: this.TopParaRevision[0].id_producto,
-          id_user: this.TopParaRevision[0].id_user,
-          mensaje: this.content,
-          id_duenio: this.TopParaRevision[0].id_duenio,
-          nomUser: this.TopParaRevision[0].nomUser,
-          nomDuenio: this.TopParaRevision[0].nomDuenio,
-          nomProducto: this.TopParaRevision[0].nomProducto,
-          token: parseInt(localStorage.getItem("token")),
-          mensajePor: parseInt(localStorage.getItem("idU"))
-        }
-        this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
+        this.content = "";
+        this.refrescar();
+      }, 4000);
 
-      }, 2500)
+
     }
-    setTimeout(() => {
-      this.content = "";
-      this.refrescar();
-    }, 4000);
-
-
   }
-
   refrescar() {
     this.chatPrivService.getListaChatCompleto(localStorage.getItem("token")).subscribe(res => this.ChatInHtml = res)
 
