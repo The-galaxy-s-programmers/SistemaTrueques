@@ -48,10 +48,10 @@ export class ProductoComponent implements OnInit {
   Ad;
   title: string;
   content: string;
-  producto: Producto[];
+  producto: Producto;
   user: Usuario[] = [];
   userL: Usuario;
-  duenio: Usuario[] = [];
+  duenio: Usuario;
   duenioL: Usuario;
 
 

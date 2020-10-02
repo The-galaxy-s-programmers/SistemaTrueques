@@ -21,56 +21,65 @@ export class ChatProductoComponent implements OnInit {
 
   TopParaRevision: ChatPriv[] = [];
   Option: boolean;
+  token;
   ngOnInit(): void {
+    this.token = localStorage.getItem("token");
     this.chatPrivService.getListaTOP1(localStorage.getItem("token")).subscribe(
       res => this.TopParaRevision = res
     )
+    this.productoService.getIdProducto(parseInt(localStorage.getItem("idP"))).subscribe(res => { this.producto = res }, err => err)
+
     setTimeout(() => {
       console.log(this.TopParaRevision[0])
       if (this.TopParaRevision[0] == undefined || this.TopParaRevision[0].mensaje == "undefined") {
         console.log("false");
         this.Option = false;
-        this.productoService.getIdProducto(localStorage.getItem("idP")).subscribe(res => { this.producto = res }, err => err)
-        this.info=this.producto[0];
-        
+
+        console.log(this.producto.id_usuario);
+        this.info = "Producto = " + this.producto.nombre + " Descripcion = " + this.producto.descripcion;
+        this.show3 = true;
+
       }
       else if (this.TopParaRevision[0].mensaje != "undefined" || this.TopParaRevision[0].mensaje != undefined) {
         console.log("true");
         this.Option = true;
-        this.chatPrivService.getListaChatCompleto(localStorage.getItem("token")).subscribe(res=>this.ChatInHtml=res)
-        this.info=this.ChatInHtml[0];
-        
+        this.chatPrivService.getListaChatCompleto(parseInt(localStorage.getItem("token"))).subscribe(res => this.ChatInHtml = res)
+        setTimeout(() => {
+          this.info = this.ChatInHtml[0].nomProducto;
+          this.show3 = true;
+        }, 3000)
       }
-      this.show3 = true;
-      
+
+
     }, 3000)
   }
+
   info;
-  ChatInHtml:ChatPriv[]=[];
+  ChatInHtml: ChatPriv[] = [];
   chat: ChatPriv;
   content: string;
   show3: boolean = false;
-  producto: Producto[] = [];
-  usuarioD:Usuario[]=[];
+  producto: Producto;
+  usuarioD: Usuario;
 
   addPost() {
 
     if (this.Option == false) {
-      this.usuarioService.getIdUser(this.producto[0].id_usuario).subscribe(res=>{this.usuarioD=res},err => err)
-      
+      this.usuarioService.getIdUser(this.producto.id_usuario).subscribe(res => { this.usuarioD = res }, err => err)
+
       setTimeout(() => {
         this.chat = {
           id_producto: parseInt(localStorage.getItem("idP")),
           id_user: parseInt(localStorage.getItem("idU")),
           mensaje: this.content,
-          id_duenio:this.producto[0].id_usuario,
+          id_duenio: this.producto.id_usuario,
           nomUser: localStorage.getItem("nomUser"),
-          nomDuenio:this.usuarioD[0].nomusuario,
-          nomProducto:this.producto[0].nombre,
-          token:parseInt(localStorage.getItem("token")),
-          mensajePor:parseInt(localStorage.getItem("idU"))
+          nomDuenio: this.usuarioD.nomusuario,
+          nomProducto: this.producto.nombre,
+          token: parseInt(localStorage.getItem("token")),
+          mensajePor: parseInt(localStorage.getItem("idU"))
         }
-        this.chatPrivService.postMensaje(this.chat).subscribe(res=>console.log(res))
+        this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
         this.refrescar();
       }, 2500)
 
@@ -81,27 +90,31 @@ export class ChatProductoComponent implements OnInit {
           id_producto: this.TopParaRevision[0].id_producto,
           id_user: this.TopParaRevision[0].id_user,
           mensaje: this.content,
-          id_duenio:this.TopParaRevision[0].id_duenio,
+          id_duenio: this.TopParaRevision[0].id_duenio,
           nomUser: this.TopParaRevision[0].nomUser,
-          nomDuenio:this.TopParaRevision[0].nomDuenio,
-          nomProducto:this.TopParaRevision[0].nomProducto,
-          token:parseInt(localStorage.getItem("token")),
-          mensajePor:parseInt(localStorage.getItem("idU"))
+          nomDuenio: this.TopParaRevision[0].nomDuenio,
+          nomProducto: this.TopParaRevision[0].nomProducto,
+          token: parseInt(localStorage.getItem("token")),
+          mensajePor: parseInt(localStorage.getItem("idU"))
         }
-        this.chatPrivService.postMensaje(this.chat).subscribe(res=>console.log(res))
-        this.refrescar();
+        this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
+
       }, 2500)
     }
+    setTimeout(() => {
+      this.content = "";
+      this.refrescar();
+    }, 4000);
 
 
   }
 
   refrescar() {
-    this.chatPrivService.getListaChatCompleto(localStorage.getItem("token")).subscribe(res=>this.ChatInHtml=res)
+    this.chatPrivService.getListaChatCompleto(localStorage.getItem("token")).subscribe(res => this.ChatInHtml = res)
 
   }
 
-  aceptar(){
+  aceptar() {
 
   }
 
