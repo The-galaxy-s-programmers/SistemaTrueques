@@ -22,10 +22,10 @@ export class ChatPrivService {
   getListaMensaje(id): Observable<ChatPrivToken[]> {
     return this.http.get<ChatPrivToken[]>(this.url+'/'+id)
   }
-  getListaxToken(id): Observable<ChatPriv[]> {
+  getListaTOP1(id): Observable<ChatPriv[]> {
     return this.http.get<ChatPriv[]>(this.url+'/token/'+id)
   }
-  getListaxTopToken(id): Observable<ChatPriv[]> {
+  getListaChatCompleto(id): Observable<ChatPriv[]> {
     return this.http.get<ChatPriv[]>(this.url+'/idToken/'+id)
   }
   postMensaje(chat:ChatPriv) {

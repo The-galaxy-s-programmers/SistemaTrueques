@@ -16,152 +16,95 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ChatProductoComponent implements OnInit {
 
-  Ad;
-  title: string;
-  content: string;
-  producto: Producto[];
-  user: Usuario[] = [];
-  userL: Usuario;
-  duenio: Usuario[] = [];
-  duenioL: Usuario;
-
-
-  idU: number;
-  fechastring: string;
-  idP?: number;
-  nombre: string;
-  descripcion: string;
-  categoria: string;
-  fechaPublicacion: String;
-  uso: string;
-  imagen: string;
-  valorReferencia: number;
-  ubicacion: string;
-  subcategoria: string;
-  id_usuario: number;
-
-  escrituraDM: boolean;
-  correo: string;
-  coment: string;
-  id: number;
-  show: boolean = true;
-  showComent: boolean = true;
-  click = 0;
-  respuesta: string;
-  resp = "";
-  respuestaDM: boolean;
-  contenta: string;
-  show3: boolean;
-  mensaje = false;
-  bnregistro = true;
-  idPu: number;
-  Comentario: ChatPriv;
-  chat: ChatPriv[] = [];
-  exist: boolean;
-  UserFav: Usuario[] = [];
-  borrarMM: boolean = false;
-  obj;
 
   constructor(private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatPrivService: ChatPrivService) { }
-  Duenio: ChatPriv[] = [];
-  aa: string;
-  ab: string;
-  ac: string;
 
+  TopParaRevision: ChatPriv[] = [];
+  Option: boolean;
   ngOnInit(): void {
-
-    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(// chat general
-      res => { this.chat = res }, err => { console.log(err) }
+    this.chatPrivService.getListaTOP1(localStorage.getItem("token")).subscribe(
+      res => this.TopParaRevision = res
     )
-
-    this.buscar();
-
-    this.chatPrivService.getListaxToken(localStorage.getItem("token")).subscribe( // chat top 1 
-      res => { this.Duenio = res }, err => { console.log(err) }
-    )
+    setTimeout(() => {
+      console.log(this.TopParaRevision[0])
+      if (this.TopParaRevision[0] == undefined || this.TopParaRevision[0].mensaje == "undefined") {
+        console.log("false");
+        this.Option = false;
+        this.productoService.getIdProducto(localStorage.getItem("idP")).subscribe(res => { this.producto = res }, err => err)
+        this.info=this.producto[0];
+        
+      }
+      else if (this.TopParaRevision[0].mensaje != "undefined" || this.TopParaRevision[0].mensaje != undefined) {
+        console.log("true");
+        this.Option = true;
+        this.chatPrivService.getListaChatCompleto(localStorage.getItem("token")).subscribe(res=>this.ChatInHtml=res)
+        this.info=this.ChatInHtml[0];
+        
+      }
+      this.show3 = true;
+      
+    }, 3000)
   }
+  info;
+  ChatInHtml:ChatPriv[]=[];
+  chat: ChatPriv;
+  content: string;
+  show3: boolean = false;
+  producto: Producto[] = [];
+  usuarioD:Usuario[]=[];
 
   addPost() {
-    /* try{
-        if( this.Duenio[0].id_user.toString() == undefined || this.Duenio[0].id_user.toString() == "undefined"){
-          this.aa=localStorage.getItem("idU");
-         this.ab=localStorage.getItem("idP");
-         this.ac=localStorage.getItem("nomUser")
-         console.log("1")
-        }}catch(e){
-          console.log(e) 
-          if( e.toString().includes("Typescript")){*/
-    this.aa = localStorage.getItem("idU");
-    this.ab = localStorage.getItem("idP");
-    this.ac = localStorage.getItem("nomUser")
-    console.log("3")
-    /*       }
-        } */
 
+    if (this.Option == false) {
+      this.usuarioService.getIdUser(this.producto[0].id_usuario).subscribe(res=>{this.usuarioD=res},err => err)
+      
+      setTimeout(() => {
+        this.chat = {
+          id_producto: parseInt(localStorage.getItem("idP")),
+          id_user: parseInt(localStorage.getItem("idU")),
+          mensaje: this.content,
+          id_duenio:this.producto[0].id_usuario,
+          nomUser: localStorage.getItem("nomUser"),
+          nomDuenio:this.usuarioD[0].nomusuario,
+          nomProducto:this.producto[0].nombre,
+          token:parseInt(localStorage.getItem("token")),
+          mensajePor:parseInt(localStorage.getItem("idU"))
+        }
+        this.chatPrivService.postMensaje(this.chat).subscribe(res=>console.log(res))
+        this.refrescar();
+      }, 2500)
 
+    } else if (this.Option == true) {
 
-    this.Comentario = {
-      id_producto: parseInt(this.ab),
-      id_user: parseInt(this.aa),
-      mensaje: this.content,
-      id_duenio: this.obj.id_usuario,
-      nomUser: this.ac,
-      nomDuenio: this.duenioL.nomusuario,
-      nomProducto: this.obj.nombre,
-      token: parseInt(localStorage.getItem("token")),
-      mensajePor: parseInt(localStorage.getItem("idU"))
+      setTimeout(() => {
+        this.chat = {
+          id_producto: this.TopParaRevision[0].id_producto,
+          id_user: this.TopParaRevision[0].id_user,
+          mensaje: this.content,
+          id_duenio:this.TopParaRevision[0].id_duenio,
+          nomUser: this.TopParaRevision[0].nomUser,
+          nomDuenio:this.TopParaRevision[0].nomDuenio,
+          nomProducto:this.TopParaRevision[0].nomProducto,
+          token:parseInt(localStorage.getItem("token")),
+          mensajePor:parseInt(localStorage.getItem("idU"))
+        }
+        this.chatPrivService.postMensaje(this.chat).subscribe(res=>console.log(res))
+        this.refrescar();
+      }, 2500)
     }
 
-    console.log(this.Comentario)
-
-    this.chatPrivService.postMensaje(this.Comentario).subscribe(
-      res => { console.log(res) }, err => console.log(err)
-    )
-    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
-      res => this.chat = res
-    )
-
-    setTimeout(() => {
-      this.content = "";
-    }, 3000)
 
   }
 
   refrescar() {
-
-    this.chatPrivService.getListaxTopToken(localStorage.getItem("token")).subscribe(
-      res => this.chat = res
-    )
+    this.chatPrivService.getListaChatCompleto(localStorage.getItem("token")).subscribe(res=>this.ChatInHtml=res)
 
   }
 
-  buscar() {
-    this.show3 = false;
-    let a = localStorage.getItem("idP")
-    this.productoService.getIdProducto(a).subscribe(
-      res => {
-        this.producto = res
-      }, err => console.log(err)
-    )
-
-    setTimeout(() => {
-      this.obj = JSON.parse(JSON.stringify(this.producto))
-
-      console.log(this.obj.id_usuario, this.obj.nombre)
-
-      this.usuarioService.getIdUser(this.obj.id_usuario).subscribe(
-        res => this.duenio = res
-      )
-    }, 3000)
-
-    setTimeout(() => {
-      this.duenioL = JSON.parse(JSON.stringify(this.duenio))
-      this.show3 = true;
-      console.log(this.duenioL.nomusuario);
-
-    }, 5000)
+  aceptar(){
 
   }
+
   reportChat(id) {
     localStorage.setItem("coment", id + " " + localStorage.getItem("token"))
     localStorage.setItem("a", "")
