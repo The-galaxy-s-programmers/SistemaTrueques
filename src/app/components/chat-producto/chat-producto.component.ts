@@ -36,7 +36,7 @@ export class ChatProductoComponent implements OnInit {
         this.Option = false;
 
         console.log(this.producto.id_usuario);
-        this.info = "Producto = " + this.producto.nombre + " Descripcion = " + this.producto.descripcion;
+        this.info = "Producto = " + this.producto.nombre ;
         this.show3 = true;
 
       }
@@ -45,7 +45,7 @@ export class ChatProductoComponent implements OnInit {
         this.Option = true;
         this.chatPrivService.getListaChatCompleto(parseInt(localStorage.getItem("token"))).subscribe(res => this.ChatInHtml = res)
         setTimeout(() => {
-          this.info = this.ChatInHtml[0].nomProducto;
+          this.info =  "Producto = " +this.ChatInHtml[0].nomProducto ;
           this.show3 = true;
         }, 3000)
       }

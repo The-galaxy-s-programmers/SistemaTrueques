@@ -260,15 +260,15 @@ export class ProductoComponent implements OnInit {
     }, 3000)
 
     setTimeout(() => {
-      this.duenioL = JSON.parse(JSON.stringify(this.duenio))
+      
       this.show3 = true;
-      localStorage.setItem("idD",stringify(this.duenioL.idU))
-      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+      localStorage.setItem("idD",stringify(this.duenio.idU))
+      if (localStorage.getItem("nomUser") == this.duenio.nomusuario) {
         this.respuestaDM = true;
       }
-      console.log(this.duenioL.nomusuario);
-      if(this.duenioL.nomusuario == "undefined" || this.duenioL.nomusuario == undefined){ this.buscar(); }
-      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+      console.log(this.duenio.nomusuario);
+      if(this.duenio.nomusuario == "undefined" || this.duenio.nomusuario == undefined){ this.buscar(); }
+      if (localStorage.getItem("nomUser") == this.duenio.nomusuario) {
         this.deletethis=true;
       } 
     }, 6000)
