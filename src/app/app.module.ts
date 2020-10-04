@@ -16,24 +16,11 @@ import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ErrorComponent } from './components/error/error.component';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ReportComponent } from './components/report/report.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UnsuscribeComponent } from './components/unsuscribe/unsuscribe.component';
 import { ChatProductoComponent } from './components/chat-producto/chat-producto.component';
 
-// Paste in your credentials that you saved earlier
-var firebaseConfig = {
-  apiKey: "AIzaSyDZgjRnAcR2kXCNMjvYEpgx8t0k1dHn94Y",
-  authDomain: "sistematrueques.firebaseapp.com",
-  databaseURL: "https://sistematrueques.firebaseio.com",
-  projectId: "sistematrueques",
-  storageBucket: "sistematrueques.appspot.com",
-  messagingSenderId: "1088908507063",
-  appId: "1:1088908507063:web:0beaeb1693f7d6b8e09a32",
-  measurementId: "G-QT1CH51CDH"
-};
 
 @NgModule({
   declarations: [
@@ -55,8 +42,6 @@ var firebaseConfig = {
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule,
     HttpClientModule,
     NgbModule
   ],
