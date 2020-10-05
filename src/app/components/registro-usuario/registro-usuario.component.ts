@@ -140,11 +140,11 @@ export class RegistroUsuarioComponent implements OnInit {
           localStorage.setItem("nomUser", this.nomusuario);
           this.register=false;
           window.location.href = "/Perfil";
-          },2000)
+          },3500)
         }
       }
     }
-    }, 3000)
+    }, 4500)
 
   }}
 
@@ -186,7 +186,7 @@ export class RegistroUsuarioComponent implements OnInit {
           alert("Usuario Inexistente");
           this.showSpin=true
         }
-      }, 3000)
+      }, 4500)
     }
   }
 

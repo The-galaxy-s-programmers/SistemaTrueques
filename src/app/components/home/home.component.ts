@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
         alert("Articulo añadido a favoritos");
         location.reload();
       } 
-    },3000) 
+    },4500) 
   }
 
 

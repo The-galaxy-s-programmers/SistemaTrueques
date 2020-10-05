@@ -215,9 +215,9 @@ export class PerfilComponent implements OnInit {
         this.favoritoService.getListaFavUser(this.idU).subscribe(
               res => {this.productosFavList = res;})
                  
-      }, 3000)
+      }, 4500)
 
-    }, 5000)
+    }, 6500)
 
     this.reportesSevice.getListaComentarios().subscribe(
       res => this.comentarios = res
@@ -287,7 +287,7 @@ export class PerfilComponent implements OnInit {
         alert("Articulo añadido a favoritos");
         location.reload();
       } 
-    },3000) 
+    },4500) 
   }
   
   borrarPro(id){

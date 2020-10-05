@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from "src/app/interfaces/producto";
 import { ProductoService } from "src/app/services/producto.service"
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+
 import 'rxjs/Rx';
-import { defaultThrottleConfig } from 'rxjs/internal-compatibility';
-import { DatePipe, getLocaleDateFormat } from '@angular/common';
+
+import { DatePipe } from '@angular/common';
 import { Chat } from 'src/app/interfaces/chat';
 import { ChatService } from 'src/app/services/chat.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { storage } from 'firebase';
 import { FavoritoService } from 'src/app/services/favorito.service';
 import { Favorito } from 'src/app/interfaces/favorito';
 import { stringify } from '@angular/compiler/src/util';
@@ -31,7 +29,7 @@ interface PostId extends Post {
 })
 export class ProductoComponent implements OnInit {
 
-  constructor(private favoritoService: FavoritoService, private afs: AngularFirestore, private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatService: ChatService) { }
+  constructor(private favoritoService: FavoritoService, private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.buscar();
@@ -49,9 +47,9 @@ export class ProductoComponent implements OnInit {
   title: string;
   content: string;
   producto: Producto;
-  user: Usuario[] = [];
+  user: Usuario[];
   userL: Usuario;
-  duenio: Usuario;
+  duenio: Usuario[];
   duenioL: Usuario;
 
 
@@ -88,7 +86,7 @@ export class ProductoComponent implements OnInit {
   Comentario: Chat;
   chat: Chat[] = [];
   exist: boolean;
-  UserFav: Usuario[] = [];
+  UserFav: Usuario[];
   borrarMM: boolean = false;
 
   irRegistro() {
@@ -117,7 +115,7 @@ export class ProductoComponent implements OnInit {
       this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
         res => this.chat = res
       )
-    }, 2000)
+    }, 3500)
 
   }
   a: number = 1;
@@ -166,7 +164,7 @@ export class ProductoComponent implements OnInit {
         alert("Articulo añadido a favoritos");
         location.reload();
       }
-    }, 3000)
+    }, 4500)
   }
 
   reportChat(id) {
@@ -187,7 +185,7 @@ export class ProductoComponent implements OnInit {
         localStorage.setItem("a", "")
         window.location.href = "/Report"
       }
-    }, 2000)
+    },3500)
    
 
   }
@@ -257,18 +255,18 @@ export class ProductoComponent implements OnInit {
       this.productoService.getTop4CategoriaProducto(this.categoria).subscribe(
         res => this.top4 = res
       )
-    }, 3000)
+    }, 4500)
 
     setTimeout(() => {
       
       this.show3 = true;
-      localStorage.setItem("idD",stringify(this.duenio.idU))
-      if (localStorage.getItem("nomUser") == this.duenio.nomusuario) {
+      localStorage.setItem("idD",stringify(this.duenio[0][0].idU))
+      if (localStorage.getItem("nomUser") == this.duenio[0].nomusuario) {
         this.respuestaDM = true;
       }
-      console.log(this.duenio.nomusuario);
-      if(this.duenio.nomusuario == "undefined" || this.duenio.nomusuario == undefined){ this.buscar(); }
-      if (localStorage.getItem("nomUser") == this.duenio.nomusuario) {
+      console.log(this.duenio[0].nomusuario);
+      if(this.duenio[0].nomusuario == "undefined" || this.duenio[0].nomusuario == undefined){ this.buscar(); }
+      if (localStorage.getItem("nomUser") == this.duenio[0].nomusuario) {
         this.deletethis=true;
       } 
     }, 6000)
@@ -312,7 +310,7 @@ export class ProductoComponent implements OnInit {
         localStorage.setItem("idD",stringify(this.idPu))
         window.location.href = "/Chat";
       }
-    }, 2000)
+    }, 3500)
   }
 delete(){
   this.productoService.deleteProducto(localStorage.getItem("idP")).subscribe(

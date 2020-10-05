@@ -48,7 +48,7 @@ export class MenuProductosComponent implements OnInit {
 
         setTimeout(()=>{
           this.showA=false
-        },2000)
+        },3500)
   }
   a:number=1;
   favorito:Favorito[]=[];
@@ -97,7 +97,7 @@ export class MenuProductosComponent implements OnInit {
         alert("Articulo añadido a favoritos");
         location.reload();
       } 
-    },3000) 
+    },4500) 
   }
   bsc(){
     this.productosServices.getNomProducto(localStorage.getItem("bsc")).subscribe(
@@ -110,7 +110,7 @@ export class MenuProductosComponent implements OnInit {
     )
     setTimeout(()=>{
       this.showA=false
-    },2000)
+    },3500)
   }
 
   select(id){

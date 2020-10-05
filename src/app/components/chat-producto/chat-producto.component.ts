@@ -8,29 +8,43 @@ import { Usuario } from 'src/app/interfaces/usuario';
 import { ChatPrivService } from 'src/app/services/chat-priv.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { ProductoTrocado } from 'src/app/interfaces/producto-trocado';
+import { ProductoTrocadoService } from 'src/app/services/producto-trocado.service';
 
 @Component({
   selector: 'app-chat-producto',
   templateUrl: './chat-producto.component.html',
   styleUrls: ['./chat-producto.component.css']
 })
+
 export class ChatProductoComponent implements OnInit {
 
 
-  constructor(private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatPrivService: ChatPrivService) { }
+  constructor(private productoTrocadoService:ProductoTrocadoService,private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatPrivService: ChatPrivService) { }
 
   TopParaRevision: ChatPriv[] = [];
   Option: boolean;
   token;
+  acuerdo:ProductoTrocado;
+  acuerdOption:boolean;
   ngOnInit(): void {
     this.token = localStorage.getItem("token");
     this.chatPrivService.getListaTOP1(localStorage.getItem("token")).subscribe(
       res => this.TopParaRevision = res
     )
     this.productoService.getIdProducto(parseInt(localStorage.getItem("idP"))).subscribe(res => { this.producto = res }, err => err)
-
+    this.productoTrocadoService.getAcuerdo(parseInt(localStorage.getItem("token"))).subscribe(res => {this.acuerdo= res},err => err )
     setTimeout(() => {
-      console.log(this.TopParaRevision[0])
+
+      if(this.acuerdo.token == undefined || this.acuerdo.fecha == "undefined"){
+
+        this.acuerdOption = false;
+
+      }else if(this.acuerdo.token != undefined || this.acuerdo.fecha != "undefined"){
+        this.acuerdOption = true;
+
+      }
+
       if (this.TopParaRevision[0] == undefined || this.TopParaRevision[0].mensaje == "undefined") {
         console.log("false");
         this.Option = false;
@@ -47,11 +61,11 @@ export class ChatProductoComponent implements OnInit {
         setTimeout(() => {
           this.info =  "Producto = " +this.ChatInHtml[0].nomProducto ;
           this.show3 = true;
-        }, 3000)
+        }, 4500)
       }
 
 
-    }, 3000)
+    }, 4500)
   }
 
   info;
@@ -60,7 +74,8 @@ export class ChatProductoComponent implements OnInit {
   content: string;
   show3: boolean = false;
   producto: Producto;
-  usuarioD: Usuario;
+  usuarioD: Usuario[];
+  acuerdoOf:ProductoTrocado;
 
   addPost() {
 
@@ -74,14 +89,14 @@ export class ChatProductoComponent implements OnInit {
           mensaje: this.content,
           id_duenio: this.producto.id_usuario,
           nomUser: localStorage.getItem("nomUser"),
-          nomDuenio: this.usuarioD.nomusuario,
+          nomDuenio: this.usuarioD[0].nomusuario,
           nomProducto: this.producto.nombre,
           token: parseInt(localStorage.getItem("token")),
           mensajePor: parseInt(localStorage.getItem("idU"))
         }
         this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
         this.refrescar();
-      }, 2500)
+      }, 4000)
 
     } else if (this.Option == true) {
       if (parseInt(localStorage.getItem("idU")) == this.TopParaRevision[0].id_duenio) {
@@ -99,7 +114,7 @@ export class ChatProductoComponent implements OnInit {
             mensajePor: parseInt(localStorage.getItem("idU"))
           }
           this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
-        }, 2500)
+        }, 4000)
 
 
       } else {
@@ -117,13 +132,13 @@ export class ChatProductoComponent implements OnInit {
             mensajePor: parseInt(localStorage.getItem("idU"))
           }
           this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
-        }, 2500)
+        },4000)
 
       }
       setTimeout(() => {
         this.content = "";
         this.refrescar();
-      }, 4000);
+      }, 4750);
 
 
     }
@@ -134,6 +149,34 @@ export class ChatProductoComponent implements OnInit {
   }
 
   aceptar() {
+    if( this.acuerdOption == false){
+      if(this.TopParaRevision[0].id_duenio == parseInt(localStorage.getItem("idU"))){
+      this.acuerdoOf={
+        AceptaUser:null,
+        AceptaDueño:true,
+        id_user:this.TopParaRevision[0].id_user,
+          id_duenio:this.TopParaRevision[0].id_duenio,
+          id_producto:this.TopParaRevision[0].id_producto,
+        token:parseInt(localStorage.getItem("token"))
+      }
+    
+      this.productoTrocadoService.postAcuerdo(this.acuerdoOf)
+    }
+      else if(this.TopParaRevision[0].id_duenio != parseInt(localStorage.getItem("idU"))){
+        this.acuerdoOf={
+          AceptaUser:true,
+          AceptaDueño:null,
+          id_user:this.TopParaRevision[0].id_user,
+          id_duenio:this.TopParaRevision[0].id_duenio,
+          id_producto:this.TopParaRevision[0].id_producto,
+          token:parseInt(localStorage.getItem("token"))
+        }
+      
+        this.productoTrocadoService.postAcuerdo(this.acuerdoOf)
+    }
+    }else if(this.acuerdOption == true){
+
+    }
 
   }
 

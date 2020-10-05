@@ -82,7 +82,7 @@ export class AppComponent {
           )
         }
      }
-    },3000)
+    },4500)
     if(this.nomUser =="admin"){
       this.show2 = true;
     }

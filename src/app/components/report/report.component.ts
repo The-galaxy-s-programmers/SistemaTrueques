@@ -64,7 +64,7 @@ export class ReportComponent implements OnInit {
    this.idProducto = localStorage.getItem("idP")
    this.idComentario = localStorage.getItem("coment")
    console.log(this.idComentario)
-    },3000)
+    },4500)
   }
   enviar(){
     let report:Reportes = {
