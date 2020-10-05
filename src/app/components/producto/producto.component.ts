@@ -37,10 +37,13 @@ export class ProductoComponent implements OnInit {
     this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
       res => this.UserFav = res
     )
-    this.Ad = JSON.parse(JSON.stringify(this.UserFav))
+    setTimeout(() => {
+      this.Ad = JSON.parse(JSON.stringify(this.UserFav))
     if (localStorage.getItem("nomUser") == "admin") {
       this.borrarMM = true;
     }
+    }, 4500);
+    
 
   }
   Ad;
@@ -50,12 +53,10 @@ export class ProductoComponent implements OnInit {
   user: Usuario[];
   userL: Usuario;
   duenio: Usuario[];
-  duenioL: Usuario;
 
 
   idU: number;
   fechastring: string;
-  idP?: number;
   nombre: string;
   descripcion: string;
   categoria: string;
@@ -102,7 +103,7 @@ export class ProductoComponent implements OnInit {
       id_duenio: this.idPu,
       respuesta: "",
       nomUser: this.userL.nomusuario,
-      nomDuenio: this.duenioL.nomusuario,
+      nomDuenio: JSON.parse(JSON.stringify(this.duenio)).nomusuario,
       nomProducto: this.nombre
     }
 
@@ -176,7 +177,7 @@ export class ProductoComponent implements OnInit {
   reportProducto() {
     this.SHOW1 = true;
     setTimeout(() => {
-      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+      if (localStorage.getItem("nomUser") ==JSON.parse(JSON.stringify(this.duenio)).nomusuario) {
         alert("Usted es dueño de este producto");
         this.SHOW1=false;
       } else {
@@ -198,18 +199,16 @@ export class ProductoComponent implements OnInit {
   }
 
   inicio() {
-    console.log(localStorage.getItem("nomUser"))
 
     if (localStorage.getItem("nomUser") == null || localStorage.getItem("password") == null || localStorage.getItem("nomUser").length <= 2) {
-      console.log("hola")
+
       this.bnregistro = true;
       this.mensaje = false;
     } else {
-      console.log("adios")
+
       this.bnregistro = false;
       this.mensaje = true;
     }
-    console.log(this.idP)
 
     this.chatService.getListaMensajeId(localStorage.getItem("idP")).subscribe(
       res => this.chat = res
@@ -220,21 +219,17 @@ export class ProductoComponent implements OnInit {
   deletethis=false;
   buscar() {
 
-   
     this.show3 = false;
-    let a = localStorage.getItem("idP")
-    this.productoService.getIdProducto(a).subscribe(
-      res => {
-        this.producto = res
-      }, err => console.log(err)
+    this.productoService.getIdProducto(localStorage.getItem("idP")).subscribe(
+      res => { this.producto = res }, err => {console.log(err)}
     )
     this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
       res => this.user = res
     )
-
     setTimeout(() => {
-      const obj = JSON.parse(JSON.stringify(this.producto))
-      this.id_producto = obj.id;
+      const obj = this.producto;
+      console.log(this.producto)
+      this.id_producto = obj.idP;
       this.nombre = obj.nombre;
       this.descripcion = obj.descripcion;
       this.categoria = obj.categoria;
@@ -247,29 +242,31 @@ export class ProductoComponent implements OnInit {
       this.fechastring = this.datePipe.transform(this.fechaPublicacion, 'dd-MM-yyyy');
       this.userL = JSON.parse(JSON.stringify(this.user))
       this.idU = this.userL.idU;
+      console.log(this.idPu)
       this.usuarioService.getIdUser(this.idPu).subscribe(
         res => this.duenio = res
       )
-
+        setTimeout(() => {
+          const a = JSON.parse(JSON.stringify(this.duenio))
+          this.show3 = true;
+          localStorage.setItem("idD",stringify(a.idU))
+          if (localStorage.getItem("nomUser") == a.nomusuario) {
+            this.respuestaDM = true;
+          }
+          
+          if(a.nomusuario == "undefined" || a.nomusuario == undefined){ this.buscar(); }
+          if (localStorage.getItem("nomUser") == a.nomusuario) {
+            this.deletethis=true;
+          } 
+        }, 3000);
 
       this.productoService.getTop4CategoriaProducto(this.categoria).subscribe(
         res => this.top4 = res
       )
-    }, 4500)
+     
+    },4000)
 
-    setTimeout(() => {
-      
-      this.show3 = true;
-      localStorage.setItem("idD",stringify(this.duenio[0][0].idU))
-      if (localStorage.getItem("nomUser") == this.duenio[0].nomusuario) {
-        this.respuestaDM = true;
-      }
-      console.log(this.duenio[0].nomusuario);
-      if(this.duenio[0].nomusuario == "undefined" || this.duenio[0].nomusuario == undefined){ this.buscar(); }
-      if (localStorage.getItem("nomUser") == this.duenio[0].nomusuario) {
-        this.deletethis=true;
-      } 
-    }, 6000)
+   
 
   }
   select(id) {
@@ -302,7 +299,7 @@ export class ProductoComponent implements OnInit {
   Trocar() {
     this.SHOW12 = true;
     setTimeout(() => {
-      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+      if (localStorage.getItem("nomUser") == JSON.parse(JSON.stringify(this.duenio)).nomusuario) {
         alert("Usted es dueño de este producto");
         this.SHOW12=false;
       } else {
