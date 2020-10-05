@@ -9,6 +9,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { ErrorComponent } from './components/error/error.component';
 import {ReportComponent} from './components/report/report.component';
 import {ChatProductoComponent } from './components/chat-producto/chat-producto.component'
+import { UnsuscribeComponent } from './components/unsuscribe/unsuscribe.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:"Error", component:ErrorComponent},
   {path:"Report", component:ReportComponent},
   {path:"Chat", component:ChatProductoComponent},
+  {path:"DesSub",component:UnsuscribeComponent}
 ];
 
 @NgModule({

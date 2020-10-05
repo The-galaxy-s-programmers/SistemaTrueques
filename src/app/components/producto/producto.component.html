@@ -124,7 +124,7 @@
 								<br />
 								<ul *ngFor="let chatM of chat">
 									<li>
-										<h3>[{{ chatM.nomUser }}] - {{ chatM.mensaje }} <a (click)="reportChat(chatM.id)">(Reportar)</a><a *ngIf="borrarMM"(click)="borrarMensaje(chatM.id)"></a><a *ngIf="respuestaDM" (click)="responderM(chatM.id)">(Responder)</a></h3>
+										<h3>[{{ chatM.nomUser }}] - {{ chatM.mensaje }} <a (click)="reportChat(chatM.id)">(Reportar)</a><a *ngIf="borrarMM"(click)="borrarMensaje(chatM.id)">(Borrar)</a><a *ngIf="respuestaDM" (click)="responderM(chatM.id)">(Responder)</a></h3>
 										
 
 										<div *ngIf="escrituraDM">

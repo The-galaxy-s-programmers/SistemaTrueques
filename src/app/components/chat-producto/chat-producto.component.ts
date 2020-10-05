@@ -20,34 +20,34 @@ import { ProductoTrocadoService } from 'src/app/services/producto-trocado.servic
 export class ChatProductoComponent implements OnInit {
 
 
-  constructor(private productoTrocadoService:ProductoTrocadoService,private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatPrivService: ChatPrivService) { }
+  constructor(private productoTrocadoService: ProductoTrocadoService, private usuarioService: UsuarioService, private productoService: ProductoService, public datePipe: DatePipe, private chatPrivService: ChatPrivService) { }
 
   TopParaRevision: ChatPriv[] = [];
   Option: boolean;
   token;
-  acuerdo:ProductoTrocado;
-  acuerdOption:boolean;
+  acuerdo: ProductoTrocado;
+  acuerdOption: boolean;
   ngOnInit(): void {
     this.token = localStorage.getItem("token");
     this.chatPrivService.getListaTOP1(localStorage.getItem("token")).subscribe(
       res => this.TopParaRevision = res
     )
-    this.productoService.getIdProducto(localStorage.getItem("idP")).subscribe(res => { this.producto = res }, err => 
+    this.productoService.getIdProducto(localStorage.getItem("idP")).subscribe(res => { this.producto = res }, err =>
       err
     )
 
-    this.productoTrocadoService.getAcuerdo(localStorage.getItem("token")).subscribe(res => { this.acuerdo = res},err => this.acuerdOption = false)
+    this.productoTrocadoService.getAcuerdo(localStorage.getItem("token")).subscribe(res => { this.acuerdo = res }, err => this.acuerdOption = false)
 
     setTimeout(() => {
 
-      
+
 
       if (this.TopParaRevision[0] == undefined || this.TopParaRevision[0].mensaje == "undefined") {
         console.log("false");
         this.Option = false;
 
         console.log(this.producto.id_usuario);
-        this.info = "Producto = " + this.producto.nombre ;
+        this.info = "Producto = " + this.producto.nombre;
         this.show3 = true;
 
       }
@@ -56,16 +56,19 @@ export class ChatProductoComponent implements OnInit {
         this.Option = true;
         this.chatPrivService.getListaChatCompleto(parseInt(localStorage.getItem("token"))).subscribe(res => this.ChatInHtml = res)
         setTimeout(() => {
-          this.info =  "Producto = " +this.ChatInHtml[0].nomProducto ;
+          this.info = "Producto = " + this.ChatInHtml[0].nomProducto;
           this.show3 = true;
         }, 4500)
       }
-
-      if(this.acuerdo.token != undefined || this.acuerdo.fecha != "undefined"){
+      console.log(this.acuerdOption)
+      if(this.acuerdOption==false){
+        
+      }else{
+      if (this.acuerdo.token != undefined || this.acuerdo.fecha != "undefined") {
         this.acuerdOption = true;
 
       }
-      console.log(this.acuerdOption)
+    }
 
     }, 4500)
   }
@@ -77,73 +80,75 @@ export class ChatProductoComponent implements OnInit {
   show3: boolean = false;
   producto: Producto;
   usuarioD: Usuario[];
-  acuerdoOf:ProductoTrocado;
+  acuerdoOf: ProductoTrocado;
 
   addPost() {
-
-    if (this.Option == false) {
-      this.usuarioService.getIdUser(this.producto.id_usuario).subscribe(res => { this.usuarioD = res }, err => err)
-
-      setTimeout(() => {
-        this.chat = {
-          id_producto: parseInt(localStorage.getItem("idP")),
-          id_user: parseInt(localStorage.getItem("idU")),
-          mensaje: this.content,
-          id_duenio: this.producto.id_usuario,
-          nomUser: localStorage.getItem("nomUser"),
-          nomDuenio: JSON.parse(JSON.stringify(this.usuarioD)).nomusuario,
-          nomProducto: this.producto.nombre,
-          token: parseInt(localStorage.getItem("token")),
-          mensajePor: parseInt(localStorage.getItem("idU"))
-        }
-        this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
-        this.refrescar();
-      }, 4000)
-
-    } else if (this.Option == true) {
-      if (parseInt(localStorage.getItem("idU")) == this.TopParaRevision[0].id_duenio) {
+    if (this.content.length <= 1) { alert("Porfavor escriba mas de 1 caracter") }
+    else {
+      if (this.Option == false) {
+        this.usuarioService.getIdUser(this.producto.id_usuario).subscribe(res => { this.usuarioD = res }, err => err)
 
         setTimeout(() => {
           this.chat = {
-            id_producto: this.TopParaRevision[0].id_producto,
-            id_user: this.TopParaRevision[0].id_user,
+            id_producto: parseInt(localStorage.getItem("idP")),
+            id_user: parseInt(localStorage.getItem("idU")),
             mensaje: this.content,
-            id_duenio: this.TopParaRevision[0].id_duenio,
-            nomUser: this.TopParaRevision[0].nomDuenio,
-            nomDuenio: this.TopParaRevision[0].nomDuenio,
-            nomProducto: this.TopParaRevision[0].nomProducto,
+            id_duenio: this.producto.id_usuario,
+            nomUser: localStorage.getItem("nomUser"),
+            nomDuenio: JSON.parse(JSON.stringify(this.usuarioD)).nomusuario,
+            nomProducto: this.producto.nombre,
             token: parseInt(localStorage.getItem("token")),
             mensajePor: parseInt(localStorage.getItem("idU"))
           }
           this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
+          this.refrescar();
         }, 4000)
 
+      } else if (this.Option == true) {
+        if (parseInt(localStorage.getItem("idU")) == this.TopParaRevision[0].id_duenio) {
 
-      } else {
-
-        setTimeout(() => {
-          this.chat = {
-            id_producto: this.TopParaRevision[0].id_producto,
-            id_user: this.TopParaRevision[0].id_user,
-            mensaje: this.content,
-            id_duenio: this.TopParaRevision[0].id_duenio,
-            nomUser: this.TopParaRevision[0].nomUser,
-            nomDuenio: this.TopParaRevision[0].nomDuenio,
-            nomProducto: this.TopParaRevision[0].nomProducto,
-            token: parseInt(localStorage.getItem("token")),
-            mensajePor: parseInt(localStorage.getItem("idU"))
-          }
-          this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
           setTimeout(() => {
-            this.content = "";
-            this.refrescar();
-          },2000);
-    
-        },4000)
+            this.chat = {
+              id_producto: this.TopParaRevision[0].id_producto,
+              id_user: this.TopParaRevision[0].id_user,
+              mensaje: this.content,
+              id_duenio: this.TopParaRevision[0].id_duenio,
+              nomUser: this.TopParaRevision[0].nomDuenio,
+              nomDuenio: this.TopParaRevision[0].nomDuenio,
+              nomProducto: this.TopParaRevision[0].nomProducto,
+              token: parseInt(localStorage.getItem("token")),
+              mensajePor: parseInt(localStorage.getItem("idU"))
+            }
+            this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
+          }, 4000)
+
+
+        } else {
+
+          setTimeout(() => {
+            this.chat = {
+              id_producto: this.TopParaRevision[0].id_producto,
+              id_user: this.TopParaRevision[0].id_user,
+              mensaje: this.content,
+              id_duenio: this.TopParaRevision[0].id_duenio,
+              nomUser: this.TopParaRevision[0].nomUser,
+              nomDuenio: this.TopParaRevision[0].nomDuenio,
+              nomProducto: this.TopParaRevision[0].nomProducto,
+              token: parseInt(localStorage.getItem("token")),
+              mensajePor: parseInt(localStorage.getItem("idU"))
+            }
+            this.chatPrivService.postMensaje(this.chat).subscribe(res => console.log(res))
+            setTimeout(() => {
+              this.content = "";
+              this.refrescar();
+            }, 1000);
+
+          }, 4000)
+
+        }
+
 
       }
-      
-
     }
   }
   refrescar() {
@@ -152,32 +157,32 @@ export class ChatProductoComponent implements OnInit {
   }
 
   aceptar() {
-    if( this.acuerdOption == false){
-      if(this.TopParaRevision[0].id_duenio == parseInt(localStorage.getItem("idU"))){
-      this.acuerdoOf={
-        AceptaUser:null,
-        AceptaDueño:true,
-        id_user:this.TopParaRevision[0].id_user,
-          id_duenio:this.TopParaRevision[0].id_duenio,
-          id_producto:this.TopParaRevision[0].id_producto,
-        token:parseInt(localStorage.getItem("token"))
-      }
-    
-      this.productoTrocadoService.postAcuerdo(this.acuerdoOf)
-    }
-      else if(this.TopParaRevision[0].id_duenio != parseInt(localStorage.getItem("idU"))){
-        this.acuerdoOf={
-          AceptaUser:true,
-          AceptaDueño:null,
-          id_user:this.TopParaRevision[0].id_user,
-          id_duenio:this.TopParaRevision[0].id_duenio,
-          id_producto:this.TopParaRevision[0].id_producto,
-          token:parseInt(localStorage.getItem("token"))
+    if (this.acuerdOption == false) {
+      if (this.TopParaRevision[0].id_duenio == parseInt(localStorage.getItem("idU"))) {
+        this.acuerdoOf = {
+          AceptaUser: null,
+          AceptaDueño: true,
+          id_user: this.TopParaRevision[0].id_user,
+          id_duenio: this.TopParaRevision[0].id_duenio,
+          id_producto: this.TopParaRevision[0].id_producto,
+          token: parseInt(localStorage.getItem("token"))
         }
-      
+
         this.productoTrocadoService.postAcuerdo(this.acuerdoOf)
-    }
-    }else if(this.acuerdOption == true){
+      }
+      else if (this.TopParaRevision[0].id_duenio != parseInt(localStorage.getItem("idU"))) {
+        this.acuerdoOf = {
+          AceptaUser: true,
+          AceptaDueño: null,
+          id_user: this.TopParaRevision[0].id_user,
+          id_duenio: this.TopParaRevision[0].id_duenio,
+          id_producto: this.TopParaRevision[0].id_producto,
+          token: parseInt(localStorage.getItem("token"))
+        }
+
+        this.productoTrocadoService.postAcuerdo(this.acuerdoOf)
+      }
+    } else if (this.acuerdOption == true) {
 
     }
 
