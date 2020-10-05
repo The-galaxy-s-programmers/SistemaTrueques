@@ -58,7 +58,7 @@
 								</div>
 							</article>
 						</fieldset>
-						
+						<div *ngIf="!bnregistro">
 							<button *ngIf="!SHOW12" (click)="Trocar()"type="button" class="btn btn-outline-danger"style="
 							margin-right: 10px;
 							margin-top: 10px;
@@ -77,7 +77,12 @@
 								(click)="corazon()" class="fa fa-heart-o"></i></button>
 							<button *ngIf="deletethis" (click)="delete()" class="btn btn-outline-info" style="margin-top: 10px;margin-left: 10px;"><i
 									(click)="delete()" class="fa fa-trash"></i></button>
-
+						</div>
+						<div *ngIf="bnregistro" style="text-align: center;">
+							<p>Registrate para comentar</p>
+							<button class="primary-btn" style="margin: 10px;" type="submit" (click)="irRegistro()" >
+								Registrarse </button>
+						</div>
 						
 						<br />
 
@@ -92,13 +97,6 @@
 
 						</ul>
 
-						<ul class="product-links">
-							<li>Compartir:</li>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-envelope"></i></a></li>
-						</ul>
 					</div>
 				</div>
 			</div>
