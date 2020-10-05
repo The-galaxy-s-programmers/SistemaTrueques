@@ -206,13 +206,8 @@
 							<h6 class="product-price"> {{top1.valorReferencia}} <small> Precio Ref:</small></h6>
 
 							<div class="product-btns">
-								<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-										class="tooltipp">Agregar
-										a la lista</span></button>
-								<button class="add-to-compare"><i class="fa fa-share"></i><span
-										class="tooltipp">Compartir</span></button>
-								<button class="quick-view"><i class="fa fa-eye"></i><span
-										class="tooltipp">Ver</span></button>
+								<button (click)=corazon(producto.idP); class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+									class="tooltipp">Agregar a la lista</span></button>
 							</div>
 						</div>
 						<div style="text-align: center;">
