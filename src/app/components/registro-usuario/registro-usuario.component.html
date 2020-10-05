@@ -40,7 +40,8 @@
                         <input class="input" type="text" name="nomusuario" placeholder="Nombre de Usuario, con el iniciarás sesión" required [(ngModel)]="nomusuario">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="password" name="contrasenia" placeholder="Contraseña"required [(ngModel)]="password">
+                        <input class="input" type="password" ID="txtPassword1"  style="width: 85%;" name="contrasenia" placeholder="Contraseña"required [(ngModel)]="password">
+                        <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword1()"> <span class="fa fa-eye-slash icon"></span> </button>
                     </div>
                     <div class="form-group">
                         <input class="input" type="email" name="email" placeholder="Correo"required [(ngModel)]="correo">
@@ -107,7 +108,9 @@
                     <input class="input" type="text" name="nombre-usuario" placeholder="Nombre Usuario" [(ngModel)]="nombredusuario">
                 </div>
                 <div class="form-group">
-                    <input class="input" type="password" name="contrasenia" placeholder="Contraseña" [(ngModel)]="passworddusuario">
+                    <input class="input" type="password" name="contrasenia" placeholder="Contraseña" ID="txtPassword"  style="width: 85%;" [(ngModel)]="passworddusuario">
+                   
+                        <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
                 </div>
                 <div class="form-group">
                     <div class="input-checkbox text-center">
