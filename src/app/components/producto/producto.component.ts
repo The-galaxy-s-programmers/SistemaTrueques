@@ -317,6 +317,12 @@ delete(){
   localStorage.setItem("idP","")
 }
 
+bsc(a){
+  localStorage.setItem("bsc",a)
+  window.location.href= "/MenuProductos"
+}
+
+
 }
 
 

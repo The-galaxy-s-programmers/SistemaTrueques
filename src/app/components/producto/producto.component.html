@@ -7,8 +7,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="breadcrumb-tree">
-						<li><a href="#">{{categoria}}</a></li>
-						<li><a href="#">{{subcategoria}}</a></li>
+						<li><a (click)="bsc(categoria);">{{categoria}}</a></li>
+						<li><a (click)="bsc(subcategoria);">{{subcategoria}}</a></li>
 
 					</ul>
 				</div>
@@ -92,8 +92,8 @@
 
 						<ul class="product-links">
 							<li>Categorias:</li>
-							<li><a href="#">{{categoria}} /</a></li>
-							<li><a href="#">{{subcategoria}}</a></li>
+							<li><a (click)="bsc(categoria);">{{categoria}} /</a></li>
+							<li><a (click)="bsc(subcategoria);">{{subcategoria}}</a></li>
 
 						</ul>
 
