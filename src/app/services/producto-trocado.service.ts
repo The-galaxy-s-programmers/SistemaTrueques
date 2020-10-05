@@ -27,7 +27,7 @@ export class ProductoTrocadoService {
   }
 
   getAcuerdo(token):Observable<ProductoTrocado>{
-    return this.http.get<ProductoTrocado>(this.http+this.nom+"/"+token)
+    return this.http.get<ProductoTrocado>(this.url+this.nom+token)
   }
 
 }

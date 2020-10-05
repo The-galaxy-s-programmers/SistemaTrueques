@@ -53,7 +53,6 @@ export class ProductoComponent implements OnInit {
   user: Usuario[];
   userL: Usuario;
   duenio: Usuario[];
-  duenioL: Usuario;
 
 
   idU: number;
@@ -178,7 +177,7 @@ export class ProductoComponent implements OnInit {
   reportProducto() {
     this.SHOW1 = true;
     setTimeout(() => {
-      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+      if (localStorage.getItem("nomUser") ==JSON.parse(JSON.stringify(this.duenio)).nomusuario) {
         alert("Usted es dueño de este producto");
         this.SHOW1=false;
       } else {
@@ -300,7 +299,7 @@ export class ProductoComponent implements OnInit {
   Trocar() {
     this.SHOW12 = true;
     setTimeout(() => {
-      if (localStorage.getItem("nomUser") == this.duenioL.nomusuario) {
+      if (localStorage.getItem("nomUser") == JSON.parse(JSON.stringify(this.duenio)).nomusuario) {
         alert("Usted es dueño de este producto");
         this.SHOW12=false;
       } else {
