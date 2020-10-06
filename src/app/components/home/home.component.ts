@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
  
 
   sub(){
-    if(this.correoSub.length>=5){
+    if(this.correoSub.length<=5){
       alert("Porfavor escriba un correo valido")
     }else{
     const SubCorreo:SuscripcionNormal={
