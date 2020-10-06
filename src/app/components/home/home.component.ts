@@ -34,17 +34,22 @@ export class HomeComponent implements OnInit {
  
 
   sub(){
+    if(this.correoSub.length>=5){
+      alert("Porfavor escriba un correo valido")
+    }else{
     const SubCorreo:SuscripcionNormal={
       "correo":this.correoSub
     }
+    
     this.suscripcionService.postSubs(SubCorreo).subscribe(
       res => console.log(res)
     )
     this.suscripcionService.EnvioEmails(this.correoSub).subscribe(
       res => console.log("enviadooo "+ res)
     )
-    console.log(this.correoSub)
-  }
+    alert("Se ha suscrito el correo")
+    this.correoSub="";
+  }}
 
   corazon(idP){
     this.SHOW123=true;
