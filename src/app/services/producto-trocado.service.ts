@@ -20,14 +20,17 @@ export class ProductoTrocadoService {
     return this.http.post(`${this.url}`,productoTrocado,this.httpOptions)
   }
   putUser(token,productoTrocado:ProductoTrocado):Observable<number>{
-    return this.http.put<number>(this.url+this.user+"/"+token,productoTrocado,this.httpOptions)
+    return this.http.put<number>(this.url+this.user+token,productoTrocado,this.httpOptions)
   }
   putDuenio(token,productoTrocado:ProductoTrocado):Observable<number>{
-    return this.http.put<number>(this.url+this.duenio+"/"+token,productoTrocado,this.httpOptions)
+    return this.http.put<number>(this.url+this.duenio+token,productoTrocado,this.httpOptions)
   }
 
   getAcuerdo(token):Observable<ProductoTrocado>{
     return this.http.get<ProductoTrocado>(this.url+this.nom+token)
+  }
+  EnvioEmails(correo,token):Observable<number> {
+    return this.http.get<number>(this.url+"/envio/"+correo+"/"+token)
   }
 
 }

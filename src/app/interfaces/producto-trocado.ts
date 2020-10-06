@@ -1,7 +1,7 @@
 export interface ProductoTrocado {   
  id ?:number;
- AceptaUser :boolean;
- AceptaDueño:boolean;
+ aceptaUser :number;
+ aceptaDuenio:number;
  fecha ?:string;
  id_user:number;
  id_duenio:number;

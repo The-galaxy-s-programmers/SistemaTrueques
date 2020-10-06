@@ -62,14 +62,14 @@ export class ChatProductoComponent implements OnInit {
         }, 4500)
       }
       console.log(this.acuerdOption)
-      if(this.acuerdOption==false){
+      if (this.acuerdOption == false) {
 
-      }else{
-      if (this.acuerdo.token != undefined || this.acuerdo.fecha != "undefined") {
-        this.acuerdOption = true;
+      } else {
+        if (this.acuerdo.token != undefined || this.acuerdo.fecha != "undefined") {
+          this.acuerdOption = true;
 
+        }
       }
-    }
 
     }, 4500)
   }
@@ -156,67 +156,92 @@ export class ChatProductoComponent implements OnInit {
     this.chatPrivService.getListaChatCompleto(localStorage.getItem("token")).subscribe(res => this.ChatInHtml = res)
 
   }
-acuerdoPro:ProductoTrocado;
+  acuerdoPro: ProductoTrocado;
   aceptar() {
-    if (this.acuerdOption == false) {
-      if (this.TopParaRevision[0].id_duenio == parseInt(localStorage.getItem("idU"))) {
-        this.acuerdoOf = {
-          AceptaUser: null,
-          AceptaDueño: true,
-          id_user: this.TopParaRevision[0].id_user,
-          id_duenio: this.TopParaRevision[0].id_duenio,
-          id_producto: this.TopParaRevision[0].id_producto,
-          token: parseInt(localStorage.getItem("token"))
-        }
+    const a = parseInt(localStorage.getItem("token"));
 
-        this.productoTrocadoService.postAcuerdo(this.acuerdoOf).subscribe(res=>console.log(res))
+    this.chatPrivService.getListaTOP1(localStorage.getItem("token")).subscribe(
+      res => this.TopParaRevision = res
+    )
+    console.log(a)
+    setTimeout(() => {
+      if (this.acuerdOption == false) {
+        console.log("Es falso")
+        if (this.TopParaRevision[0].id_duenio == parseInt(localStorage.getItem("idU"))) {
+          this.acuerdoOf = {
+            aceptaUser: 0,
+            aceptaDuenio: 1,
+            id_user: this.TopParaRevision[0].id_user,
+            id_duenio: this.TopParaRevision[0].id_duenio,
+            id_producto: this.TopParaRevision[0].id_producto,
+            token: a
+          }
+
+          this.productoTrocadoService.postAcuerdo(this.acuerdoOf).subscribe(res => console.log(res))
+          console.log(this.acuerdoOf)
+        }
+        else if (this.TopParaRevision[0].id_duenio != parseInt(localStorage.getItem("idU"))) {
+          this.acuerdoOf = {
+            aceptaUser: 1,
+            aceptaDuenio: 0,
+            id_user: this.TopParaRevision[0].id_user,
+            id_duenio: this.TopParaRevision[0].id_duenio,
+            id_producto: this.TopParaRevision[0].id_producto,
+            token: a
+          }
+
+
+          this.productoTrocadoService.postAcuerdo(this.acuerdoOf).subscribe(res => console.log(res))
+          console.log(this.acuerdoOf)
+        }
+      } else if (this.acuerdOption == true) {
+        console.log("Es Verdadero")
+
+        this.productoTrocadoService.getAcuerdo(localStorage.getItem("token")).subscribe(res => { this.acuerdoPro = res })
+        setTimeout(() => {
+          console.log(this.acuerdoPro)
+        
+            this.acuerdoOf = {
+              aceptaUser: 1,
+              aceptaDuenio: 1,
+              id_user: this.TopParaRevision[0].id_user,
+              id_duenio: this.TopParaRevision[0].id_duenio,
+              id_producto: this.TopParaRevision[0].id_producto,
+              token: a
+            }
+            
+            this.productoTrocadoService.putDuenio(this.acuerdoOf.token, this.acuerdoOf).subscribe(res => console.log(res))
+            console.log("LLegamos 1")
+
+        }, 3000)
       }
-      else if (this.TopParaRevision[0].id_duenio != parseInt(localStorage.getItem("idU"))) {
-        this.acuerdoOf = {
-          AceptaUser: true,
-          AceptaDueño: null,
-          id_user: this.TopParaRevision[0].id_user,
-          id_duenio: this.TopParaRevision[0].id_duenio,
-          id_producto: this.TopParaRevision[0].id_producto,
-          token: parseInt(localStorage.getItem("token"))
-        }
+    }, 3000);
 
-        this.productoTrocadoService.postAcuerdo(this.acuerdoOf)
-      }
-    } else if (this.acuerdOption == true) {
+    setTimeout(() => {
 
-      this.productoTrocadoService.getAcuerdo(localStorage.getItem("token")).subscribe(res=>{this.acuerdoPro = res})
+      this.productoTrocadoService.getAcuerdo(a).subscribe(res => { this.b = res })
+      setTimeout(() => {
+        console.log(this.b)
+        if (this.b.aceptaDuenio == 1 && this.b.aceptaUser == 1) { alert("Felicitaciones se ha llegado a un acuerdo, Se le enviara un correo de Acuerdo Mutuo") }
+        this.usuarioService.getIdUser(this.b.id_duenio).subscribe(res=> this.c=res)
 
-      if (this.TopParaRevision[0].id_duenio == parseInt(localStorage.getItem("idU")) && this.acuerdoPro.AceptaUser==true) {
-        this.acuerdoOf = {
-          AceptaUser: true,
-          AceptaDueño: true,
-          id_user: this.TopParaRevision[0].id_user,
-          id_duenio: this.TopParaRevision[0].id_duenio,
-          id_producto: this.TopParaRevision[0].id_producto,
-          token: parseInt(localStorage.getItem("token"))
-        }
+        this.usuarioService.getIdUser(this.b.id_user).subscribe(res=> this.d=res)
 
-        this.productoTrocadoService.putDuenio(this.acuerdoOf.token,this.acuerdoOf).subscribe(res=>console.log(res))
+        setTimeout(() => {
+          const e=JSON.parse(JSON.stringify(this.c)).correo;
+          const f=JSON.parse(JSON.stringify(this.d)).correo;
+          this.productoTrocadoService.EnvioEmails(e,this.b.token).subscribe(res=> res)
+          this.productoTrocadoService.EnvioEmails(f,this.b.token).subscribe(res=> res)
+        }, 4000);
+  
+      }, 3000)
+    }, 4000)
 
-      }else if (this.TopParaRevision[0].id_duenio != parseInt(localStorage.getItem("idU")) && this.acuerdoPro.AceptaDueño==true) {
-        this.acuerdoOf = {
-          AceptaUser: true,
-          AceptaDueño: true,
-          id_user: this.TopParaRevision[0].id_user,
-          id_duenio: this.TopParaRevision[0].id_duenio,
-          id_producto: this.TopParaRevision[0].id_producto,
-          token: parseInt(localStorage.getItem("token"))
-        }
-
-        this.productoTrocadoService.putDuenio(this.acuerdoOf.token,this.acuerdoOf).subscribe(res=>console.log(res))
-
-      }
-
-    }
 
   }
-
+  b: ProductoTrocado;
+  c:Usuario[];
+  d:Usuario[];
   reportChat(id) {
     localStorage.setItem("coment", id + " " + localStorage.getItem("token"))
     localStorage.setItem("a", "")

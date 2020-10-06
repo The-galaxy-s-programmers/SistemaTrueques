@@ -160,10 +160,7 @@ export class PerfilComponent implements OnInit {
   }
   
   buscar() {
-
-    this.chatPrivService.getListaMensaje(localStorage.getItem("idU")).subscribe(
-      res=> this.chatPriv = res
-    )
+  
 
     this.usuarioService.getNomUser(localStorage.getItem("nomUser")).subscribe(
       res => {
@@ -237,8 +234,9 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.getListaUser().subscribe(
       res => this.usuariosall = res
        )
-   
-
+    this.chatPrivService.getListaMensaje(localStorage.getItem("idU")).subscribe(
+          res=> this.chatPriv = res
+        )
   }
   a:number=1;
   favorito:Favorito[]=[];
@@ -297,7 +295,7 @@ export class PerfilComponent implements OnInit {
     this.productoServices.getListaProducto().subscribe(
       res => this.productosall = res
     )
-    location.reload();
+    setTimeout(()=>{ alert("Borrado Exitoso"); location.reload();},3000)
   }
   borrarUser(id){
     this.usuarioService.deleteUsuario(id).subscribe(
@@ -306,7 +304,7 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.getListaUser().subscribe(
       res => this.usuariosall = res
        )
-       location.reload();
+       setTimeout(()=>{ alert("Borrado Exitoso"); location.reload();},3000)
   }
   borrarSub(correo){
     this.suscripcionService.deleteSubs(correo).subscribe(
@@ -315,7 +313,8 @@ export class PerfilComponent implements OnInit {
     this.suscripcionService.getListaSubsNormal().subscribe(
       res => this.subs = res
     )
-    location.reload();
+    setTimeout(()=>{ alert("Borrado Exitoso"); location.reload();},3000)
+    
   }
   borrarP(id){
     this.reportesSevice.deleteReport(id).subscribe(
@@ -324,7 +323,7 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaProductos().subscribe(
       res => this.productos = res
     )
-    location.reload();
+    setTimeout(()=>{ alert("Borrado Exitoso"); location.reload();},3000)
   }
   
   borrarC(id){
@@ -334,7 +333,7 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaComentarios().subscribe(
       res => this.comentarios = res
     )
-    location.reload();
+    setTimeout(()=>{ alert("Borrado Exitoso"); location.reload();},3000)
   }
   borrarA(id){
     this.reportesSevice.deleteReport(id).subscribe(
@@ -343,7 +342,7 @@ export class PerfilComponent implements OnInit {
     this.reportesSevice.getListaAyuda().subscribe(
       res => this.ayudas = res
     )
-    location.reload();
+    setTimeout(()=>{ alert("Borrado Exitoso"); location.reload();},3000)
   }
   
 
