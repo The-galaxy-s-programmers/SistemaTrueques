@@ -19,11 +19,11 @@ export class ProductoTrocadoService {
   postAcuerdo(productoTrocado:ProductoTrocado) {
     return this.http.post(`${this.url}`,productoTrocado,this.httpOptions)
   }
-  putUser(idP,idU,idD,productoTrocado:ProductoTrocado):Observable<number>{
-    return this.http.put<number>(this.url+this.user+"/"+idP+"/"+idU+"/"+idD,productoTrocado,this.httpOptions)
+  putUser(token,productoTrocado:ProductoTrocado):Observable<number>{
+    return this.http.put<number>(this.url+this.user+"/"+token,productoTrocado,this.httpOptions)
   }
-  putDuenio(idP,idU,idD,productoTrocado:ProductoTrocado):Observable<number>{
-    return this.http.put<number>(this.url+this.duenio+"/"+idP+"/"+idU+"/"+idD,productoTrocado,this.httpOptions)
+  putDuenio(token,productoTrocado:ProductoTrocado):Observable<number>{
+    return this.http.put<number>(this.url+this.duenio+"/"+token,productoTrocado,this.httpOptions)
   }
 
   getAcuerdo(token):Observable<ProductoTrocado>{
