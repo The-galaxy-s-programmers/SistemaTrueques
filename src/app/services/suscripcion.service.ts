@@ -18,10 +18,6 @@ export class SuscripcionService {
     return this.http.get<SuscripcionNormal[]>(this.url)
   }
 
- getListaSubs(noticia): Observable<Suscripcion[]> {
-    return this.http.get<Suscripcion[]>(this.url+'/all/'+noticia)
-  }
-
   postSubs(suscripcion:SuscripcionNormal) {
     return this.http.post(`${this.url}`,suscripcion,this.httpOptions)
   }
