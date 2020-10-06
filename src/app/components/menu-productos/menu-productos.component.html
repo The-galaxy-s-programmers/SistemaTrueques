@@ -31,7 +31,7 @@
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
                     <!-- aside Widget -->
-                  
+
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
@@ -39,14 +39,16 @@
 
                         <h3 class="aside-title">Visitas</h3>
                         <div class="price-filter">
-                            <a href="https://www.contadorvisitasgratis.com" title="contador de visitas online"><img
-                                    src="https://counter3.stat.ovh/private/contadorvisitasgratis.php?c=j3ktdtw5ezjm1twebze1mcq58ey91w51"
-                                    border="0" title="contador de visitas online" alt="contador de visitas online"></a>
+                            <a href="https://www.contadorvisitasgratis.com"
+                                title="contador de visitas para mi pagina web gratis">
+                                <img src="https://counter11.stat.ovh/private/contadorvisitasgratis.php?c=dxdz9lc6w3g2f7uz995b8c8g1yltygns"
+                                    border="0" title="contador de visitas para mi pagina web gratis"
+                                    alt="contador de visitas para mi pagina web gratis"></a>
                         </div>
                     </div>
                     <!-- /aside Widget -->
 
-                    
+
 
                     <!-- mas vendidos -->
                     <div class="aside" *ngFor='let topProductos of topListaProductos'>
@@ -59,11 +61,11 @@
                             <div class="product-body">
 
                                 <p class="product-category"><small>{{topProductos.categoria}}</small></p>
-                                <h3 class="product-name"><a > <strong>{{topProductos.nombre}}</strong>
+                                <h3 class="product-name"><a> <strong>{{topProductos.nombre}}</strong>
                                         {{topProductos.descripcion}} <small>{{topProductos.valorReferencia}}</small></a>
                                 </h3>
                                 <h4 class="product-price"> <del class="product-old-price"></del></h4>
-                                
+
                             </div>
                             <br>
                             <br>
@@ -77,7 +79,7 @@
                 <!-- STORE -->
                 <div id="store" class="col-md-9">
                     <!-- store top filter -->
-                   
+
                     <!-- /store top filter -->
 
                     <!-- menu productos -->
@@ -93,15 +95,16 @@
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">{{producto.subcategoria}}</p>
-                                    <h3 class="product-name"><a >{{producto.nombre}}
+                                    <h3 class="product-name"><a>{{producto.nombre}}
                                             <small>{{producto.uso}}</small></a></h3>
                                     <h3 class="product-description">{{producto.descripcion}}</h3>
                                     <h6 class="product-price"> {{producto.valorReferencia}} <small> Precio Ref:</small>
                                     </h6>
 
                                     <div class="product-btns">
-                                        <button (click)=corazon(producto.idP); class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">Agregar a la lista</span></button>
+                                        <button (click)=corazon(producto.idP); class="add-to-wishlist"><i
+                                                class="fa fa-heart-o"></i><span class="tooltipp">Agregar a la
+                                                lista</span></button>
 
                                     </div>
                                 </div>
