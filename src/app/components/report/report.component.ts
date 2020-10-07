@@ -79,6 +79,10 @@ export class ReportComponent implements OnInit {
     this.reporteService.nuevoReport(report).subscribe(
       res => this.obs = res
     )
+    setTimeout(() => {
+      alert("Se ha reportado correctamente se le enviara un aviso, segun el informe entregado")
+      window.location.href="/#"
+    }, 3000);
   }
 
 }
