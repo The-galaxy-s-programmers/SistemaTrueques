@@ -139,9 +139,7 @@ export class PerfilComponent implements OnInit {
     localStorage.setItem("a","ayuda");
 
   }
-  ENVIARALL(){
-
-  }
+ 
   borrar() {
     var r = confirm("¿Seguro que desea borrar su perfil? Esto puede traer cambios permanentes");
     if (r == true) {
@@ -510,11 +508,14 @@ export class PerfilComponent implements OnInit {
         alert("Verifique los datos ingresados")
         this.register= false
       }else{
-       this.usuarioService.putUser(this.idU, user).subscribe(
-              res => this.obs = res) 
-      console.log(nuevo);
-      alert("Se han actualizado los datos")
-      location.reload(); 
+        setTimeout(() => {
+          this.usuarioService.putUser(this.idU, user).subscribe(
+            res => this.obs = res) 
+    console.log(nuevo);
+    alert("Se han actualizado los datos")
+    location.reload(); 
+        }, 3000);
+      
     }
   
 }
