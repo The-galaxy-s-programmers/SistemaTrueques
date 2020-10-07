@@ -101,7 +101,7 @@
                                     <h6 class="product-price"> {{producto.valorReferencia}} <small> Precio Ref:</small>
                                     </h6>
 
-                                    <div class="product-btns">
+                                    <div *ngIf="showH" class="product-btns">
                                         <button (click)=corazon(producto.idP); class="add-to-wishlist"><i
                                                 class="fa fa-heart-o"></i><span class="tooltipp">Agregar a la
                                                 lista</span></button>

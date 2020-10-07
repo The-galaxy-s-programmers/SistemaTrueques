@@ -14,6 +14,7 @@ export class MenuProductosComponent implements OnInit {
 
   constructor(private productosServices: ProductoService,private favoritoService:FavoritoService) { }
 
+  showH=false;
   
   ngOnInit(): void {
     if(localStorage.getItem("bsc").length <= 3){
@@ -25,7 +26,11 @@ export class MenuProductosComponent implements OnInit {
   }else{
     this.bsc();
   }
-
+  if(localStorage.getItem("nomUser").length<=3 ||localStorage.getItem("nomUser")==null ||localStorage.getItem("nomUser")==undefined||localStorage.getItem("nomUser")=="undefined"  ){
+    this.showH=false
+  }else{
+    this.showH=true
+  }
   }
 
   showA:boolean=true;
